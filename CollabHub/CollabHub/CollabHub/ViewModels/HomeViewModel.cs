@@ -6,5 +6,6 @@ namespace CollabHub.ViewModels
 {
     class HomeViewModel : BaseViewModel
     {
+
     }
 }

@@ -6,10 +6,58 @@
              mc:Ignorable="d"
              x:Class="CollabHub.Views.HomePage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Top Banner -->
+            <Grid BackgroundColor="#C1EDCC">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="user.png" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="5, 10"/>
+                <Label Text="HOME" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="30" TextColor="#211E1C"/>
+                <Image Source="search.png" Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center" Margin="5, 10"/>
+            </Grid>
+
+            <!-- Welcome Message & Units shortcuts -->
+            <Grid Grid.Row="2" Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="85" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="85" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Welcome back, Student!" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20" />
+                <Label Text="Today is" Grid.Row="1" FontSize="16" />
+                <Label Text="Units" Grid.Row="3" Grid.Column="0" HorizontalTextAlignment="Center" FontSize="16" FontAttributes="Bold" />
+                <Label Text="CollabChat" Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="Center" FontSize="16" FontAttributes="Bold" />
+                <Button Text="UnitPlaceholder" Grid.Row="4" Grid.Column="0" HorizontalOptions="Center" />
+                <Button Text="UnitPlaceholder" Grid.Row="4" Grid.Column="1" HorizontalOptions="Center" />
+                <Label Text="CollabVideo" Grid.Row="5" Grid.Column="0" HorizontalTextAlignment="Center" FontSize="16" FontAttributes="Bold" />
+                <Label Text="Calendar" Grid.Row="5" Grid.Column="1" HorizontalTextAlignment="Center" FontSize="16" FontAttributes="Bold" />
+                <Button Text="UnitPlaceholder" Grid.Row="6" Grid.Column="0" HorizontalOptions="Center" />
+                <Button Text="UnitPlaceholder" Grid.Row="6" Grid.Column="1" HorizontalOptions="Center" />
+            </Grid>
+            
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

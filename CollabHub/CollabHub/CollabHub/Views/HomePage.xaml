@@ -63,6 +63,7 @@
                 <Label Text="Calendar" Grid.Row="5" Grid.Column="1" HorizontalTextAlignment="Center" FontSize="16" FontAttributes="Bold" />
                 <Button Text="UnitPlaceholder" Grid.Row="6" Grid.Column="0" HorizontalOptions="Center" Command="{Binding UnitsPage}" />
                 <Button Text="UnitPlaceholder" Grid.Row="6" Grid.Column="1" HorizontalOptions="Center" Clicked="NavigateButton_OnClicked"/>
+
             </Grid>
             
         </Grid>

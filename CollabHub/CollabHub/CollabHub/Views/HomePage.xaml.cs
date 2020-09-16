@@ -20,5 +20,10 @@ namespace CollabHub.Views
         {
             await Navigation.PushAsync(new NavigationPage  (new UnitPage()));
         }
+
+        async void NavigateButton_OnCalendarClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NavigationPage(new CalendarPage()));
+        }
     }
 }

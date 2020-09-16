@@ -3,8 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewmodel="clr-namespace:CollabHub.ViewModels"
              mc:Ignorable="d"
              x:Class="CollabHub.Views.HomePage">
+
+    <ContentPage.BindingContext>
+        <viewmodel:HomeViewModel />
+    </ContentPage.BindingContext>
+    
+    
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -54,7 +61,7 @@
                 <Button Text="UnitPlaceholder" Grid.Row="4" Grid.Column="1" HorizontalOptions="Center" />
                 <Label Text="CollabVideo" Grid.Row="5" Grid.Column="0" HorizontalTextAlignment="Center" FontSize="16" FontAttributes="Bold" />
                 <Label Text="Calendar" Grid.Row="5" Grid.Column="1" HorizontalTextAlignment="Center" FontSize="16" FontAttributes="Bold" />
-                <Button Text="UnitPlaceholder" Grid.Row="6" Grid.Column="0" HorizontalOptions="Center" />
+                <Button Text="UnitPlaceholder" Grid.Row="6" Grid.Column="0" HorizontalOptions="Center" Command="{Binding AboutPage}"/>
                 <Button Text="UnitPlaceholder" Grid.Row="6" Grid.Column="1" HorizontalOptions="Center" />
             </Grid>
             

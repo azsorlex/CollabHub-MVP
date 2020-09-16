@@ -16,5 +16,9 @@ namespace CollabHub.Views
         {
             InitializeComponent();
         }
+        async void NavigateButton_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NavigationPage  (new UnitPage()));
+        }
     }
 }

@@ -21,6 +21,9 @@ namespace CollabHub
         void RegisterRoutes()
         {
             routes.Add("units", typeof(UnitPage));
+            routes.Add("calendar", typeof(CalendarPage));
+            routes.Add("chat", typeof(ChatPage));
+            routes.Add("video", typeof(VideoPage));
 
             foreach (var item in routes)
             {

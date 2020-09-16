@@ -1,7 +1,7 @@
 ﻿using CollabHub.Views;
 using System;
 using System.Collections.Generic;
-
+using Xamarin.Forms.Xaml;
 using Xamarin.Forms;
 
 namespace CollabHub

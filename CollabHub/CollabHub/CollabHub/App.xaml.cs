@@ -13,7 +13,7 @@ namespace CollabHub
             InitializeComponent();
             DependencyService.Register<MockDataStore>();
             //MainPage = new HomePage();
-            MainPage = new NavigationPage(new HomePage());
+            MainPage = new AppShell();
         }
 
         protected override void OnStart()

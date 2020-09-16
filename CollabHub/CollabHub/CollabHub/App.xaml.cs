@@ -8,11 +8,9 @@ namespace CollabHub
 {
     public partial class App : Application
     {
-
         public App()
         {
             InitializeComponent();
-
             DependencyService.Register<MockDataStore>();
             MainPage = new HomePage();
         }

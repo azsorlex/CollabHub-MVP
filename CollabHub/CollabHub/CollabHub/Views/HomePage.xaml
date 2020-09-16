@@ -54,7 +54,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Text="Welcome back, Student!" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20" />
-                <Label Text="Today is" Grid.Row="1" FontSize="16" />
+                <Label Text="{Binding Title}" Grid.Row="1" FontSize="16" />
                 <Label Text="Units" Grid.Row="3" Grid.Column="0" HorizontalTextAlignment="Center" FontSize="16" FontAttributes="Bold" />
                 <Label Text="CollabChat" Grid.Row="3" Grid.Column="1" HorizontalTextAlignment="Center" FontSize="16" FontAttributes="Bold" />
                 <Button Text="UnitPlaceholder" Grid.Row="4" Grid.Column="0" HorizontalOptions="Center" />

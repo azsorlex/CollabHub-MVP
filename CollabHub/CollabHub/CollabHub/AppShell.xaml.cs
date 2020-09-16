@@ -15,11 +15,12 @@ namespace CollabHub
         {
             InitializeComponent();
             RegisterRoutes();
+            BindingContext = this;
         }
 
         void RegisterRoutes()
         {
-            routes.Add("about", typeof(AboutPage));
+            routes.Add("units", typeof(UnitPage));
 
             foreach (var item in routes)
             {

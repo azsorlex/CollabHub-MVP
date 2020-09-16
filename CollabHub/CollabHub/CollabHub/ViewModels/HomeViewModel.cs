@@ -4,6 +4,7 @@ using MvvmHelpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using CollabHub.Views;
 
 namespace CollabHub.ViewModels
 {
@@ -12,12 +13,13 @@ namespace CollabHub.ViewModels
         public Xamarin.Forms.Command AboutPage { get; set; }
         public HomeViewModel()
         {
+            Title = "Test Binding";
             AboutPage = new Xamarin.Forms.Command(GoToAboutPage);
         }
 
         async void GoToAboutPage()
         {
-            await Shell.Current.GoToAsync("//about"); 
+            await Shell.Current.GoToAsync("units"); 
         }
     }
 }

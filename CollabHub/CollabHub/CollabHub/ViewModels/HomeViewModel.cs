@@ -10,14 +10,14 @@ namespace CollabHub.ViewModels
 {
     class HomeViewModel : BaseViewModel
     {
-        public Xamarin.Forms.Command AboutPage { get; set; }
+        public Xamarin.Forms.Command UnitsPage { get; set; }
         public HomeViewModel()
         {
             Title = "Test Binding";
-            AboutPage = new Xamarin.Forms.Command(GoToAboutPage);
+            UnitsPage = new Xamarin.Forms.Command(GoToUnitsPage);
         }
 
-        async void GoToAboutPage()
+        async void GoToUnitsPage()
         {
             await Shell.Current.GoToAsync("units"); 
         }

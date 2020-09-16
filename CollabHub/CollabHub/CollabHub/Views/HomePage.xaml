@@ -61,8 +61,8 @@
                 <Button Text="UnitPlaceholder" Grid.Row="4" Grid.Column="1" HorizontalOptions="Center" />
                 <Label Text="CollabVideo" Grid.Row="5" Grid.Column="0" HorizontalTextAlignment="Center" FontSize="16" FontAttributes="Bold" />
                 <Label Text="Calendar" Grid.Row="5" Grid.Column="1" HorizontalTextAlignment="Center" FontSize="16" FontAttributes="Bold" />
-                <Button Text="UnitPlaceholder" Grid.Row="6" Grid.Column="0" HorizontalOptions="Center" Command="{Binding AboutPage}"/>
-                <Button Text="UnitPlaceholder" Grid.Row="6" Grid.Column="1" HorizontalOptions="Center" />
+                <Button Text="UnitPlaceholder" Grid.Row="6" Grid.Column="0" HorizontalOptions="Center" Command="{Binding UnitsPage}"/>
+                <Button Text="UnitPlaceholder" Grid.Row="6" Grid.Column="1" HorizontalOptions="Center" Routing.Route="about" />
             </Grid>
             
         </Grid>

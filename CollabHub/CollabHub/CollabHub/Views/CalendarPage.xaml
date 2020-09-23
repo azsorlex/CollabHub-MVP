@@ -27,15 +27,17 @@
                 </Grid.ColumnDefinitions>
                 
                 <Image Source="user.png" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="5, 10"/>
-                <Label Text="Calendar" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="30" TextColor="#211E1C"/>
+                <Label Text="Calendar" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="25" TextColor="#211E1C"/>
                 <Image Source="search.png" Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center" Margin="5, 10"/>
             </Grid>
 
 
-            <ScrollView Grid.Row="1">
+            <ScrollView Grid.Row="2" VerticalOptions="FillAndExpand">
                 <Grid >
 
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
@@ -45,9 +47,11 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Image Source="Capture.PNG" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
+                    <ImageButton Source="Capture.PNG" Command="{Binding AddAlert}" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
                     <Image Source="Capture.PNG" Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
                     <Image Source="Capture.PNG" Grid.Row="2" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
+                    <Image Source="Capture.PNG" Grid.Row="3" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
+                    <Image Source="Capture.PNG" Grid.Row="4" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
                     
                     
                 </Grid>

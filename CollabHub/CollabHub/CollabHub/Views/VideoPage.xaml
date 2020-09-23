@@ -26,24 +26,43 @@
             <!-- Navbar -->
             <controltemplate:NavigationBar 
                 PageName="Collaborate" 
-                ControlTemplate="{StaticResource NavigationBarControlTemplate}" 
-            />
+                ControlTemplate="{StaticResource NavigationBarControlTemplate}" />
 
-            <StackLayout Grid.Row="2"
-                         Margin="20,35,20,20">
+            <StackLayout Grid.Row="2">
                 <Label Text="Your Meetings"
                        FontSize="40"
-                       HorizontalTextAlignment="Center"/>
-                <ListView ItemsSource="{Binding Meetings}">
+                       HorizontalTextAlignment="Center" />
+                <ListView ItemsSource="{Binding Meetings}"
+                          HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Label Text="{Binding UnitCode}"
-                                       FontSize="40"/>
+                                <Grid BackgroundColor="{Binding BGColour}"
+                                      Margin="30,15,30,15">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="60"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="90*"/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding UnitCode}"
+                                           FontSize="35"
+                                           VerticalTextAlignment="Center" />
+                                </Grid>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <!--<CollectionView ItemsSource="{Binding Meetings}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate
+                            <Label Text="{Binding UnitCode}"
+                                   FontSize="35"
+                                   VerticalTextAlignment="Center" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>-->
             </StackLayout>
         </Grid>
     </ContentPage.Content>

@@ -13,30 +13,36 @@ namespace CollabHub.ViewModels
     {
         public IList<Meeting> Meetings { get; private set; }
         public Xamarin.Forms.Command HomePage { get; set; }
+        private List<string> UnitCodes;
+        private List<string> BGColours;
 
         public VideoViewModel()
         {
+            UnitCodes = new List<string>()
+            {
+                "IAB330",
+                "CAB432",
+                "CAB401",
+                "IFB399",
+                "IFB104"
+            };
+
+            BGColours = new List<string>()
+            {
+                "#C1EDCC",
+                "#B0C0BC",
+                "#A7A7A9"
+            };
             Meetings = new List<Meeting>();
-            Meetings.Add(new Meeting
+
+            for (int i = 0; i < UnitCodes.Count; i++)
             {
-                UnitCode = "IAB330"
-            });
-            Meetings.Add(new Meeting
-            {
-                UnitCode = "CAB432"
-            });
-            Meetings.Add(new Meeting
-            {
-                UnitCode = "CAB401"
-            });
-            Meetings.Add(new Meeting
-            {
-                UnitCode = "IFB103"
-            });
-            Meetings.Add(new Meeting
-            {
-                UnitCode = "IFB104"
-            });
+                Meetings.Add(new Meeting
+                {
+                    UnitCode = UnitCodes[i],
+                    BGColour = BGColours[i % BGColours.Count]
+                });
+            }
 
             HomePage = new Xamarin.Forms.Command(GoToHomePage);
         }

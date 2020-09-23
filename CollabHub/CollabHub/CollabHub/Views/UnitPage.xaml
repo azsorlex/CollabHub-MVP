@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewmodel="clr-namespace:CollabHub.ViewModels"
+             xmlns:controltemplate="clr-namespace:CollabHub.ViewModels.ControlTemplates"
              mc:Ignorable="d"
              x:Class="CollabHub.Views.UnitPage">
     <ContentPage.Content>
@@ -21,24 +22,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            
-            <!-- Top Banner -->
-            <Grid BackgroundColor="#C1EDCC">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60" />
-                </Grid.RowDefinitions>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Image Source="user.png" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="5, 10"/>
-                <Label Text="Units" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="30" TextColor="#211E1C"/>
-                <Image Source="search.png" Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center" Margin="5, 10"/>
-
-            </Grid>
+            <controltemplate:NavigationBar
+                PageName="UNITS"
+                ControlTemplate="{StaticResource NavigationBarControlTemplate}"
+            />
 
             <StackLayout x:Name="CurrentSemester" Grid.Row="1" BackgroundColor="#797270">
                 <Grid>

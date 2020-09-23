@@ -15,6 +15,7 @@ namespace CollabHub.Views
         public HomePage()
         {
             InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
     }
 }

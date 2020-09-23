@@ -5,12 +5,74 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:viewmodel="clr-namespace:CollabHub.ViewModels"
+             xmlns:controltemplate="clr-namespace:CollabHub.ViewModels.ControlTemplates"
              x:Class="CollabHub.Views.ChatPage">
+    <ContentPage.BindingContext>
+        <viewmodel:ChatViewModel />
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Navbar -->
+
+            <controltemplate:NavigationBar 
+                PageName="CollabChat" 
+                ControlTemplate="{StaticResource NavigationBarControlTemplate}" 
+            />
+            
+            
+            <ListView ItemsSource="{Binding Users}"
+                  HasUnevenRows="True"
+                  BackgroundColor="AliceBlue"
+                  SeparatorVisibility="None"
+                  Grid.Row="1"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="2"
+                                     BackgroundColor="White">
+                                <Grid.RowDefinitions >
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label 
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="0"
+                                FontSize="Large"
+                                VerticalTextAlignment="Center"
+                                HorizontalTextAlignment="Center"
+                                TextColor="Black"
+                                Text="{Binding Initials}" />
+                                <Label
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Text="{Binding Name}" 
+                                Margin="8"
+                                FontAttributes="Bold"
+                                FontSize="Medium" />
+                                <Label 
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="{Binding Greeting}" 
+                                Margin="8,2,8,4"
+                                FontSize="Small" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

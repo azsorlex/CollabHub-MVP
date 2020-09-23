@@ -3,13 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewmodel="clr-namespace:CollabHub.ViewModels"
              mc:Ignorable="d"
-             x:Class="CollabHub.Views.VideoPage">
+             x:Class="CollabHub.Views.VideoPage"
+             xmlns:controltemplate="clr-namespace:CollabHub.ViewModels.ControlTemplates">
+    
+    <ContentPage.BindingContext>
+        <viewmodel:VideoViewModel />
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="10" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Navbar -->
+            <controltemplate:NavigationBar 
+                PageName="Collaborate" 
+                ControlTemplate="{StaticResource NavigationBarControlTemplate}" 
+            />
+
+            <StackLayout Grid.Row="2"
+                         Margin="20,35,20,20">
+                <Label Text="Your Meetings"
+                       FontSize="40"
+                       HorizontalTextAlignment="Center"/>
+                <ListView ItemsSource="{Binding Meetings}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label Text="{Binding UnitCode}"
+                                       FontSize="40"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

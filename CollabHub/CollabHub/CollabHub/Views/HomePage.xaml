@@ -28,7 +28,7 @@
             <!-- Navbar -->
             
             <controltemplate:NavigationBar 
-                PageName="HOME" 
+                PageName="Home" 
                 ControlTemplate="{StaticResource NavigationBarControlTemplate}" 
             />
 

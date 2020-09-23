@@ -12,9 +12,9 @@
                     <RowDefinition Height="60" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60"/>
                 </Grid.ColumnDefinitions>
                 <ImageButton 
                     Source="user.png" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" 

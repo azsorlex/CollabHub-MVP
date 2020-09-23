@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using CollabHub.Services;
+//using CollabHub.Services;
 using CollabHub.Views;
 
 namespace CollabHub
@@ -11,7 +11,6 @@ namespace CollabHub
         public App()
         {
             InitializeComponent();
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 

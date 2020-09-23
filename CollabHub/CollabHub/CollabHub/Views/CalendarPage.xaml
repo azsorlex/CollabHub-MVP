@@ -1,7 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CollabHub.Views.CalendarPage">
+             x:Class="CollabHub.Views.CalendarPage"
+             xmlns:viewmodel="clr-namespace:CollabHub.ViewModels"
+            xmlns:controltemplate="clr-namespace:CollabHub.ViewModels.ControlTemplates">
+
+    <ContentPage.BindingContext>
+        <viewmodel:CalendarViewModel />
+    </ContentPage.BindingContext>
+
+
+
     <ContentPage.Content>
 
         <Grid>
@@ -14,22 +23,10 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <!-- Top Banner -->
-            <Grid BackgroundColor="#C1EDCC">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60" />
-                </Grid.RowDefinitions>
-                
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                
-                <Image Source="user.png" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="5, 10"/>
-                <Label Text="Calendar" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="25" TextColor="#211E1C"/>
-                <Image Source="search.png" Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center" Margin="5, 10"/>
-            </Grid>
+            <controltemplate:NavigationBar
+                PageName="Calendar"
+                ControlTemplate="{StaticResource NavigationBarControlTemplate}"
+            />
 
 
             <ScrollView Grid.Row="2" VerticalOptions="FillAndExpand">
@@ -47,7 +44,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <ImageButton Source="Capture.PNG" Command="{Binding AddAlert}" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
+                    <ImageButton  Command="{Binding AddAlert}" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
                     <Image Source="Capture.PNG" Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
                     <Image Source="Capture.PNG" Grid.Row="2" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
                     <Image Source="Capture.PNG" Grid.Row="3" Grid.Column="0" HorizontalOptions="FillAndExpand"/>

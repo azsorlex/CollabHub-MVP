@@ -23,8 +23,8 @@
                 <Label Text="{Binding PageName}" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" 
                        VerticalTextAlignment="Center" FontSize="30" TextColor="#211E1C"
                 />
-                <ImageButton Source="search.png" Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center"
-                             Margin="5, 10" BackgroundColor="Transparent"
+                <ImageButton Source="home.png" Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center"
+                             Margin="5, 10" BackgroundColor="Transparent" Command="{Binding HomePage}"
                  />
             </Grid>
         </ControlTemplate>

@@ -54,8 +54,7 @@
                                 VerticalTextAlignment="Center"
                                 HorizontalTextAlignment="Center"
                                 TextColor="Black"
-                                Text="{Binding Initials}"
-                                    />
+                                Text="{Binding Initials}" />
                                 <Label
                                 Grid.Row="0"
                                 Grid.Column="1"

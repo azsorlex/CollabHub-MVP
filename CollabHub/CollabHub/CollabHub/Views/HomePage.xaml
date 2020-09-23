@@ -5,38 +5,32 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewmodel="clr-namespace:CollabHub.ViewModels"
              mc:Ignorable="d"
-             x:Class="CollabHub.Views.HomePage">
+             x:Class="CollabHub.Views.HomePage"
+             xmlns:controltemplate="clr-namespace:CollabHub.ViewModels.ControlTemplates"
+             >
 
     <ContentPage.BindingContext>
         <viewmodel:HomeViewModel />
     </ContentPage.BindingContext>
-    
-    
+
+
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="60" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="10" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
-            <!-- Top Banner -->
-            <Grid BackgroundColor="#C1EDCC">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Image Source="user.png" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="5, 10"/>
-                <Label Text="HOME" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="30" TextColor="#211E1C"/>
-                <Image Source="search.png" Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center" Margin="5, 10"/>
-            </Grid>
+            
+            <!-- Navbar -->
+            
+            <controltemplate:NavigationBar 
+                PageName="HOME" 
+                ControlTemplate="{StaticResource NavigationBarControlTemplate}" 
+            />
 
             <!-- Welcome Message & Links -->
             <Grid Grid.Row="2" Margin="20">

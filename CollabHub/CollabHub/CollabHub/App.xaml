@@ -6,6 +6,27 @@
              mc:Ignorable="d"
              x:Class="CollabHub.App">
     <Application.Resources>
-        
+        <ControlTemplate x:Key="NavigationBarControlTemplate">
+            <Grid BackgroundColor="#C1EDCC" BindingContext="{Binding Source={RelativeSource TemplatedParent}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ImageButton 
+                    Source="user.png" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" 
+                    Margin="5, 10"
+                />
+                <Label Text="{Binding PageName}" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" 
+                       VerticalTextAlignment="Center" FontSize="30" TextColor="#211E1C"
+                />
+                <ImageButton Source="search.png" Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center"
+                             Margin="5, 10" BackgroundColor="Transparent"
+                 />
+            </Grid>
+        </ControlTemplate>
     </Application.Resources>
 </Application>

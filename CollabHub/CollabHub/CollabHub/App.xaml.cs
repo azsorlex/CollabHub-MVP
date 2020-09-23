@@ -12,7 +12,6 @@ namespace CollabHub
         {
             InitializeComponent();
             DependencyService.Register<MockDataStore>();
-            //MainPage = new HomePage();
             MainPage = new AppShell();
         }
 

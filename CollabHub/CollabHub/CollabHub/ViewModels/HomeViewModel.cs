@@ -17,7 +17,8 @@ namespace CollabHub.ViewModels
 
         public HomeViewModel()
         {
-            Title = "Test Binding";
+            DateTime today = DateTime.Today;
+            Title = $"Today is {today.ToString("D")}";
             CalendarPage = new Xamarin.Forms.Command(GoToCalendarPage);
             ChatPage = new Xamarin.Forms.Command(GoToChatPage);
             UnitsPage = new Xamarin.Forms.Command(GoToUnitsPage);

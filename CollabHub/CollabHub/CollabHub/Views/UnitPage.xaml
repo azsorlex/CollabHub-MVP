@@ -24,7 +24,7 @@
             </Grid.ColumnDefinitions>
 
             <controltemplate:NavigationBar
-                PageName="UNITS"
+                PageName="Units"
                 ControlTemplate="{StaticResource NavigationBarControlTemplate}"
             />
 

@@ -14,7 +14,6 @@ namespace CollabHub.ViewModels
         public IList<Meeting> Meetings { get; private set; }
         public Xamarin.Forms.Command HomePage { get; set; }
         private List<string> UnitCodes;
-        private List<string> BGColours;
 
         public VideoViewModel()
         {
@@ -26,8 +25,7 @@ namespace CollabHub.ViewModels
                 "IFB399",
                 "IFB104"
             };
-
-            BGColours = new List<string>()
+            List<string> BGColours = new List<string>()
             {
                 "#C1EDCC",
                 "#B0C0BC",

@@ -7,11 +7,11 @@
              mc:Ignorable="d"
              x:Class="CollabHub.Views.VideoPage"
              xmlns:controltemplate="clr-namespace:CollabHub.ViewModels.ControlTemplates">
-    
+
     <ContentPage.BindingContext>
         <viewmodel:VideoViewModel />
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -31,38 +31,37 @@
             <StackLayout Grid.Row="2">
                 <Label Text="Your Meetings"
                        FontSize="40"
-                       HorizontalTextAlignment="Center" />
-                <ListView ItemsSource="{Binding Meetings}"
-                          HasUnevenRows="True">
-                    <ListView.ItemTemplate>
+                       HorizontalTextAlignment="Center" 
+                       Margin="0,-7.5,0,15"/>
+
+                <CollectionView ItemsSource="{Binding Meetings}"
+                                VerticalScrollBarVisibility="Always">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical"
+                                         VerticalItemSpacing="20" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <Grid BackgroundColor="{Binding BGColour}"
-                                      Margin="30,15,30,15">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="60"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="90*"/>
-                                        <ColumnDefinition Width="100"/>
-                                    </Grid.ColumnDefinitions>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="7.5*" />
+                                    <ColumnDefinition Width="90*" />
+                                    <ColumnDefinition Width="7.5*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Frame Grid.Column="1"
+                                       BorderColor="#211E1C"
+                                       BackgroundColor="{Binding BGColour}"
+                                       Padding="14">
                                     <Label Text="{Binding UnitCode}"
                                            FontSize="35"
-                                           VerticalTextAlignment="Center" />
-                                </Grid>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <!--<CollectionView ItemsSource="{Binding Meetings}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate
-                            <Label Text="{Binding UnitCode}"
-                                   FontSize="35"
-                                   VerticalTextAlignment="Center" />
+                                           VerticalTextAlignment="Center"/>
+                                </Frame>
+                            </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-                </CollectionView>-->
+                </CollectionView>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

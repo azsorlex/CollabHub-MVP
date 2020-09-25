@@ -4,7 +4,6 @@ using MvvmHelpers;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System;
-using System.Collections.Generic;
 using System.Text;
 using CollabHub.Views;
 using CollabHub.Models;

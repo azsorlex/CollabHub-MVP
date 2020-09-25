@@ -12,6 +12,7 @@ namespace CollabHub.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VideoPage : ContentPage
     {
+        private ViewCell lastCell;
         public VideoPage()
         {
             InitializeComponent();

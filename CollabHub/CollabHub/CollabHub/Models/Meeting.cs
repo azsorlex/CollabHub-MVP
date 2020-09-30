@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Xamarin.Forms;
 
 namespace CollabHub.Models
 {
@@ -6,10 +6,6 @@ namespace CollabHub.Models
     {
         public string UnitCode { get; set; }
         public string BGColour { get; set; }
-
-        public override string ToString()
-        {
-            return UnitCode;
-        }
+        public Command TapCommand { get; set; }
     }
 }

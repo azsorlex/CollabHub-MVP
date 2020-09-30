@@ -52,8 +52,12 @@
 
                                 <Frame Grid.Column="1"
                                        BorderColor="#211E1C"
+                                       CornerRadius="0"
                                        BackgroundColor="{Binding BGColour}"
                                        Padding="14">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding TapCommand}" />
+                                    </Frame.GestureRecognizers>
                                     <Label Text="{Binding UnitCode}"
                                            FontSize="35"
                                            VerticalTextAlignment="Center"/>

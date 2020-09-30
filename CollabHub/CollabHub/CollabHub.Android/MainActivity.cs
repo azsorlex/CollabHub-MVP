@@ -14,6 +14,9 @@ namespace CollabHub.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            // Initialise UserDialogs
+            Acr.UserDialogs.UserDialogs.Init(this);
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 

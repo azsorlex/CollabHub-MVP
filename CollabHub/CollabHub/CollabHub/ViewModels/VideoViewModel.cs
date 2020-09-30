@@ -12,8 +12,10 @@ namespace CollabHub.ViewModels
     class VideoViewModel : BaseViewModel
     {
         public IList<Meeting> Meetings { get; private set; }
-        public Xamarin.Forms.Command HomePage { get; set; }
         private List<string> UnitCodes;
+
+        private bool someCondition = true;
+
 
         public VideoViewModel()
         {
@@ -38,16 +40,25 @@ namespace CollabHub.ViewModels
                 Meetings.Add(new Meeting
                 {
                     UnitCode = UnitCodes[i],
-                    BGColour = BGColours[i % BGColours.Count]
+                    BGColour = BGColours[i % BGColours.Count],
+                    TapCommand = OnTapped()
                 });
             }
-
-            HomePage = new Xamarin.Forms.Command(GoToHomePage);
         }
 
-        async void GoToHomePage()
+        public Xamarin.Forms.Command OnTapped()
         {
-            await Shell.Current.GoToAsync("home");
+            someCondition = !someCondition;
+            if (someCondition) // Will be replaced with the particular meeting's countdown
+            {
+                return new Xamarin.Forms.Command(GoToVideoPage);
+            }
+            return new ToastNotification("This video meeting hasn't gone live yet.", 3000).TapCommand;
+        }
+
+        async void GoToVideoPage()
+        {
+            await Shell.Current.GoToAsync("home"); // Will be substituted for a new page
         }
     }
 }

@@ -14,8 +14,6 @@ namespace CollabHub.ViewModels
         public IList<Meeting> Meetings { get; private set; }
         private List<string> UnitCodes;
 
-        private bool someCondition = true;
-
 
         public VideoViewModel()
         {
@@ -41,18 +39,28 @@ namespace CollabHub.ViewModels
                 {
                     UnitCode = UnitCodes[i],
                     BGColour = BGColours[i % BGColours.Count],
-                    TapCommand = OnTapped()
+                    SomeCondition = true,
+                    TapCommand = OnTapped(i)
                 });
             }
         }
 
-        public Xamarin.Forms.Command OnTapped()
+        Xamarin.Forms.Command OnTapped(int i)
         {
-            someCondition = !someCondition;
-            if (someCondition) // Will be replaced with the particular meeting's countdown
+            // This fails
+            Meetings[i].SomeCondition = !Meetings[i].SomeCondition;
+            if (Meetings[i].SomeCondition) // Will be replaced with the particular meeting's countdown
             {
                 return new Xamarin.Forms.Command(GoToVideoPage);
             }
+
+            // Whereas this "succeeds"
+            /*bool test = false;
+            if (test) // Will be replaced with the particular meeting's countdown
+            {
+                return new Xamarin.Forms.Command(GoToVideoPage);
+            }*/
+
             return new ToastNotification("This video meeting hasn't gone live yet.", 3000).TapCommand;
         }
 

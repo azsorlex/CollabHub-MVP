@@ -39,7 +39,8 @@ namespace CollabHub.ViewModels
                 Meetings.Add(new Meeting
                 {
                     UnitCode = UnitCodes[i],
-                    BGColour = BGColours[i % BGColours.Count]
+                    BGColour = BGColours[i % BGColours.Count],
+                    Date = new DateTime(DateTime.Now.Ticks + new TimeSpan(0, 0, i * 2, 0).Ticks)
                 });
             }
 
@@ -53,12 +54,12 @@ namespace CollabHub.ViewModels
             }
         }
 
-        private Xamarin.Forms.Command OnTapped(int i)
+        public Xamarin.Forms.Command OnTapped(int i)
         {
             // I also discovered that variables can't be changed here. If a boolean is true, and then it gets
             // set as false; the bottom if statement would always evaluate false. A static condition such as
-            // this one must be used. Currently looking into utilising xaml.cs.
-            if (Meetings[i].BGColour == "#C1EDCC") // Will be replaced with the particular meeting's countdown
+            // this one must be used.
+            if (int.Parse(Meetings[i].Minutes) < 5) // Will be replaced with the particular meeting's countdown
             {
                 return new Xamarin.Forms.Command(GoToVideoPage);
             }

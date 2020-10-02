@@ -34,7 +34,8 @@
                        HorizontalTextAlignment="Center" 
                        Margin="0,-7.5,0,15"/>
 
-                <CollectionView ItemsSource="{Binding Meetings}"
+                <CollectionView x:Name="meetingList"
+                                ItemsSource="{Binding Meetings}"
                                 VerticalScrollBarVisibility="Always">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical"
@@ -45,22 +46,73 @@
                         <DataTemplate>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="7.5*" />
+                                    <ColumnDefinition Width="5*" />
                                     <ColumnDefinition Width="90*" />
-                                    <ColumnDefinition Width="7.5*" />
+                                    <ColumnDefinition Width="5*" />
                                 </Grid.ColumnDefinitions>
 
                                 <Frame Grid.Column="1"
                                        BorderColor="#211E1C"
                                        CornerRadius="0"
                                        BackgroundColor="{Binding BGColour}"
-                                       Padding="14">
+                                       Padding="10">
                                     <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding TapCommand}" />
+                                        <TapGestureRecognizer Tapped="Tapped"
+                                                              Command="{Binding TapCommand}" />
                                     </Frame.GestureRecognizers>
-                                    <Label Text="{Binding UnitCode}"
-                                           FontSize="35"
-                                           VerticalTextAlignment="Center"/>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50*" />
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="auto" />
+                                            <ColumnDefinition Width="auto" />
+                                        </Grid.ColumnDefinitions>
+                                        
+                                        <Label Grid.Column="0"
+                                               Text="{Binding UnitCode}"
+                                               FontSize="30"
+                                               VerticalTextAlignment="Center" />
+                                        
+                                        <StackLayout Grid.Column="2"
+                                                     Orientation="Vertical"
+                                                     VerticalOptions="Center">
+                                            <Label Text="{Binding Days}"
+                                                   FontSize="25"
+                                                   Margin="0"
+                                                   HorizontalTextAlignment="End" />
+                                            <Label Text="D"
+                                                   FontSize="15"
+                                                   Margin="0"
+                                                   HorizontalTextAlignment="End" />
+                                        </StackLayout>
+
+                                        <StackLayout Grid.Column="3"
+                                                     Orientation="Vertical"
+                                                     VerticalOptions="Center">
+                                            <Label Text="{Binding Hours}"
+                                                   FontSize="25"
+                                                   Margin="0"
+                                                   HorizontalTextAlignment="End" />
+                                            <Label Text="H"
+                                                   FontSize="15"
+                                                   Margin="0"
+                                                   HorizontalTextAlignment="End" />
+                                        </StackLayout>
+
+                                        <StackLayout Grid.Column="4"
+                                                     Orientation="Vertical"
+                                                     VerticalOptions="Center">
+                                            <Label Text="{Binding Minutes}"
+                                                   FontSize="25"
+                                                   Margin="0"
+                                                   HorizontalTextAlignment="End" />
+                                            <Label Text="M"
+                                                   FontSize="15"
+                                                   Margin="0"
+                                                   HorizontalTextAlignment="End" />
+                                        </StackLayout>
+                                    </Grid>
                                 </Frame>
                             </Grid>
                         </DataTemplate>

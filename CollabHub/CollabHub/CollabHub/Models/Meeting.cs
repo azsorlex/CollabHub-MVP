@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
+using CollabHub.ViewModels;
 
 namespace CollabHub.Models
 {
@@ -6,7 +8,11 @@ namespace CollabHub.Models
     {
         public string UnitCode { get; set; }
         public string BGColour { get; set; }
-        //public bool SomeCondition { get; set; }
+        public DateTime Date { get; set; }
+        public TimeSpan TimeSpan => Date - DateTime.Now;
+        public string Days => TimeSpan.Days.ToString("00");
+        public string Hours => TimeSpan.Hours.ToString("00");
+        public string Minutes => TimeSpan.Minutes.ToString("00");
         public Command TapCommand { get; set; }
     }
 }

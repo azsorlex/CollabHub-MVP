@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using CollabHub.Views;
 using CollabHub.Models;
+using System.Diagnostics;
 
 namespace CollabHub.ViewModels
 {
@@ -13,8 +14,6 @@ namespace CollabHub.ViewModels
     {
         public IList<Meeting> Meetings { get; private set; }
         private List<string> UnitCodes;
-
-        private bool someCondition = true;
 
 
         public VideoViewModel()
@@ -40,23 +39,34 @@ namespace CollabHub.ViewModels
                 Meetings.Add(new Meeting
                 {
                     UnitCode = UnitCodes[i],
-                    BGColour = BGColours[i % BGColours.Count],
-                    TapCommand = OnTapped()
+                    BGColour = BGColours[i % BGColours.Count]
                 });
+            }
+
+            // This has to be in its own loop because for whatever reason in the previous one,
+            // the Meetings array wouldn't have the added item added to it until the next iteration
+            // of the loop. This way, the Meetings array is fully populated, and the OnTapped command
+            // will successfuly work with the Meetings function.
+            for (int i = 0; i < UnitCodes.Count; i++)
+            {
+                Meetings[i].TapCommand = OnTapped(i);
             }
         }
 
-        public Xamarin.Forms.Command OnTapped()
+        private Xamarin.Forms.Command OnTapped(int i)
         {
-            someCondition = !someCondition;
-            if (someCondition) // Will be replaced with the particular meeting's countdown
+            // I also discovered that variables can't be changed here. If a boolean is true, and then it gets
+            // set as false; the bottom if statement would always evaluate false. A static condition such as
+            // this one must be used. Currently looking into utilising xaml.cs.
+            if (Meetings[i].BGColour == "#C1EDCC") // Will be replaced with the particular meeting's countdown
             {
                 return new Xamarin.Forms.Command(GoToVideoPage);
             }
+
             return new ToastNotification("This video meeting hasn't gone live yet.", 3000).TapCommand;
         }
 
-        async void GoToVideoPage()
+        private async void GoToVideoPage()
         {
             await Shell.Current.GoToAsync("home"); // Will be substituted for a new page
         }

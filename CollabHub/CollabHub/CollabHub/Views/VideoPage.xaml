@@ -64,59 +64,55 @@
                                             <ColumnDefinition Width="50*" />
                                             <ColumnDefinition Width="auto" />
                                             <ColumnDefinition Width="auto" />
-                                            <ColumnDefinition Width="auto" />
-                                            <ColumnDefinition Width="auto" />
                                         </Grid.ColumnDefinitions>
-                                        
+
                                         <Label Grid.Column="0"
                                                Text="{Binding UnitCode}"
                                                FontSize="35"
                                                VerticalTextAlignment="Center" />
-                                        
-                                        <StackLayout Grid.Column="2"
-                                                     Orientation="Vertical"
-                                                     VerticalOptions="Center"
-                                                     Spacing="0"
-                                                     IsVisible="{Binding IsNotLive}">
-                                            <Label Text="{Binding Days}"
-                                                   FontSize="25"
-                                                   HorizontalTextAlignment="End" />
-                                            <Label Text="D"
-                                                   FontSize="15"
-                                                   HorizontalTextAlignment="End" />
-                                        </StackLayout>
-
-                                        <StackLayout Grid.Column="3"
-                                                     Orientation="Vertical"
-                                                     VerticalOptions="Center"
-                                                     Spacing="0"
-                                                     IsVisible="{Binding IsNotLive}">
-                                            <Label Text="{Binding Hours}"
-                                                   FontSize="25"
-                                                   HorizontalTextAlignment="End" />
-                                            <Label Text="H"
-                                                   FontSize="15"
-                                                   HorizontalTextAlignment="End" />
-                                        </StackLayout>
-
-                                        <StackLayout Grid.Column="4"
-                                                     Orientation="Vertical"
-                                                     VerticalOptions="Center"
-                                                     Spacing="0"
-                                                     IsVisible="{Binding IsNotLive}">
-                                            <Label Text="{Binding Minutes}"
-                                                   FontSize="25"
-                                                   HorizontalTextAlignment="End" />
-                                            <Label Text="M"
-                                                   FontSize="15"
-                                                   HorizontalTextAlignment="End" />
-                                        </StackLayout>
 
                                         <Label Text="LIVE!"
                                                FontSize="40"
                                                TextColor="Red"
-                                               Grid.Column="4"
+                                               Grid.Column="2"
                                                IsVisible="{Binding IsLive}" />
+
+                                        <StackLayout Grid.Column="2"
+                                                     Orientation="Horizontal"
+                                                     IsVisible="{Binding IsNotLive}" >
+                                            <StackLayout Orientation="Vertical"
+                                                     VerticalOptions="Center"
+                                                     Spacing="0">
+                                                <Label Text="{Binding Days}"
+                                                   FontSize="25"
+                                                   HorizontalTextAlignment="End" />
+                                                <Label Text="D"
+                                                   FontSize="15"
+                                                   HorizontalTextAlignment="End" />
+                                            </StackLayout>
+
+                                            <StackLayout Orientation="Vertical"
+                                                     VerticalOptions="Center"
+                                                     Spacing="0">
+                                                <Label Text="{Binding Hours}"
+                                                   FontSize="25"
+                                                   HorizontalTextAlignment="End" />
+                                                <Label Text="H"
+                                                   FontSize="15"
+                                                   HorizontalTextAlignment="End" />
+                                            </StackLayout>
+
+                                            <StackLayout Orientation="Vertical"
+                                                     VerticalOptions="Center"
+                                                     Spacing="0">
+                                                <Label Text="{Binding Minutes}"
+                                                   FontSize="25"
+                                                   HorizontalTextAlignment="End" />
+                                                <Label Text="M"
+                                                   FontSize="15"
+                                                   HorizontalTextAlignment="End" />
+                                            </StackLayout>
+                                        </StackLayout>
                                     </Grid>
                                 </Frame>
                             </Grid>

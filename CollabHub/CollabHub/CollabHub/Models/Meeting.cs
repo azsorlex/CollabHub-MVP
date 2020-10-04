@@ -30,11 +30,11 @@ namespace CollabHub.Models
             get
             {
                 // This condition will probably chance once I implement the video page
-                if (TimeSpan.Minutes == -2) {
+                if (TimeSpan.Minutes == -1) {
                     Date = new DateTime(Date.Ticks + new TimeSpan(7, 0, 0, 0).Ticks); // Set the meeting to appear in one week time
                     return false;
                 }
-                return TimeSpan.Minutes < 0;
+                return TimeSpan.Seconds <= 0;
             }
         }
         public bool IsNotLive => !IsLive; // Used to show the countdown when the meeting isn't live

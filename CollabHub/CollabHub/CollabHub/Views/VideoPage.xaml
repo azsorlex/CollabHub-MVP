@@ -57,8 +57,7 @@
                                        BackgroundColor="{Binding BGColour}"
                                        Padding="10">
                                     <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="Tapped"
-                                                              Command="{Binding TapCommand}" />
+                                        <TapGestureRecognizer Command="{Binding TapCommand}" />
                                     </Frame.GestureRecognizers>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -71,47 +70,53 @@
                                         
                                         <Label Grid.Column="0"
                                                Text="{Binding UnitCode}"
-                                               FontSize="30"
+                                               FontSize="35"
                                                VerticalTextAlignment="Center" />
                                         
                                         <StackLayout Grid.Column="2"
                                                      Orientation="Vertical"
-                                                     VerticalOptions="Center">
+                                                     VerticalOptions="Center"
+                                                     Spacing="0"
+                                                     IsVisible="{Binding IsNotLive}">
                                             <Label Text="{Binding Days}"
                                                    FontSize="25"
-                                                   Margin="0"
                                                    HorizontalTextAlignment="End" />
                                             <Label Text="D"
                                                    FontSize="15"
-                                                   Margin="0"
                                                    HorizontalTextAlignment="End" />
                                         </StackLayout>
 
                                         <StackLayout Grid.Column="3"
                                                      Orientation="Vertical"
-                                                     VerticalOptions="Center">
+                                                     VerticalOptions="Center"
+                                                     Spacing="0"
+                                                     IsVisible="{Binding IsNotLive}">
                                             <Label Text="{Binding Hours}"
                                                    FontSize="25"
-                                                   Margin="0"
                                                    HorizontalTextAlignment="End" />
                                             <Label Text="H"
                                                    FontSize="15"
-                                                   Margin="0"
                                                    HorizontalTextAlignment="End" />
                                         </StackLayout>
 
                                         <StackLayout Grid.Column="4"
                                                      Orientation="Vertical"
-                                                     VerticalOptions="Center">
+                                                     VerticalOptions="Center"
+                                                     Spacing="0"
+                                                     IsVisible="{Binding IsNotLive}">
                                             <Label Text="{Binding Minutes}"
                                                    FontSize="25"
-                                                   Margin="0"
                                                    HorizontalTextAlignment="End" />
                                             <Label Text="M"
                                                    FontSize="15"
-                                                   Margin="0"
                                                    HorizontalTextAlignment="End" />
                                         </StackLayout>
+
+                                        <Label Text="LIVE!"
+                                               FontSize="40"
+                                               TextColor="Red"
+                                               Grid.Column="4"
+                                               IsVisible="{Binding IsLive}" />
                                     </Grid>
                                 </Frame>
                             </Grid>

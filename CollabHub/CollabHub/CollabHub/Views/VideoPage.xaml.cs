@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Acr.UserDialogs;
 using CollabHub.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -34,19 +33,6 @@ namespace CollabHub.Views
 
             meetingList.ItemsSource = null;
             meetingList.ItemsSource = vm.Meetings;
-        }
-
-        // When an item is tapped, update the items' commands so that the decicion is correct
-        private void Tapped(object sender, EventArgs e)
-        {
-            var vm = BindingContext as VideoViewModel;
-
-            for (int i = 0; i < vm.Meetings.Count; i++)
-            {
-                vm.Meetings[i].TapCommand = vm.OnTapped(i);
-            }
-
-            UpdateEvents();
         }
     }
 }

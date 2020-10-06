@@ -17,11 +17,6 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -33,40 +28,39 @@
                 ControlTemplate="{StaticResource NavigationBarControlTemplate}"
             />
 
-            <!--<ListView ItemsSource="{Binding SemesterInfos}">
+            <ListView ItemsSource="{Binding SemesterInfos}"
+                  HasUnevenRows="True"
+                  BackgroundColor="AliceBlue"
+                  SeparatorVisibility="None"
+                  Grid.Row="1"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Margin="0">
+                            <Grid Margin="2"
+                                     BackgroundColor="White">
                                 <Grid.RowDefinitions >
-                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="75" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="auto" />
                                 </Grid.ColumnDefinitions>
-                                <label
-                                Grid.Row="0"
-                                Text="{Binding SemesterTrack}"
-                                    
-                                />
-                    
+                                <Label 
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    FontSize="Large"
+                                    VerticalTextAlignment="Center"
+                                    HorizontalTextAlignment="Center"
+                                    TextColor="Black"
+                                    Text="{Binding SemesterTrack}" />
                             </Grid>
-
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>-->
-            
-            
-            <StackLayout x:Name="CurrentSemester" 
-                         Grid.Row="1" 
-                         BackgroundColor="#797270" 
-                        BindableLayout.ItemsSource="{Binding SemesterInfos}"
-                         >
-                <!--<Label Text="{Binding SemesterInfos}"
-                      />-->
-            </StackLayout>
+            </ListView>
+
         </Grid>
-        
+
     </ContentPage.Content>
 </ContentPage>

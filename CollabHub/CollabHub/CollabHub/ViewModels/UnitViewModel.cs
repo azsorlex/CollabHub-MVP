@@ -14,24 +14,32 @@ namespace CollabHub.ViewModels
     class UnitViewModel : BaseViewModel
     {
 
-        //private ObservableCollection<SemesterInfo> semesterInfos;
+        private ObservableCollection<SemesterInfo> semesterInfos;
 
-        public ObservableCollection<SemesterInfo> SemesterInfos { get; set; }
+        public ObservableCollection<SemesterInfo> SemesterInfos
+        {
+            get { return semesterInfos; }
+            set
+            {
+                semesterInfos = value;
+            }
+        }
 
         public UnitViewModel()
         {
             SetUpInfo();
-
         }
 
         void SetUpInfo()
         {
-            SemesterInfos = new ObservableCollection<SemesterInfo>()
+            SemesterInfos = new ObservableCollection<SemesterInfo>();
+
+            SemesterDataStore semesterStore = new SemesterDataStore();
+
+            foreach(var unit in semesterStore.SemesterInfos)
             {
-                new SemesterInfo { SemesterTrack = "Semester 2 2020 (Current)"},
-                new SemesterInfo { SemesterTrack = "Semester 1 2020"},
-                new SemesterInfo { SemesterTrack = "Semester 2 2019"}
-            };
+                SemesterInfos.Add(unit);
+            }
         }
     }
 }

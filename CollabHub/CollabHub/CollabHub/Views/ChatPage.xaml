@@ -46,28 +46,37 @@
                                     <ColumnDefinition Width="50" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
+                                <Button 
+                                    WidthRequest="40"
+                                    HeightRequest="40"
+                                    CornerRadius="40"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    />
                                 <Label 
-                                Grid.Row="0"
-                                Grid.RowSpan="2"
-                                Grid.Column="0"
-                                FontSize="Large"
-                                VerticalTextAlignment="Center"
-                                HorizontalTextAlignment="Center"
-                                TextColor="Black"
-                                Text="{Binding Initials}" />
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="0"
+                                    FontSize="Large"
+                                    VerticalTextAlignment="Center"
+                                    HorizontalTextAlignment="Center"
+                                    TextColor="Black"
+                                    Text="{Binding Initials}" />
                                 <Label
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                Text="{Binding Name}" 
-                                Margin="8"
-                                FontAttributes="Bold"
-                                FontSize="Medium" />
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Text="{Binding Name}" 
+                                    Margin="8"
+                                    FontAttributes="Bold"
+                                    FontSize="Medium" />
                                 <Label 
-                                Grid.Row="1"
-                                Grid.Column="1"
-                                Text="{Binding Greeting}" 
-                                Margin="8,2,8,4"
-                                FontSize="Small" />
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Text="{Binding Greeting}" 
+                                    Margin="8,2,8,4"
+                                    FontSize="Small" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

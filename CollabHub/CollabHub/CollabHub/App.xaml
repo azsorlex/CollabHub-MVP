@@ -6,6 +6,12 @@
              mc:Ignorable="d"
              x:Class="CollabHub.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="#211E1C" />
+            </Style>
+        </ResourceDictionary>
+        
         <ControlTemplate x:Key="NavigationBarControlTemplate">
             <Grid BackgroundColor="#C1EDCC" BindingContext="{Binding Source={RelativeSource TemplatedParent}}">
                 <Grid.RowDefinitions>
@@ -21,7 +27,7 @@
                     Margin="5, 10"
                 />
                 <Label Text="{Binding PageName}" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" 
-                       VerticalTextAlignment="Center" FontSize="30" TextColor="#211E1C"
+                       VerticalTextAlignment="Center" FontSize="40"
                 />
                 <ImageButton Source="home.png" Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center"
                              Margin="5, 10" BackgroundColor="Transparent" Command="{Binding HomePage}"

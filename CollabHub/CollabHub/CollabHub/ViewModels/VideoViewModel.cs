@@ -6,44 +6,49 @@ using System.Collections.Generic;
 using System.Text;
 using CollabHub.Views;
 using CollabHub.Models;
+using System.Linq;
+using System.Diagnostics;
 
 namespace CollabHub.ViewModels
 {
     class VideoViewModel : BaseViewModel
     {
-        public IList<Meeting> Meetings { get; private set; }
-        public Xamarin.Forms.Command HomePage { get; set; }
+        public IList<Meeting> Meetings { get; set; }
+        private List<string> UnitCodes;
 
         public VideoViewModel()
         {
+            UnitCodes = new List<string>()
+            {
+                "IAB330",
+                "CAB432",
+                "CAB401",
+                "IFB399",
+                "IFB104"
+            };
+            List<string> BGColours = new List<string>()
+            {
+                "#C1EDCC",
+                "#B0C0BC",
+                "#A7A7A9"
+            };
             Meetings = new List<Meeting>();
-            Meetings.Add(new Meeting
-            {
-                UnitCode = "IAB330"
-            });
-            Meetings.Add(new Meeting
-            {
-                UnitCode = "CAB432"
-            });
-            Meetings.Add(new Meeting
-            {
-                UnitCode = "CAB401"
-            });
-            Meetings.Add(new Meeting
-            {
-                UnitCode = "IFB103"
-            });
-            Meetings.Add(new Meeting
-            {
-                UnitCode = "IFB104"
-            });
 
-            HomePage = new Xamarin.Forms.Command(GoToHomePage);
+            long start = DateTime.Now.Ticks;
+            for (int i = 0; i < UnitCodes.Count; i++)
+            {
+                Meetings.Add(new Meeting
+                {
+                    UnitCode = UnitCodes[i],
+                    BGColour = BGColours[i % BGColours.Count],
+                    Date = new DateTime(start + new TimeSpan(0, 0, i, 0).Ticks)
+                });
+            }
         }
 
-        async void GoToHomePage()
+        public void ReorderList()
         {
-            await Shell.Current.GoToAsync("home");
+            Meetings = Meetings.OrderBy(m => m.Date).ToList(); // Rerder the list by Date
         }
     }
 }

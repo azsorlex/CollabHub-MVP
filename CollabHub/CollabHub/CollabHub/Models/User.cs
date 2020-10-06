@@ -24,7 +24,7 @@ namespace CollabHub.Models
                 string initials = firstInitial += secondInitial;
 
                 return initials.ToUpper();
-            }
+            } 
         }
     }
 }

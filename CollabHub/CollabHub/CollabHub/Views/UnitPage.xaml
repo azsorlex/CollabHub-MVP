@@ -38,22 +38,54 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Margin="2"
-                                     BackgroundColor="White">
+                            <Grid Margin="2" BackgroundColor="#797270">
                                 <Grid.RowDefinitions >
-                                    <RowDefinition Height="75" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="420" />
                                 </Grid.ColumnDefinitions>
+
+                                    <Switch 
+                                    IsToggled="True"
+                                    IsVisible="True"
+                                    Grid.Column="2"
+                                    OnColor="#C1EDCC"
+                                    ThumbColor="Black" InputTransparent="False" />
                                 <Label 
                                     Grid.Row="0"
                                     Grid.Column="0"
-                                    FontSize="Large"
+                                    FontSize="22"
+                                    FontAttributes="Bold"
                                     VerticalTextAlignment="Center"
                                     HorizontalTextAlignment="Center"
-                                    TextColor="Black"
+                                    TextColor="white"
                                     Text="{Binding SemesterTrack}" />
+                                <Label 
+                                    BackgroundColor="White"
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    FontSize="20"
+                                    TextColor="Black"
+                                    Text="{Binding FirstUnitCode}" />
+                                <Label
+                                    BackgroundColor="White"
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                   FontSize="20"
+                                    Text="{Binding SecondUnitCode}"
+                                    />
+                                <Label
+                                    BackgroundColor="White"
+                                    Grid.Row="3"
+                                    Grid.Column="0"                                    
+                                    FontSize="20"
+                                    Text="{Binding ThirdUnitCode}"
+                                    />
+
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

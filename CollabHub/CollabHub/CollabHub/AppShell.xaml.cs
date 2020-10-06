@@ -26,6 +26,7 @@ namespace CollabHub
             routes.Add("video", typeof(VideoPage));
             routes.Add("home", typeof(HomePage));
             routes.Add("addalert", typeof(AddAlert));
+            routes.Add("viewalerts", typeof(ViewAlerts));
 
             foreach (var item in routes)
             {

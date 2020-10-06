@@ -44,8 +44,8 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <ImageButton  Command="{Binding AddAlert}" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
-                    <Image Source="Capture.PNG" Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
+                    <ImageButton Source="Capture.PNG" Command="{Binding AddAlert}" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
+                    <ImageButton Source="Capture.PNG" Command="{Binding ViewAlerts}" Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
                     <Image Source="Capture.PNG" Grid.Row="2" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
                     <Image Source="Capture.PNG" Grid.Row="3" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
                     <Image Source="Capture.PNG" Grid.Row="4" Grid.Column="0" HorizontalOptions="FillAndExpand"/>

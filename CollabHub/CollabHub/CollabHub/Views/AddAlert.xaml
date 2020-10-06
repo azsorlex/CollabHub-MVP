@@ -15,12 +15,14 @@
 
 
     <ContentPage.Content>
-        <Grid>
+        <Grid BackgroundColor="AliceBlue">
 
-            <Grid.RowDefinitions>
+            <Grid.RowDefinitions >
                 <RowDefinition Height="60" />
-                <RowDefinition Height="10" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="200" />
+                <RowDefinition Height="60" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -29,7 +31,55 @@
             <controltemplate:NavigationBar
                 PageName="Add Alert"
                 ControlTemplate="{StaticResource NavigationBarControlTemplate}"
-            />
+            Grid.Row ="0" />
+
+            <Entry Placeholder="Event Name" Grid.Row ="1" BackgroundColor="White"/>
+
+            <Picker x:Name="picker" Title="Select a Subject" Grid.Row ="2" BackgroundColor="White">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>CAB123</x:String>
+                        <x:String>CAB456</x:String>
+                        <x:String>IFB999</x:String>
+                        <x:String>EGB101</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Grid Grid.Row ="3" BackgroundColor="White">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="*" />
+
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Event Freuqnecy" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
+                
+                <RadioButton Grid.Row="1" Grid.Column="0" />
+                <Label Grid.Row="1" Grid.Column="2"  >One Time</Label>
+                
+                <RadioButton Grid.Row="2" Grid.Column="0" />
+                <Label Grid.Row="2" Grid.Column="2"  >Weekly</Label>
+                
+                <RadioButton Grid.Row="3" Grid.Column="0" />
+                <Label Grid.Row="3" Grid.Column="2"  >Monthly</Label>
+                
+                <RadioButton Grid.Row="4" Grid.Column="0"/>
+                <Label Grid.Row="4" Grid.Column="2"  >Daily</Label>
+            </Grid>
+
+
+            <Button Text ="Add Alert" Grid.Row ="4" BackgroundColor="White"/>
 
         </Grid>
     </ContentPage.Content>

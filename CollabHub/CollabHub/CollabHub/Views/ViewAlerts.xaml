@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CollabHub.Views.ViewAlerts"
-             xmlns:viewmodel="clr-namespace:CollabHub.ViewModels">
-
+             xmlns:viewmodel="clr-namespace:CollabHub.ViewModels"
+    xmlns:controltemplate="clr-namespace:CollabHub.ViewModels.ControlTemplates">
 
 
     <ContentPage.BindingContext>
@@ -24,22 +24,34 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <!-- Top Banner -->
-            <Grid BackgroundColor="#C1EDCC">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60" />
-                </Grid.RowDefinitions>
+            <controltemplate:NavigationBar
+                PageName="View Alerts"
+                ControlTemplate="{StaticResource NavigationBarControlTemplate}"
+            Grid.Row ="0" />
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
 
-                <Image Source="user.png" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" Margin="5, 10"/>
-                <Label Text="Calendar" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="30" TextColor="#211E1C"/>
-                <Image Source="search.png" Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center" Margin="5, 10"/>
-            </Grid>
+
+            <ListView ItemsSource="{Binding Alerts}" Grid.Row="2"  HasUnevenRows="True" BackgroundColor="AliceBlue">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="2" BackgroundColor="White">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                    <RowDefinition Height="20" />
+                                </Grid.RowDefinitions>
+
+                                <Label Text="{Binding Name}" Grid.Row="0"/>
+                                <Label Text="{Binding Date}" Grid.Row="1"/>
+                                <Label Text="{Binding Time}" Grid.Row="2"/>
+                            </Grid>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
 
         </Grid>
     </ContentPage.Content>

@@ -7,7 +7,7 @@ namespace CollabHub.Models
 {
     class Calendar_Table
     {
-        public string Id { get; set; }
+
         public int Year { get; set; }
         public int Month { get; set; }
         public int Days { get; set; }
@@ -18,8 +18,7 @@ namespace CollabHub.Models
         {
             this.Year = year;
             this.Month = 1;
-            this.Days = 30;
-            this.Id = "042";
+
         }
     }
 }

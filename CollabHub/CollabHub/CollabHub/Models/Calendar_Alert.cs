@@ -10,12 +10,14 @@ namespace CollabHub.Models
         public string Name { get; set; }
         public string Date { get; set; }
         public string Time { get; set; }
+        public string Icon { get; set; }
 
         public Calendar_Alert(string Name, string Date, string Time)
         {
             this.Name = Name;
             this.Date = Date;
             this.Time = Time;
+            this.Icon = "calendar.png";
 
         }
 

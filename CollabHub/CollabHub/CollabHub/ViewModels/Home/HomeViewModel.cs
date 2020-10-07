@@ -15,10 +15,12 @@ namespace CollabHub.ViewModels
         public Xamarin.Forms.Command UnitsPage { get; set; }
         public Xamarin.Forms.Command VideoPage { get; set; }
 
+        public string Date { get; set; }
+
         public HomeViewModel()
         {
             DateTime today = DateTime.Today;
-            Title = $"Today is {today.ToString("D")}";
+            Date = $"Today is {today.ToString("D")}";
             CalendarPage = new Xamarin.Forms.Command(GoToCalendarPage);
             ChatPage = new Xamarin.Forms.Command(GoToChatPage);
             UnitsPage = new Xamarin.Forms.Command(GoToUnitsPage);

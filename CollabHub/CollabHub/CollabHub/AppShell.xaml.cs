@@ -1,4 +1,5 @@
 ﻿using CollabHub.Views;
+using CollabHub.Views.Chat;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms.Xaml;
@@ -23,6 +24,7 @@ namespace CollabHub
             routes.Add("units", typeof(UnitPage));
             routes.Add("calendar", typeof(CalendarPage));
             routes.Add("chat", typeof(ChatPage));
+            routes.Add("userChat", typeof(UserChat));
             routes.Add("video", typeof(VideoPage));
             routes.Add("home", typeof(HomePage));
             routes.Add("addalert", typeof(AddAlert));

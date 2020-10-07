@@ -14,13 +14,13 @@ namespace CollabHub.Views
     public partial class UnitPage : ContentPage
     {
 
-        private UnitViewModel ViewModel { get; set; }
+        //private UnitViewModel ViewModel { get; set; }
         
         public UnitPage()
         {
-            ViewModel = new UnitViewModel();
+            //ViewModel = new UnitViewModel();
             InitializeComponent();
-            this.BindingContext = ViewModel;
+            //this.BindingContext = ViewModel;
         }
     }
 }

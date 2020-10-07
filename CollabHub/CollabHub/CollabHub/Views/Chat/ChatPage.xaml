@@ -31,6 +31,8 @@
                   BackgroundColor="AliceBlue"
                   SeparatorVisibility="None"
                   Grid.Row="1"
+                  ItemSelected="Handle_ItemSelected"
+                  ItemTapped="Handle_ItemTapped"
                   HorizontalOptions="FillAndExpand"
                   VerticalOptions="FillAndExpand" >
                 <ListView.ItemTemplate>

@@ -8,6 +8,7 @@ using System.Text;
 using CollabHub.Views;
 using CollabHub.Models;
 using CollabHub.Services;
+using System.Windows.Input;
 
 namespace CollabHub.ViewModels
 {
@@ -24,8 +25,12 @@ namespace CollabHub.ViewModels
             }
         }
 
+        public Xamarin.Forms.Command UserChatPage { get; set; }
+
         public ChatViewModel()
         {
+            UserChatPage = new Xamarin.Forms.Command(GoToUserChatPage);
+
             Users = new ObservableCollection<User>();
 
             UserDataStore userStore = new UserDataStore();
@@ -34,6 +39,11 @@ namespace CollabHub.ViewModels
             {
                 Users.Add(user);
             }
+        }
+
+        async void GoToUserChatPage()
+        {
+            await Shell.Current.GoToAsync("userChat");
         }
     }
 }

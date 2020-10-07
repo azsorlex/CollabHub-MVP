@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace CollabHub.Views
+namespace CollabHub.Views.Chat
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ChatPage : ContentPage
+    public partial class UserChat : ContentPage
     {
-        public ChatPage()
+        public UserChat()
         {
             InitializeComponent();
         }

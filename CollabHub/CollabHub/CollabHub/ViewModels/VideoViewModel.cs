@@ -13,12 +13,35 @@ namespace CollabHub.ViewModels
 {
     class VideoViewModel : BaseViewModel
     {
-        public IList<Meeting> Meetings { get; set; }
-        private List<string> UnitCodes;
+        private IList<Meeting> meetings;
+        public IList<Meeting> Meetings
+        {
+            get
+            {
+                try
+                {
+                    if (meetings[0].TimeSpan.Minutes == -1)
+                    {
+                        meetings[0].Date = new DateTime(meetings[0].Date.Ticks + new TimeSpan(7, 0, 0, 0).Ticks); // Set the meeting to appear in one week time
+                        meetings = meetings.OrderBy(m => m.Date).ToList();
+                    }
+                } catch (Exception e)
+                {
+                    Debug.WriteLine($"Exception caught and handled gracefully: {e}");
+                }
+                return meetings;
+            }
+            set
+            {
+                meetings = value;
+            }
+        }
 
         public VideoViewModel()
         {
-            UnitCodes = new List<string>()
+            Meetings = new List<Meeting>();
+
+            List<string>  UnitCodes = new List<string>()
             {
                 "IAB330",
                 "CAB432",
@@ -32,8 +55,7 @@ namespace CollabHub.ViewModels
                 "#B0C0BC",
                 "#A7A7A9"
             };
-            Meetings = new List<Meeting>();
-
+            
             long start = DateTime.Now.Ticks;
             for (int i = 0; i < UnitCodes.Count; i++)
             {
@@ -44,11 +66,6 @@ namespace CollabHub.ViewModels
                     Date = new DateTime(start + new TimeSpan(0, 0, i, 0).Ticks)
                 });
             }
-        }
-
-        public void ReorderList()
-        {
-            Meetings = Meetings.OrderBy(m => m.Date).ToList(); // Rerder the list by Date
         }
     }
 }

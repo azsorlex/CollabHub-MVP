@@ -3,7 +3,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 //using CollabHub.Services;
 using CollabHub.Views;
-using CollabHub.Services;
 
 namespace CollabHub
 {
@@ -13,12 +12,10 @@ namespace CollabHub
         {
             InitializeComponent();
             MainPage = new AppShell();
-            
         }
 
         protected override void OnStart()
         {
-            
         }
 
         protected override void OnSleep()

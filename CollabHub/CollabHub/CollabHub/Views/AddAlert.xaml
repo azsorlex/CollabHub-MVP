@@ -33,9 +33,9 @@
                 ControlTemplate="{StaticResource NavigationBarControlTemplate}"
             Grid.Row ="0" />
 
-            <Entry Placeholder="Event Name" Grid.Row ="1" BackgroundColor="White"/>
+            <Entry Text="{Binding entryname}" Placeholder="Event Name" Grid.Row ="1" BackgroundColor="White"/>
 
-            <Picker x:Name="picker" Title="Select a Subject" Grid.Row ="2" BackgroundColor="White">
+            <Picker SelectedItem="{Binding subject}" x:Name="picker" Title="Select a Subject" Grid.Row ="2" BackgroundColor="White">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>CAB123</x:String>
@@ -54,6 +54,7 @@
                     <RowDefinition Height="20" />
                     <RowDefinition Height="20" />
                     <RowDefinition Height="20" />
+                    <RowDefinition Height="20" />
 
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -64,22 +65,22 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Text="Event Freuqnecy" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" />
-                
-                <RadioButton Grid.Row="1" Grid.Column="0" />
+
+                <RadioButton IsChecked="{Binding onetime}" Grid.Row="1" Grid.Column="0" />
                 <Label Grid.Row="1" Grid.Column="2"  >One Time</Label>
-                
-                <RadioButton Grid.Row="2" Grid.Column="0" />
+
+                <RadioButton IsChecked="{Binding weekly}" Grid.Row="2" Grid.Column="0" />
                 <Label Grid.Row="2" Grid.Column="2"  >Weekly</Label>
-                
-                <RadioButton Grid.Row="3" Grid.Column="0" />
+
+                <RadioButton IsChecked="{Binding monthly}" Grid.Row="3" Grid.Column="0" />
                 <Label Grid.Row="3" Grid.Column="2"  >Monthly</Label>
-                
-                <RadioButton Grid.Row="4" Grid.Column="0"/>
+
+                <RadioButton IsChecked="{Binding daily}" Grid.Row="4" Grid.Column="0"/>
                 <Label Grid.Row="4" Grid.Column="2"  >Daily</Label>
             </Grid>
 
-
-            <Button Text ="Add Alert" Grid.Row ="4" BackgroundColor="White"/>
+            <TimePicker  Time="{Binding SelectedTime}" Grid.Row="4" BackgroundColor="White"/>
+            <Button Command="{Binding SubmitAlert}" Text ="Add Alert" Grid.Row ="5" BackgroundColor="White"/>
 
         </Grid>
     </ContentPage.Content>

@@ -57,7 +57,8 @@
                                        BackgroundColor="{Binding BGColour}"
                                        Padding="10">
                                     <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding TapCommand}" />
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:VideoViewModel}}, Path=TapCommand}"
+                                                              CommandParameter="{Binding .}"/>
                                     </Frame.GestureRecognizers>
                                     <Grid>
                                         <Grid.ColumnDefinitions>

@@ -4,44 +4,31 @@ using MvvmHelpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CollabHub.Views;
 using CollabHub.Models;
 using System.Linq;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace CollabHub.ViewModels
 {
     class VideoViewModel : BaseViewModel
     {
-        private IList<Meeting> meetings;
+        private readonly ToastNotification NotLiveMessage = new ToastNotification("This video meeting hasn't gone live yet.", 3000);
+        private IList<Meeting> _meetings;
         public IList<Meeting> Meetings
         {
-            get
-            {
-                try
-                {
-                    if (meetings[0].TimeSpan.Minutes == -1)
-                    {
-                        meetings[0].Date = new DateTime(meetings[0].Date.Ticks + new TimeSpan(7, 0, 0, 0).Ticks); // Set the meeting to appear in one week time
-                        meetings = meetings.OrderBy(m => m.Date).ToList();
-                    }
-                } catch (Exception e)
-                {
-                    Debug.WriteLine($"Exception caught and handled gracefully: {e}");
-                }
-                return meetings;
-            }
-            set
-            {
-                meetings = value;
-            }
+            get => _meetings;
+            set => SetProperty(ref _meetings, value);
         }
-
+        public MvvmHelpers.Commands.Command TapCommand { get; }
+        
         public VideoViewModel()
         {
             Meetings = new List<Meeting>();
+            TapCommand = new MvvmHelpers.Commands.Command(async (m) => await TapAction((Meeting)m));
 
-            List<string>  UnitCodes = new List<string>()
+            List<string> UnitCodes = new List<string>()
             {
                 "IAB330",
                 "CAB432",
@@ -55,7 +42,7 @@ namespace CollabHub.ViewModels
                 "#B0C0BC",
                 "#A7A7A9"
             };
-            
+
             long start = DateTime.Now.Ticks;
             for (int i = 0; i < UnitCodes.Count; i++)
             {
@@ -63,8 +50,41 @@ namespace CollabHub.ViewModels
                 {
                     UnitCode = UnitCodes[i],
                     BGColour = BGColours[i % BGColours.Count],
-                    Date = new DateTime(start + new TimeSpan(0, 0, i, 0).Ticks)
+                    Date = new DateTime(start + new TimeSpan(0, 0, i, 0).Ticks),
                 });
+            }
+
+            // Start a timer that activates every second
+            Device.StartTimer(new TimeSpan(0, 0, 1), () =>
+            {
+                UpdateCountdowns();
+                return true;
+            });
+        }
+
+        private async Task TapAction(Meeting m)
+        {
+            if (m.Countdown.Days == 0 && m.Countdown.Hours == 0 && m.Countdown.Minutes < 5)
+            {
+                await Shell.Current.GoToAsync("home"); // Go to the video page if there are 5 or less minutes until the meeting starts
+            }
+            else  // Otherwise display a toast message
+            {
+                NotLiveMessage.Show();
+            }
+        }
+
+        private void UpdateCountdowns() // Update the countdown for each meeting, which will in turn update all of the other parameters
+        {
+            DateTime currentTime = DateTime.Now;
+            foreach (Meeting m in Meetings)
+            {
+                m.Countdown = m.Date - currentTime;
+                if (m.IsLive && m.Countdown.Minutes == -1) // Add 7 days to the date if the meeting is over and reorder the list
+                {
+                    m.Date = new DateTime(m.Date.Ticks + new TimeSpan(7, 0, 0, 0).Ticks);
+                    Meetings = Meetings.OrderBy(m2 => m2.Date).ToList();
+                }
             }
         }
     }

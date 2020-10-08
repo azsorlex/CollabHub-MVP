@@ -5,18 +5,16 @@ namespace CollabHub.Models
 {
     public class ToastNotification
     {
-        public Command TapCommand { get; private set; }
         private string message;
         private int timeout;
 
         public ToastNotification(string message, int timeout)
         {
-            TapCommand = new Command(OnTapped);
             this.message = message;
             this.timeout = timeout;
         }
 
-        void OnTapped(object s)
+        public void Show()
         {
             var toastConfig = new ToastConfig(message);
             toastConfig.SetDuration(timeout);

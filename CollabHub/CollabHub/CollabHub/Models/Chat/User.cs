@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace CollabHub.Models
 {
@@ -9,7 +10,6 @@ namespace CollabHub.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Name { get { return $"{FirstName} {LastName}"; } }
-
         public string Greeting
         {
             get { return $"Hi! May name is {Name}. What's yours?"; }
@@ -25,6 +25,14 @@ namespace CollabHub.Models
 
                 return initials.ToUpper();
             } 
+        }
+
+        public Xamarin.Forms.Command UserChatPage
+        {
+            get
+            {
+                return new Xamarin.Forms.Command(async () => { await Shell.Current.GoToAsync("userChat"); });
+            }
         }
     }
 }

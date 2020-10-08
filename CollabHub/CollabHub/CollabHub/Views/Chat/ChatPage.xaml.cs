@@ -16,13 +16,5 @@ namespace CollabHub.Views
         {
             InitializeComponent();
         }
-
-        void Handle_ItemTapped(object sender, ItemTappedEventArgs e)
-        => ((ListView)sender).SelectedItem = null;
-
-        async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            await Shell.Current.GoToAsync("userChat");
-        }
     }
 }

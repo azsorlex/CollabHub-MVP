@@ -35,7 +35,7 @@
                        Margin="0,-7.5,0,15"/>
 
                 <CollectionView x:Name="meetingList"
-                                ItemsSource="{Binding Meetings}"
+                                ItemsSource="{Binding Meetings, Mode=OneWay}"
                                 VerticalScrollBarVisibility="Always">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical"
@@ -54,10 +54,10 @@
                                 <Frame Grid.Column="1"
                                        BorderColor="#211E1C"
                                        CornerRadius="0"
-                                       BackgroundColor="{Binding BGColour}"
+                                       BackgroundColor="{Binding BGColour, Mode=OneWay}"
                                        Padding="10">
                                     <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:VideoViewModel}}, Path=TapCommand}"
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:VideoViewModel}}, Path=TapCommand, Mode=OneWay}"
                                                               CommandParameter="{Binding .}"/>
                                     </Frame.GestureRecognizers>
                                     <Grid>
@@ -68,7 +68,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <Label Grid.Column="0"
-                                               Text="{Binding UnitCode}"
+                                               Text="{Binding UnitCode, Mode=OneWay}"
                                                FontSize="35"
                                                VerticalTextAlignment="Center" />
 
@@ -76,15 +76,15 @@
                                                FontSize="40"
                                                TextColor="Red"
                                                Grid.Column="2"
-                                               IsVisible="{Binding IsLive}" />
+                                               IsVisible="{Binding IsLive, Mode=OneWay}" />
 
                                         <StackLayout Grid.Column="2"
                                                      Orientation="Horizontal"
-                                                     IsVisible="{Binding IsNotLive}" >
+                                                     IsVisible="{Binding IsNotLive, Mode=OneWay}" >
                                             <StackLayout Orientation="Vertical"
                                                      VerticalOptions="Center"
                                                      Spacing="0">
-                                                <Label Text="{Binding Days}"
+                                                <Label Text="{Binding Days, Mode=OneWay}"
                                                    FontSize="25"
                                                    HorizontalTextAlignment="End" />
                                                 <Label Text="D"
@@ -95,7 +95,7 @@
                                             <StackLayout Orientation="Vertical"
                                                      VerticalOptions="Center"
                                                      Spacing="0">
-                                                <Label Text="{Binding Hours}"
+                                                <Label Text="{Binding Hours, Mode=OneWay}"
                                                    FontSize="25"
                                                    HorizontalTextAlignment="End" />
                                                 <Label Text="H"
@@ -106,7 +106,7 @@
                                             <StackLayout Orientation="Vertical"
                                                      VerticalOptions="Center"
                                                      Spacing="0">
-                                                <Label Text="{Binding Minutes}"
+                                                <Label Text="{Binding Minutes, Mode=OneWay}"
                                                    FontSize="25"
                                                    HorizontalTextAlignment="End" />
                                                 <Label Text="M"

@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
+using CollabHub.Models;
 
 namespace CollabHub.ViewModels.ControlTemplates
 {
     class NavigationBar : ContentView
     {
-        public Xamarin.Forms.Command HomePage { get; set; }
+        public Command HomePage { get; set; }
 
         public static readonly BindableProperty PageNameProperty = BindableProperty.Create(nameof(PageName), typeof(string), typeof(NavigationBar), string.Empty);
 
@@ -20,13 +21,12 @@ namespace CollabHub.ViewModels.ControlTemplates
 
         public NavigationBar()
         {
-            HomePage = new Xamarin.Forms.Command(GoToHomePage);
+            HomePage = new Command(GoToHomePage);
         }
 
-
-
-        async void GoToHomePage()
+        private async void GoToHomePage()
         {
+            StoppableTimer.Stop();
             await Shell.Current.GoToAsync("home");
         }
     }

@@ -8,51 +8,24 @@ using CollabHub.Models;
 using System.Linq;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using CollabHub.Services;
+using System.Collections.ObjectModel;
 
 namespace CollabHub.ViewModels
 {
     class VideoViewModel : BaseViewModel
     {
         private readonly ToastNotification NotLiveMessage;
-        private IList<Meeting> _meetings;
-        public IList<Meeting> Meetings
-        {
-            get => _meetings;
-            set => SetProperty(ref _meetings, value);
-        }
+        public ObservableCollection<Meeting> Meetings { get; set; }
         public MvvmHelpers.Commands.Command TapCommand { get; }
-        
+
         public VideoViewModel()
         {
             NotLiveMessage = new ToastNotification("This video meeting hasn't gone live yet.", 3000);
-            Meetings = new List<Meeting>();
+            Meetings = MeetingDataStore.Meetings; // Load the remote source
             TapCommand = new MvvmHelpers.Commands.Command(async (m) => await TapAction((Meeting)m));
 
-            List<string> UnitCodes = new List<string>()
-            {
-                "IAB330",
-                "CAB432",
-                "CAB401",
-                "IFB399",
-                "IFB104"
-            };
-            List<string> BGColours = new List<string>()
-            {
-                "#C1EDCC",
-                "#B0C0BC",
-                "#A7A7A9"
-            };
-
-            long start = DateTime.Now.Ticks;
-            for (int i = 0; i < UnitCodes.Count; i++)
-            {
-                Meetings.Add(new Meeting
-                {
-                    UnitCode = UnitCodes[i],
-                    BGColour = BGColours[i % BGColours.Count],
-                    Date = new DateTime(start + new TimeSpan(0, 0, i, 0).Ticks),
-                });
-            }
+            UpdateCountdowns();
 
             // Start a timer that activates every second and updates the items in Meetings
             StoppableTimer.Start(new TimeSpan(0, 0, 1), UpdateCountdowns);
@@ -71,17 +44,44 @@ namespace CollabHub.ViewModels
             }
         }
 
-        private void UpdateCountdowns() // Update the countdown for each meeting, which will in turn update all of the other parameters
+        private void UpdateCountdowns() // Update the countdown for each meeting, which will in turn update all of the other meetings' parameters
         {
+            bool reorder = false;
+            List<Meeting> ItemsToDelete = new List<Meeting>();
             DateTime currentTime = DateTime.Now;
             foreach (Meeting m in Meetings)
             {
-                m.Countdown = m.Date - currentTime; // This alone is enough to update the View
-                if (m.IsLive && m.Countdown.Minutes == -1) // Add 7 days to the date if the meeting is over and reorder the list
+                m.Countdown = m.Date - currentTime;
+                // Add 7 days to the date if the meeting is over and reorder the list. Using while to allow the initial date to catch up to the present
+                while (m.Countdown.Days < 0 || (m.IsLive && m.Countdown.Hours <= -m.Duration.Key && m.Countdown.Minutes <= m.Duration.Value))
                 {
-                    m.Date = new DateTime(m.Date.Ticks + new TimeSpan(7, 0, 0, 0).Ticks);
-                    Meetings = Meetings.OrderBy(m2 => m2.Date).ToList();
+                    if (m.Date < m.EndDate)
+                    {
+                        m.Date += new TimeSpan(7, 0, 0, 0);
+                        reorder = m.Countdown.Days >= 0;
+                    }
+                    else
+                    {
+                        ItemsToDelete.Add(m); // Mark the meeting for deletion if there are no more occurences
+                        MeetingDataStore.Meetings = Meetings; // Update the remote source
+                        break;
+                    }
                 }
+            }
+
+            foreach (Meeting m in ItemsToDelete)
+            {
+                Meetings.Remove(m);
+            }
+            if (reorder)
+            {
+                List<Meeting> temp = Meetings.OrderBy(m => m.Date).ToList();
+                Meetings.Clear();
+                foreach (Meeting m in temp)
+                {
+                    Meetings.Add(m);
+                }
+                MeetingDataStore.Meetings = Meetings; // Update the remote source
             }
         }
     }

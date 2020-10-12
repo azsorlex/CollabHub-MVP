@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace CollabHub.Models
 {
-    public class Meeting
+    public class Meeting : INotifyPropertyChanged
     {
         private DateTime _date;
+        private TimeSpan _countdown;
 
         public string UnitCode { get; set; }
-        public string BGColour { get; set; }
         public DateTime Date
         {
             get => _date;
@@ -18,11 +19,32 @@ namespace CollabHub.Models
                 Countdown = value - DateTime.Now;
             }
         }
-        public TimeSpan Countdown { get; set; }
+        public DateTime EndDate { get; set; }
+        public KeyValuePair<byte, byte> Duration { get; set; } // Duration in hours and minutes
+        public TimeSpan Countdown
+        {
+            get => _countdown;
+            set
+            {
+                _countdown = value;
+                OnPropertyChanged(nameof(Days));
+                OnPropertyChanged(nameof(Hours));
+                OnPropertyChanged(nameof(Minutes));
+                OnPropertyChanged(nameof(IsLive));
+                OnPropertyChanged(nameof(IsNotLive));
+            }
+        }
+        public string BGColour { get; set; }
         public string Days => Countdown.Days.ToString("00");
         public string Hours => Countdown.Hours.ToString("00");
         public string Minutes => Countdown.Minutes.ToString("00");
-        public bool IsLive => Countdown.Days <= 0 && Countdown.Hours <= 0 && Countdown.Minutes <= 0 && Countdown.Seconds <= 0; // Used to show the "Live!" label when the meeting is live 
+        public bool IsLive => Countdown.Days <= 0 && Countdown.Hours <= 0 && Countdown.Minutes <= 0 && Countdown.Seconds <= 0; // Used to show the "Live!" label when the meeting is live
         public bool IsNotLive => !IsLive; // Used to show the countdown when the meeting isn't live
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

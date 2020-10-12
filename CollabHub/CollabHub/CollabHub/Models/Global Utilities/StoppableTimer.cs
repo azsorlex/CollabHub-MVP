@@ -11,6 +11,8 @@ namespace CollabHub.Models
 
         public static void Start(TimeSpan timespan, Action callback)
         {
+            if (repeat)
+                throw new Exception("A stoppable timer is already running. Stop that one before attempting to run a new one.");
             repeat = true;
             Device.StartTimer(timespan, () =>
             {

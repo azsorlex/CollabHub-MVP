@@ -11,13 +11,12 @@ namespace CollabHub.Models
         public int Year { get; set; }
         public int Month { get; set; }
         public int Days { get; set; }
-
         public List<Calendar_Alert> Alerts { get; set; }
 
-        public Calendar_Table(string month, int year)
+        public Calendar_Table(int month, int year)
         {
             this.Year = year;
-            this.Month = 1;
+            this.Month = month;
 
         }
     }

@@ -33,9 +33,9 @@
                 ControlTemplate="{StaticResource NavigationBarControlTemplate}"
             Grid.Row ="0" />
 
-            <Entry Text="{Binding entryname}" Placeholder="Event Name" Grid.Row ="1" BackgroundColor="White"/>
+            <Entry Text="{Binding entryname, TargetNullValue=''}" Placeholder="Event Name" Grid.Row ="1" BackgroundColor="White"/>
 
-            <Picker SelectedItem="{Binding subject}" x:Name="picker" Title="Select a Subject" Grid.Row ="2" BackgroundColor="White">
+            <Picker SelectedItem="{Binding subject, TargetNullValue=''}" x:Name="picker" Title="Select a Subject" Grid.Row ="2" BackgroundColor="White">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>CAB123</x:String>

@@ -15,7 +15,7 @@ namespace CollabHub.ViewModels
     class AddAlertViewModel : BaseViewModel
     {
         public String entryname { get; set; }
-        public Object subject { get; set; }
+        public String subject { get; set; }
         public Boolean onetime { get; set; }
         public Boolean weekly { get; set; }
         public Boolean monthly { get; set; }
@@ -32,28 +32,56 @@ namespace CollabHub.ViewModels
         }
         void Submit()
         {
-            Debug.WriteLine(entryname.ToString());
-            Debug.WriteLine(subject.ToString());
             String interval;
-            if (onetime) {
+
+            if (onetime)
+            {
                 interval = "One Time";
-            } else if (weekly)
+            }
+            else if (weekly)
             {
                 interval = "Weekly";
-            }else if (monthly)
+            }
+            else if (monthly)
             {
                 interval = "Monthly";
-            } else if (daily)
+            }
+            else if (daily)
             {
                 interval = "Daily";
             }
             else
             {
-                interval = "Error!: Nothing selected";
+                interval = "error";
+
             }
-            Debug.WriteLine(interval.ToString()); 
-            Debug.WriteLine(SelectedTime.ToString());
-            Calendar_Alert toSubmit = new Calendar_Alert(entryname, "1/1/2020", SelectedTime.ToString(), interval, subject.ToString());
+
+            if (entryname == "")
+            {
+                new ToastNotification("Please select an alert title.", 3000).Show();
+            } else if (subject == "")
+            {
+                new ToastNotification("Please select an alert subject.", 3000).Show();
+            } else if (interval == "error") 
+            {
+                new ToastNotification("Please select an alert interval.", 3000).Show();
+            } else
+            {
+                Debug.WriteLine(entryname.ToString());
+                Debug.WriteLine(subject.ToString());
+                Debug.WriteLine(interval.ToString());
+                Debug.WriteLine(SelectedTime.ToString());
+                Calendar_Alert toSubmit = new Calendar_Alert(entryname, "1/1/2020", SelectedTime.ToString(), interval, subject.ToString());
+                new ToastNotification("Alert added to calendar!", 3000).Show();
+                Back();
+            }
+
+            
+        }
+
+        private async void Back()
+        {
+            await Shell.Current.GoToAsync("calendar");
         }
 
 

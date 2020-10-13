@@ -20,7 +20,9 @@ namespace CollabHub.Models
         public string ResourceHeading2 { get; set; }
         public string ResourceHeading3 { get; set; }
 
-        public List<String> SubjectCon {get; set;}
+        public List<String> Unit1UnitInfo { get; set; }
+        public List<String> Unit1LearningMat {get; set;}
+        public List<String> Unit1AssessmentT { get; set; }
 
     }
 }

@@ -15,10 +15,12 @@ namespace CollabHub.Services
                 ResourceHeading1 = "Unit Information",
                 ResourceHeading2 = "Learning Materials",
                 ResourceHeading3 = "Assessment Task",
-                FirstUnitCode = "IFB398",
-                SecondUnitCode = "IAB330",
+                FirstUnitCode = "IAB330",
+                SecondUnitCode = "IFB398",
                 ThirdUnitCode = "CAB303",
-                SubjectCon = new List<String>(){"Week1", "Week2", "Week3"}
+                Unit1UnitInfo = new List<String>(){"Getting Started", "Announcements", "Unit Details", "FAQ"},
+                Unit1LearningMat = new List<String>(){"Weekly Schedule", "Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8"},
+                Unit1AssessmentT = new List<String>(){"Assignment 1", "Assignment 2", "Assignment 3", "My Grades"}
             },
             new SemesterInfo()
             {
@@ -28,7 +30,9 @@ namespace CollabHub.Services
                 ResourceHeading3 = "Assessment Task",
                 FirstUnitCode = "CAB203",
                 SecondUnitCode= "CAB302",
-                ThirdUnitCode = "IFB295"
+                ThirdUnitCode = "IFB295",
+                Unit1UnitInfo = new List<String>(){"Announcements", "Getting Started", "Learner Support", "Contacts", "Tools"},
+                Unit1LearningMat = new List<String>(){"Before Week 1", "Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8"}
             },
             new SemesterInfo()
             {

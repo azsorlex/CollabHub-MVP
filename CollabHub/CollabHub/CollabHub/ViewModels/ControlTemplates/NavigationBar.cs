@@ -26,7 +26,6 @@ namespace CollabHub.ViewModels.ControlTemplates
 
         private async void GoToHomePage()
         {
-            StoppableTimer.Stop();
             await Shell.Current.GoToAsync("home");
         }
     }

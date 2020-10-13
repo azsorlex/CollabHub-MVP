@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using CollabHub.Models;
+using CollabHub.Models.GlobalUtilities;
 using System.Linq;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -25,8 +26,6 @@ namespace CollabHub.ViewModels
             Meetings = MeetingDataStore.Meetings; // Load the remote source
             TapCommand = new MvvmHelpers.Commands.Command(async (m) => await TapAction((Meeting)m));
 
-            UpdateCountdowns();
-
             // Start a timer that activates every second and updates the items in Meetings
             StoppableTimer.Start(new TimeSpan(0, 0, 1), UpdateCountdowns);
         }
@@ -35,7 +34,6 @@ namespace CollabHub.ViewModels
         {
             if (m.Countdown.Days == 0 && m.Countdown.Hours == 0 && m.Countdown.Minutes < 5)
             {
-                StoppableTimer.Stop();
                 await Shell.Current.GoToAsync("home"); // Go to the video page if there are 5 or less minutes until the meeting starts
             }
             else  // Otherwise display a toast message
@@ -58,20 +56,23 @@ namespace CollabHub.ViewModels
                     if (m.Date < m.EndDate)
                     {
                         m.Date += new TimeSpan(7, 0, 0, 0);
-                        reorder = m.Countdown.Days >= 0;
+                        reorder = true;
                     }
                     else
                     {
                         ItemsToDelete.Add(m); // Mark the meeting for deletion if there are no more occurences
-                        MeetingDataStore.Meetings = Meetings; // Update the remote source
                         break;
                     }
                 }
             }
 
-            foreach (Meeting m in ItemsToDelete)
+            if (ItemsToDelete.Count > 0)
             {
-                Meetings.Remove(m);
+                foreach (Meeting m in ItemsToDelete)
+                {
+                    Meetings.Remove(m);
+                }
+                MeetingDataStore.Meetings = Meetings; // Update the remote source
             }
             if (reorder)
             {

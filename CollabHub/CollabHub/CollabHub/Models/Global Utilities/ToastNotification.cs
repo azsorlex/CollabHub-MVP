@@ -1,7 +1,7 @@
 ﻿using Xamarin.Forms;
 using Acr.UserDialogs;
 
-namespace CollabHub.Models
+namespace CollabHub.Models.GlobalUtilities
 {
     public class ToastNotification
     {

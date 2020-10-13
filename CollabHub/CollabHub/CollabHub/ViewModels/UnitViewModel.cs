@@ -8,6 +8,8 @@ using System.Text;
 using CollabHub.Views;
 using CollabHub.Models;
 using CollabHub.Services;
+using Xamarin.Forms.Internals;
+using Xamarin.Essentials;
 
 namespace CollabHub.ViewModels
 {
@@ -41,5 +43,6 @@ namespace CollabHub.ViewModels
                 SemesterInfos.Add(unit);
             }
         }
+
     }
 }

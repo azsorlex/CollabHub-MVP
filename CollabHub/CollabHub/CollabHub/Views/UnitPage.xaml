@@ -38,51 +38,109 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid Margin="2" BackgroundColor="#797270">
+                            <Grid Margin="0" BackgroundColor="#797270">
                                 <Grid.RowDefinitions >
-                                    <RowDefinition Height="40" />
-                                    <RowDefinition Height="30" />
-                                    <RowDefinition Height="30" />
-                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="420" />
+                                    <ColumnDefinition Width= "auto" />
+                                    <ColumnDefinition Width= "*" />
                                 </Grid.ColumnDefinitions>
 
-                                    <Switch 
-                                    IsToggled="True"
-                                    IsVisible="True"
-                                    Grid.Column="2"
-                                    OnColor="#C1EDCC"
-                                    ThumbColor="Black" InputTransparent="False" />
-                                <Label 
+                                 <Switch 
+                                 IsToggled="True"
+                                 IsVisible="True"
+                                 Grid.Row="0"
+                                 Grid.Column="2"
+                                 OnColor="#C1EDCC"
+                                 ThumbColor="Black" InputTransparent="False" />
+                                <Label x:Name="SemesterName"
                                     Grid.Row="0"
                                     Grid.Column="0"
-                                    FontSize="22"
-                                    FontAttributes="Bold"
+                                    FontSize="28"
                                     VerticalTextAlignment="Center"
                                     HorizontalTextAlignment="Center"
                                     TextColor="white"
                                     Text="{Binding SemesterTrack}" />
-                                <Label 
+                                <Label x:Name="UnitCode1"
                                     BackgroundColor="White"
                                     Grid.Row="1"
                                     Grid.Column="0"
-                                    FontSize="20"
+                                    Grid.ColumnSpan="3"
+                                    FontSize="25"
                                     TextColor="Black"
                                     Text="{Binding FirstUnitCode}" />
-                                <Label
-                                    BackgroundColor="White"
+                                <Label x:Name="Contentheading1"
+                                    BackgroundColor="#211e1c"
                                     Grid.Row="2"
+                                    Grid.Column="0"     
+                                    Grid.ColumnSpan="3"
+                                    FontSize="20"
+                                    TextColor="White"
+                                    Text="{Binding ResourceHeading1}"
+                                    />
+                                <Label x:Name="Content1"
+                                    BackgroundColor="#b0c0bc"
+                                    Grid.Row="3"
+                                    Grid.RowSpan="3"
+                                    Grid.Column="0"     
+                                    Grid.ColumnSpan="3"
+                                    FontSize="20"
+                                    TextColor="White"
+                                    Text="{Binding SubjectCon[1]}"
+                                    />
+                                <Label x:Name="Contentheading2"
+                                    BackgroundColor="#211e1c"
+                                    Grid.Row="6"
+                                    Grid.Column="0"     
+                                    Grid.ColumnSpan="3"
+                                    FontSize="20"
+                                    TextColor="White"
+                                    Text="{Binding ResourceHeading2}"
+                                    />
+                                <Label x:Name="Content2"
+                                    BackgroundColor="#b0c0bc"
+                                    Grid.Row="7"
+                                    Grid.RowSpan="3"
+                                    Grid.Column="0"     
+                                    Grid.ColumnSpan="3"
+                                    FontSize="20"
+                                    TextColor="White"
+                                    Text="{Binding ResourceHeading3}"
+                                    />
+                                <Label x:Name="Contentheading3"
+                                    BackgroundColor="#211e1c"
+                                    Grid.Row="10"
+                                    Grid.Column="0"     
+                                    Grid.ColumnSpan="3"
+                                    FontSize="20"
+                                    TextColor="White"
+                                    Text="{Binding ResourceHeading3}"
+                                    />
+                                <Label x:Name="Content3"
+                                    BackgroundColor="#b0c0bc"
+                                    Grid.Row="11"
+                                    Grid.RowSpan="3"
+                                    Grid.Column="0"     
+                                    Grid.ColumnSpan="3"
+                                    FontSize="20"
+                                    TextColor="White"
+                                    Text="{Binding ResourceHeading3}"
+                                    />
+                                <Label x:Name="UnitCode2"
+                                    BackgroundColor="White"
+                                    Grid.Row="14"
                                     Grid.Column="0"
-                                   FontSize="20"
+                                    Grid.ColumnSpan="3"
+                                    FontSize="25"
                                     Text="{Binding SecondUnitCode}"
                                     />
-                                <Label
+                                <Label x:Name="UnitCode3"
                                     BackgroundColor="White"
-                                    Grid.Row="3"
-                                    Grid.Column="0"                                    
-                                    FontSize="20"
+                                    Grid.Row="15"
+                                    Grid.Column="0"     
+                                    Grid.ColumnSpan="3"
+                                    FontSize="25"
                                     Text="{Binding ThirdUnitCode}"
                                     />
 

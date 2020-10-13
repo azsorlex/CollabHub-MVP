@@ -31,7 +31,7 @@ namespace CollabHub.Models
         {
             get
             {
-                return new Xamarin.Forms.Command(async () => { await Shell.Current.GoToAsync("userChat"); });
+                return new Xamarin.Forms.Command(async () => { await Shell.Current.GoToAsync($"userChat?name={FirstName}"); });
             }
         }
     }

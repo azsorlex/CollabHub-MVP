@@ -5,11 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewmodel="clr-namespace:CollabHub.ViewModels"
              mc:Ignorable="d"
-             x:Class="CollabHub.Views.VideoPage"
+             x:Class="CollabHub.Views.MeetingPage"
              xmlns:controltemplate="clr-namespace:CollabHub.ViewModels.ControlTemplates">
 
     <ContentPage.BindingContext>
-        <viewmodel:VideoViewModel />
+        <viewmodel:MeetingViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Content>
@@ -57,7 +57,7 @@
                                        BackgroundColor="{Binding BGColour, Mode=OneWay}"
                                        Padding="10">
                                     <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:VideoViewModel}}, Path=TapCommand, Mode=OneWay}"
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MeetingViewModel}}, Path=TapCommand, Mode=OneWay}"
                                                               CommandParameter="{Binding .}"/>
                                     </Frame.GestureRecognizers>
                                     <Grid>

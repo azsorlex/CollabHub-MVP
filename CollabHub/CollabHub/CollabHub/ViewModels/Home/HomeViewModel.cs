@@ -13,18 +13,17 @@ namespace CollabHub.ViewModels
         public Xamarin.Forms.Command CalendarPage { get; set; }
         public Xamarin.Forms.Command ChatPage { get; set; }
         public Xamarin.Forms.Command UnitsPage { get; set; }
-        public Xamarin.Forms.Command VideoPage { get; set; }
+        public Xamarin.Forms.Command MeetingPage { get; set; }
 
         public string Date { get; set; }
 
         public HomeViewModel()
         {
-            DateTime today = DateTime.Today;
-            Date = $"Today is {today.ToString("D")}";
+            Date = $"Today is {DateTime.Today:D}";
             CalendarPage = new Xamarin.Forms.Command(GoToCalendarPage);
             ChatPage = new Xamarin.Forms.Command(GoToChatPage);
             UnitsPage = new Xamarin.Forms.Command(GoToUnitsPage);
-            VideoPage = new Xamarin.Forms.Command(GoToVideoPage);
+            MeetingPage = new Xamarin.Forms.Command(GoToMeetingPage);
         }
 
         async void GoToUnitsPage()
@@ -41,9 +40,9 @@ namespace CollabHub.ViewModels
         {
             await Shell.Current.GoToAsync("chat");
         }
-        async void GoToVideoPage()
+        async void GoToMeetingPage()
         {
-            await Shell.Current.GoToAsync("video");
+            await Shell.Current.GoToAsync("meeting");
         }
     }
 }

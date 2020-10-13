@@ -67,7 +67,7 @@
                 <Label Text="CollabVideo" Grid.Row="5" Grid.Column="0" HorizontalTextAlignment="Center" FontSize="16" FontAttributes="Bold" />
                 <ImageButton
                     Source="video_camera.png" BackgroundColor="#C1EDCC" Grid.Row="6" Grid.Column="0" HorizontalOptions="Center" 
-                    Command="{Binding VideoPage}" BorderColor="black" BorderWidth="2" Padding="12"
+                    Command="{Binding MeetingPage}" BorderColor="black" BorderWidth="2" Padding="12"
                 />
 
                 <Label Text="Calendar" Grid.Row="5" Grid.Column="1" HorizontalTextAlignment="Center" FontSize="16" FontAttributes="Bold" />

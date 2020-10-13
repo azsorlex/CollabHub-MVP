@@ -2,16 +2,13 @@
 using CollabHub.Views.Chat;
 using System;
 using System.Collections.Generic;
-using Xamarin.Forms.Xaml;
 using Xamarin.Forms;
 
 namespace CollabHub
 {
-    public partial class AppShell : Xamarin.Forms.Shell
+    public partial class AppShell : Shell
     {
-
-        Dictionary<string, Type> routes = new Dictionary<string, Type>();
-        public Dictionary<string, Type> Routes { get { return routes; } }
+        public Dictionary<string, Type> Routes { get; } = new Dictionary<string, Type>();
         public AppShell()
         {
             InitializeComponent();
@@ -21,16 +18,17 @@ namespace CollabHub
 
         void RegisterRoutes()
         {
-            routes.Add("units", typeof(UnitPage));
-            routes.Add("calendar", typeof(CalendarPage));
-            routes.Add("chat", typeof(ChatPage));
-            routes.Add("userChat", typeof(UserChat));
-            routes.Add("video", typeof(VideoPage));
-            routes.Add("home", typeof(HomePage));
-            routes.Add("addalert", typeof(AddAlert));
-            routes.Add("viewalerts", typeof(ViewAlerts));
+            Routes.Add("units", typeof(UnitPage));
+            Routes.Add("calendar", typeof(CalendarPage));
+            Routes.Add("chat", typeof(ChatPage));
+            Routes.Add("userChat", typeof(UserChat));
+            Routes.Add("meeting", typeof(MeetingPage));
+            Routes.Add("video", typeof(VideoPage));
+            Routes.Add("home", typeof(HomePage));
+            Routes.Add("addalert", typeof(AddAlert));
+            Routes.Add("viewalerts", typeof(ViewAlerts));
 
-            foreach (var item in routes)
+            foreach (var item in Routes)
             {
                 Routing.RegisterRoute(item.Key, item.Value);
             }

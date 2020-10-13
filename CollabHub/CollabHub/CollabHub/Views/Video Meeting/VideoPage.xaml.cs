@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using CollabHub.Models.GlobalUtilities;
+using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,12 +15,6 @@ namespace CollabHub.Views
         public VideoPage()
         {
             InitializeComponent();
-        }
-
-        protected override void OnDisappearing()
-        {
-            StoppableTimer.Stop(true); // Stop the running timer when the page dissapears. Including when the device's back button is pressed
-            base.OnDisappearing();
         }
     }
 }

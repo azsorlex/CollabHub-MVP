@@ -14,13 +14,13 @@ using System.Collections.ObjectModel;
 
 namespace CollabHub.ViewModels
 {
-    class VideoViewModel : BaseViewModel
+    class MeetingViewModel : BaseViewModel
     {
         private readonly ToastNotification NotLiveMessage;
         public ObservableCollection<Meeting> Meetings { get; set; }
         public MvvmHelpers.Commands.Command TapCommand { get; }
 
-        public VideoViewModel()
+        public MeetingViewModel()
         {
             NotLiveMessage = new ToastNotification("This video meeting hasn't gone live yet.", 3000);
             Meetings = MeetingDataStore.Meetings; // Load the remote source
@@ -32,9 +32,9 @@ namespace CollabHub.ViewModels
 
         private async Task TapAction(Meeting m)
         {
-            if (m.Countdown.Days == 0 && m.Countdown.Hours == 0 && m.Countdown.Minutes < 5)
+            if (m.Countdown.Days == 0 && m.Countdown.Hours <= 0 && m.Countdown.Minutes < 5)
             {
-                await Shell.Current.GoToAsync("home"); // Go to the video page if there are 5 or less minutes until the meeting starts
+                await Shell.Current.GoToAsync($"video?unitcode={m.UnitCode}"); // Go to the video page if there are 5 or less minutes until the meeting starts
             }
             else  // Otherwise display a toast message
             {

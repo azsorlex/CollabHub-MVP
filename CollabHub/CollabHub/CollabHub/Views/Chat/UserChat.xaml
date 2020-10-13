@@ -4,15 +4,20 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:viewmodel="clr-namespace:CollabHub.ViewModels"
              xmlns:controltemplate="clr-namespace:CollabHub.ViewModels.ControlTemplates"
              x:Class="CollabHub.Views.Chat.UserChat">
+    <ContentPage.BindingContext>
+        <viewmodel:UserChatViewModel />
+    </ContentPage.BindingContext>
+
     <ContentPage.Content>
         <StackLayout>
             <controltemplate:NavigationBar 
                 PageName="CollabChat" 
                 ControlTemplate="{StaticResource NavigationBarControlTemplate}" 
             />
-            <Label Text="Welcome to the chat interface!"
+            <Label Text="{Binding Name}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

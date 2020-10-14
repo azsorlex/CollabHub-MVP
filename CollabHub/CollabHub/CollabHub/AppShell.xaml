@@ -7,6 +7,7 @@
        mc:Ignorable="d"
        Title="CollabHub"
        Shell.NavBarIsVisible="False"
+       FlyoutBehavior="Disabled"
        x:Class="CollabHub.AppShell">
 
     <!-- 

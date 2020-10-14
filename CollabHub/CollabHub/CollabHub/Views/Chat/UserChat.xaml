@@ -17,9 +17,45 @@
                 PageName="CollabChat" 
                 ControlTemplate="{StaticResource NavigationBarControlTemplate}" 
             />
-            <Label Text="{Binding Name}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="2.5" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <!-- Chat user info (Initial badge and Name) -->
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <!-- Chat user info (Initial badge and Name) -->
+                <Button 
+                    WidthRequest="45"
+                    HeightRequest="45"
+                    CornerRadius="40"
+                    VerticalOptions="Center"
+                    HorizontalOptions="End"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="{Binding Initials}"
+                    BackgroundColor="{Binding UserColour}"
+                />
+                <Label 
+                    Text="{Binding Name}"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    VerticalTextAlignment="Center"
+                    HorizontalOptions="Start"
+                    />
+
+                <!-- Line Break-->
+                <Label 
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    BackgroundColor="Gray"
+                    />
+
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

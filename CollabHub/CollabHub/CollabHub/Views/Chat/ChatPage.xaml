@@ -21,7 +21,7 @@
             <!-- Navbar -->
 
             <controltemplate:NavigationBar 
-                PageName="CollabChat" 
+                PageName="CollabChat"
                 ControlTemplate="{StaticResource NavigationBarControlTemplate}" 
             />
             
@@ -31,6 +31,7 @@
                   BackgroundColor="AliceBlue"
                   SeparatorVisibility="None"
                   Grid.Row="1"
+                  SelectionMode="None"
                   HorizontalOptions="FillAndExpand"
                   VerticalOptions="FillAndExpand" >
                 <ListView.ItemTemplate>
@@ -56,6 +57,7 @@
                                     Grid.RowSpan="2"
                                     Command="{Binding UserChatPage}"
                                     Text="{Binding Initials}"
+                                    BackgroundColor="{Binding UserColour}"
                                     />
                                 <Label
                                     Grid.Row="0"

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -7,8 +8,12 @@ namespace CollabHub.Models
 {
     class User
     {
+        [PrimaryKey]
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public string UserColour { get; set; }
         public string Name { get { return $"{FirstName} {LastName}"; } }
         public string Greeting
         {
@@ -31,7 +36,7 @@ namespace CollabHub.Models
         {
             get
             {
-                return new Xamarin.Forms.Command(async () => { await Shell.Current.GoToAsync($"userChat?name={FirstName}"); });
+                return new Xamarin.Forms.Command(async () => { await Shell.Current.GoToAsync($"userChat?initials={Initials}&name={Name}&userColour={UserColour}"); });
             }
         }
     }

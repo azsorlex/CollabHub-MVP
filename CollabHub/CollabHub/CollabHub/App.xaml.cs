@@ -1,11 +1,26 @@
 ﻿using System;
 using Xamarin.Forms;
 using CollabHub.Models.GlobalUtilities;
+using CollabHub.Services;
 
 namespace CollabHub
 {
     public partial class App : Application
     {
+        static AppDatabase database;
+
+        public static AppDatabase Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new AppDatabase();
+                }
+                return database;
+            }
+        }
+
         public App()
         {
             InitializeComponent();

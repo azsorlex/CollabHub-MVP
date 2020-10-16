@@ -15,6 +15,7 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="10" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="60" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -24,6 +25,30 @@
             <controltemplate:NavigationBar 
                 PageName="{Binding UnitCode, Mode=OneWay}" 
                 ControlTemplate="{StaticResource NavigationBarControlTemplate}" />
+            
+            
+
+            <StackLayout Grid.Row="3"
+                         Orientation="Horizontal"
+                         BackgroundColor="#C1EDCC">
+                <ImageButton Source="video_camera_flip.png"
+                             BackgroundColor="Transparent"
+                             HorizontalOptions="Start"
+                             Padding="25, 5, 0, 5"
+                             Command="{Binding FlipCommand}" />
+
+                <ImageButton Source="video_chat.png"
+                             BackgroundColor="Transparent"
+                             HorizontalOptions="CenterAndExpand"
+                             Padding="2"
+                             Command="{Binding ChatCommand}" />
+
+                <ImageButton Source="video_back.png"
+                             BackgroundColor="Transparent"
+                             HorizontalOptions="End"
+                             Padding="0, 5, 25, 5"
+                             Command="{Binding BackCommand}" />
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

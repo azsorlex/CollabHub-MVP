@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
@@ -16,7 +17,7 @@ namespace CollabHub.Models
         public int StartDay { get; set; }
         int WeeksCovered { get; set; }
         public List<Calendar_Alert> Alerts { get; set; }
-        public List<Day> DayList { get; set; }
+        public Collection<Calendar_Table.Day> DayList { get; set; }
 
         public Calendar_Table(int month, int year)
         {
@@ -24,11 +25,14 @@ namespace CollabHub.Models
             this.Month = month;
             this.StartDay = CalcStartDate(year, month);
             this.WeeksCovered = CalcWeeksCovered(year, month, StartDay);
-            this.DayList = new List<Day>();
-            for (int i = 0; i < DateTime.DaysInMonth(year, month); i++)
+            this.DayList = new Collection<Day>();
+
+            double count = DateTime.DaysInMonth(year, month) + StartDay;
+            count = Math.Ceiling(count / 7) * 7;
+            for (int i = 0; i < (int)count; i++)
             {
 
-                this.DayList.Add(new Day(i, this.StartDay));
+                this.DayList.Add(new Day(i, this.StartDay, DateTime.DaysInMonth(year, month)));
             }
             
         }
@@ -63,17 +67,20 @@ namespace CollabHub.Models
             public string Date { get; set; }
             public bool Valid { get; set; }
             
-            public Day (int pos, int startday) 
+            public Day (int pos, int startday,int daysinmonth) 
             {
                 if (pos < startday)
                 {
                     this.Valid = false;
                     this.Date = (0).ToString();
                     
-                } else
+                } else if (pos+1 > daysinmonth + startday) {
+                    this.Valid = false;
+                    this.Date = (0).ToString();
+                }else
                 {
                     this.Valid = true;
-                    this.Date = (pos + startday + 1).ToString();
+                    this.Date = (pos + 1 - startday).ToString();
                 }
                 
 

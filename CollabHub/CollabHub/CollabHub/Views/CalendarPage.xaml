@@ -46,18 +46,25 @@
                     <ImageButton Source="Capture.PNG" Command="{Binding AddAlert}" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
                     <ImageButton Source="Capture.PNG" Command="{Binding ViewAlerts}" Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
 
-                    <CollectionView ItemsSource="{Binding CalendarDays}" Grid.Row="2">
+                    <CollectionView x:Name="daylist" ItemsSource="{Binding CalendarDays, Mode=OneWay}"  Grid.Row="2" Grid.Column="0" HorizontalOptions="FillAndExpand" BackgroundColor="AliceBlue">
                         <CollectionView.ItemsLayout>
-                            <GridItemsLayout Span="7" Orientation="Vertical"/>
+                            <GridItemsLayout Orientation="Vertical"
+                                         VerticalItemSpacing="20" Span="7"/>
                         </CollectionView.ItemsLayout>
                         <CollectionView.ItemTemplate>
 
                             <DataTemplate>
                                 
-                                <ViewCell>
-                                    <Label Text="{Binding Valid}"/>
-                                </ViewCell>
+                                    <Frame>
+                                    <Label Text="{Binding Date, Mode=OneWay}" IsVisible="{Binding Valid}"/>
+                                    </Frame>
                                 
+                                
+
+                                
+
+
+
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>

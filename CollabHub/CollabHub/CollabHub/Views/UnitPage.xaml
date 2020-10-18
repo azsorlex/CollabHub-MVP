@@ -20,7 +20,8 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
             <controltemplate:NavigationBar
@@ -43,10 +44,11 @@
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.5*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
+                                
+                                
                                 
                                 <Switch 
                                  IsToggled="True"
@@ -55,227 +57,248 @@
                                  Grid.Column="2"
                                  OnColor="#C1EDCC"
                                  ThumbColor="Black" InputTransparent="False" />
-                                <Label x:Name="SemesterName"
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="3"
-                                    FontSize="28"
-                                    VerticalTextAlignment="Center"
-                                    HorizontalTextAlignment="Start"
-                                    TextColor="white"
-                                    Text="{Binding SemesterTrack}" />
-                                <Label x:Name="UnitCode1"
+
+                                <Label x:Name="SemesterName"  
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                FontSize="28"
+                                VerticalTextAlignment="Center"
+                                HorizontalTextAlignment="Start"
+                                TextColor="white"
+                                Text="{Binding SemesterTrack}" />
+
+                                <StackLayout Grid.Row="1" Grid.ColumnSpan="3" Spacing="0">
+                                    <Label x:Name="UnitCode1"
                                     BackgroundColor="White"
-                                    Grid.Row="1"
                                     Grid.Column="0"
-                                    Grid.ColumnSpan="3"
+                                    HorizontalOptions="FillAndExpand"
                                     FontSize="25"
                                     TextColor="Black"
-                                    Text="{Binding FirstUnitCode}" />
-                                <Label x:Name="Contentheading1"
+                                    Text="{Binding UnitCode[0]}" />
+
+                                    <Grid>
+                                        <Label x:Name="Contentheading1"
+                                            BackgroundColor="#211e1c"
+                                            Grid.Column="0"   
+                                            Grid.ColumnSpan="3"
+                                            FontSize="20"
+                                            TextColor="White"
+                                            Text="{Binding UnitContentHeading[0]}"
+                                        />
+                                    
+                                        <Image Source="Resources/drawable/expand_arrow_down.png"
+                                            Grid.Row="0"
+                                            Grid.Column="2"
+                                            IsVisible="true"
+                                        />
+                                        <Image Source="Resources/drawable/expand_arrow_side.png"
+                                            Grid.Row="0"
+                                            Grid.Column="2"
+                                            IsVisible="false"
+                                        />
+                                    </Grid>
+
+                                    <StackLayout Spacing="0">
+
+                                        <Grid RowSpacing='0' ColumnSpacing='0'>
+
+                                            <Label x:Name="Content1.0"
+                                                BackgroundColor="#b0c0bc"
+                                                Grid.RowSpan="3"
+                                                Grid.Row="0"
+                                                Grid.Column="0"     
+                                                FontSize="18"
+                                                TextColor="Black"
+                                                Text="{Binding Unit1UnitInfo[0]}"
+                                            />
+                                            <Label x:Name="Content1.1"
+                                                BackgroundColor="#b0c0bc"
+                                                Grid.Row="1"   
+                                                Grid.Column="0"     
+                                                FontSize="18"
+                                                TextColor="Black"
+                                                Text="{Binding Unit1UnitInfo[1]}"
+                                            />
+                                            <Label x:Name="Content1.2"
+                                                BackgroundColor="#b0c0bc"
+                                                Grid.Row="2"   
+                                                Grid.Column="0"     
+                                                FontSize="18"
+                                                TextColor="Black"
+                                                Text="{Binding Unit1UnitInfo[2]}"
+                                            />
+
+                                            <Label x:Name="Content1.3"
+                                                BackgroundColor="#b0c0bc"
+                                                Grid.Row="0"   
+                                                Grid.RowSpan="3"   
+                                                Grid.Column="1"     
+                                                FontSize="18"
+                                                TextColor="Black"
+                                                Text="{Binding Unit1UnitInfo[3]}"
+                                                 />
+                                            <Label x:Name="Content1.4"
+                                                BackgroundColor="#b0c0bc"
+                                                Grid.Row="1"     
+                                                Grid.Column="1"     
+                                                FontSize="18"
+                                                TextColor="Black"
+                                                Text="{Binding Unit1UnitInfo[4]}"
+                                                 />
+
+                                        </Grid>
+
+                                    </StackLayout>
+                                    
+                                    <Label x:Name="Contentheading2"
                                     BackgroundColor="#211e1c"
-                                    Grid.Row="2"
                                     Grid.Column="0"     
-                                    Grid.ColumnSpan="3"
                                     FontSize="20"
                                     TextColor="White"
-                                    Text="{Binding ResourceHeading1}"
-                                    />
-                                <Label x:Name="Content1.0"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="3"
-                                    Grid.RowSpan="3"
-                                    Grid.Column="0"     
-                                    Grid.ColumnSpan="3"
-                                    FontSize="18"
-                                    TextColor="Black"
-                                    Text="{Binding Unit1UnitInfo[0]}"
-                                    />
-                                <Label x:Name="Content1.1"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="4"
-                                    Grid.Column="0"     
-                                    FontSize="18"
-                                    TextColor="Black"
-                                    Text="{Binding Unit1UnitInfo[1]}"
-                                    />
-                                <Label x:Name="Content1.2"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="5"
-                                    Grid.Column="0"     
-                                    FontSize="18"
-                                    TextColor="Black"
-                                    Text="{Binding Unit1UnitInfo[2]}"
-                                    />
-                                <Label x:Name="Content1.3"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="3"
-                                    Grid.Column="1"     
-                                    FontSize="18"
-                                    TextColor="Black"
-                                    Text="{Binding Unit1UnitInfo[3]}"
-                                    />
-                                <Label x:Name="Content1.4"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="4"
-                                    Grid.Column="1"     
-                                    FontSize="18"
-                                    TextColor="Black"
-                                    Text="{Binding Unit1UnitInfo[4]}"
-                                    />
-                                <Label x:Name="Contentheading2"
-                                    BackgroundColor="#211e1c"
-                                    Grid.Row="6"
-                                    Grid.Column="0"     
-                                    Grid.ColumnSpan="3"
-                                    FontSize="20"
-                                    TextColor="White"
-                                    Text="{Binding ResourceHeading2}"
-                                    />
-                                <Label x:Name="Content2"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="7"
-                                    Grid.RowSpan="3"
-                                    Grid.Column="0"     
-                                    Grid.ColumnSpan="3"
-                                    FontSize="20"
-                                    TextColor="White"
-                                    Text="{Binding ResourceHeading3}"
-                                    />
-                                <Label x:Name="Content2.0"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="7"
-                                    Grid.RowSpan="3"
-                                    Grid.Column="0"     
-                                    Grid.ColumnSpan="3"
-                                    FontSize="18"
-                                    TextColor="Black"
-                                    Text="{Binding Unit1LearningMat[0]}"
-                                    />
-                                <Label x:Name="Content2.1"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="8"
-                                    Grid.Column="0"     
-                                    FontSize="18"
-                                    TextColor="Black"
-                                    Text="{Binding Unit1LearningMat[1]}"
-                                    />
-                                <Label x:Name="Content2.2"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="9"
-                                    Grid.Column="0"     
-                                    FontSize="18"
-                                    TextColor="Black"
-                                    Text="{Binding Unit1LearningMat[2]}"
-                                    />
-                                <Label x:Name="Content2.3"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="7"
-                                    Grid.Column="1"     
-                                    FontSize="18"
-                                    TextColor="Black"
-                                    Text="{Binding Unit1LearningMat[3]}"
-                                    />
-                                <Label x:Name="Content2.4"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="8"
-                                    Grid.Column="1"     
-                                    FontSize="18"
-                                    TextColor="Black"
-                                    Text="{Binding Unit1LearningMat[4]}"
-                                    />
-                                <Label x:Name="Content2.5"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="9"
-                                    Grid.Column="1"     
-                                    FontSize="18"
-                                    TextColor="Black"
-                                    Text="{Binding Unit1LearningMat[5]}"
-                                    />
-                                <Label x:Name="Content2.6"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="7"
-                                    Grid.Column="2"     
-                                    FontSize="18"
-                                    TextColor="Black"
-                                    Text="{Binding Unit1LearningMat[6]}"
-                                    />
-                                <Label x:Name="Content2.7"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="8"
-                                    Grid.Column="2"     
-                                    FontSize="18"
-                                    TextColor="Black"
-                                    Text="{Binding Unit1LearningMat[7]}"
-                                    />
-                                <Label x:Name="Content2.8"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="9"
-                                    Grid.Column="2"     
-                                    FontSize="18"
-                                    TextColor="Black"
-                                    Text="{Binding Unit1LearningMat[8]}"
-                                    />
-                                <Label x:Name="Contentheading3"
-                                    BackgroundColor="#211e1c"
-                                    Grid.Row="10"
-                                    Grid.Column="0"     
-                                    Grid.ColumnSpan="3"
-                                    FontSize="20"
-                                    TextColor="White"
-                                    Text="{Binding ResourceHeading3}"
-                                    />
-                                <Label x:Name="Content3.0"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="11"
-                                    Grid.RowSpan="3"
-                                    Grid.Column="0"     
-                                    Grid.ColumnSpan="3"
-                                    FontSize="20"
-                                    TextColor="Black"
-                                    Text="{Binding Unit1AssessmentT[0]}"
-                                    />
-                                <Label x:Name="Content3.1"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="12"
-                                    Grid.Column="0"     
-                                    FontSize="20"
-                                    TextColor="Black"
-                                    Text="{Binding Unit1AssessmentT[1]}"
-                                    />
-                                <Label x:Name="Content3.2"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="13"
-                                    Grid.Column="0"     
-                                    FontSize="20"
-                                    TextColor="Black"
-                                    Text="{Binding Unit1AssessmentT[2]}"
-                                    />
-                                <Label x:Name="Content3.3"
-                                    BackgroundColor="#b0c0bc"
-                                    Grid.Row="11"
-                                    Grid.Column="1"     
-                                    FontSize="20"
-                                    TextColor="Black"
-                                    Text="{Binding Unit1AssessmentT[3]}"
-                                    />
-                                <Label x:Name="UnitCode2"
-                                    BackgroundColor="White"
-                                    Grid.Row="14"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="3"
-                                    FontSize="25"
-                                    Text="{Binding SecondUnitCode}"
-                                    />
-                                <Label x:Name="UnitCode3"
-                                    BackgroundColor="White"
-                                    Grid.Row="15"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="3"   
-                                    FontSize="25"
-                                    Text="{Binding ThirdUnitCode}"
+                                    Text="{Binding UnitContentHeading[1]}"
                                     />
 
+                                    <Grid RowSpacing='0' ColumnSpacing='0'>
+
+                                        <Label x:Name="Content2.0"
+                                            BackgroundColor="#b0c0bc"
+                                            Grid.Row="0"   
+                                            Grid.RowSpan="3"
+                                            Grid.Column="0"     
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            Text="{Binding Unit1LearningMat[0]}"
+                                        />
+                                        <Label x:Name="Content2.1"
+                                            BackgroundColor="#b0c0bc"
+                                            Grid.Row="1"    
+                                            Grid.Column="0"     
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            Text="{Binding Unit1LearningMat[1]}"
+                                        />
+                                        <Label x:Name="Content2.2"
+                                            BackgroundColor="#b0c0bc"
+                                            Grid.Row="2"    
+                                            Grid.Column="0"     
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            Text="{Binding Unit1LearningMat[2]}"
+                                        />
+                                        <Label x:Name="Content2.3"
+                                            BackgroundColor="#b0c0bc"
+                                            Grid.Row="0"    
+                                            Grid.RowSpan="3"   
+                                            Grid.Column="1"     
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            Text="{Binding Unit1LearningMat[3]}"
+                                        />
+                                        <Label x:Name="Content2.4"
+                                            BackgroundColor="#b0c0bc"
+                                            Grid.Row="1"    
+                                            Grid.Column="1"     
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            Text="{Binding Unit1LearningMat[4]}"
+                                        />
+                                        <Label x:Name="Content2.5"
+                                            BackgroundColor="#b0c0bc"
+                                            Grid.Row="2"    
+                                            Grid.Column="1"     
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            Text="{Binding Unit1LearningMat[5]}"
+                                        />
+                                        <Label x:Name="Content2.6"
+                                            BackgroundColor="#b0c0bc"
+                                            Grid.Row="0"    
+                                            Grid.RowSpan="3"
+                                            Grid.Column="2"     
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            Text="{Binding Unit1LearningMat[6]}"
+                                        />
+                                        <Label x:Name="Content2.7"
+                                            BackgroundColor="#b0c0bc"
+                                            Grid.Row="1"    
+                                            Grid.Column="2"     
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            Text="{Binding Unit1LearningMat[7]}"
+                                        />
+                                        <Label x:Name="Content2.8"
+                                            BackgroundColor="#b0c0bc"
+                                            Grid.Row="2"    
+                                            Grid.Column="2"     
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            Text="{Binding Unit1LearningMat[8]}"
+                                        />
+
+                                    </Grid>
+                                    
+                                    <Label x:Name="Contentheading3"
+                                    BackgroundColor="#211e1c"
+                                    Grid.Column="0"     
+                                    FontSize="20"
+                                    TextColor="White"
+                                    Text="{Binding UnitContentHeading[2]}"
+                                    />
+
+                                    <Grid RowSpacing='0' ColumnSpacing='0'>
+
+                                        <Label x:Name="Content3.0"
+                                            BackgroundColor="#b0c0bc"
+                                            Grid.Row="0"
+                                            Grid.RowSpan="3"
+                                            Grid.Column="0"     
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            Text="{Binding Unit1AssessmentT[0]}"
+                                        />
+                                        <Label x:Name="Content3.1"
+                                            BackgroundColor="#b0c0bc"
+                                            Grid.Row="1"   
+                                            Grid.Column="0"     
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            Text="{Binding Unit1AssessmentT[1]}"
+                                        />
+                                        <Label x:Name="Content3.2"
+                                            BackgroundColor="#b0c0bc"
+                                            Grid.Row="2"   
+                                            Grid.Column="0"     
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            Text="{Binding Unit1AssessmentT[2]}"
+                                        />
+                                        <Label x:Name="Content3.3"
+                                            BackgroundColor="#b0c0bc"
+                                            Grid.Row="0"
+                                            Grid.RowSpan="3"
+                                            Grid.Column="1"     
+                                            FontSize="18"
+                                            TextColor="Black"
+                                            Text="{Binding Unit1AssessmentT[3]}"
+                                        />
+                                        
+                                    </Grid>
+                                    
+                                    <Label x:Name="UnitCode2"
+                                    BackgroundColor="White"
+                                    Grid.Column="0"
+                                    FontSize="25"
+                                    Text="{Binding UnitCode[1]}"
+                                    />
+                                    <Label x:Name="UnitCode3"
+                                    BackgroundColor="White"
+                                    Grid.Column="0"
+                                    FontSize="25"
+                                    Text="{Binding UnitCode[2]}"
+                                    />
+                                </StackLayout>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

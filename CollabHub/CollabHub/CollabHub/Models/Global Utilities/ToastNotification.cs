@@ -5,8 +5,8 @@ namespace CollabHub.Models.GlobalUtilities
 {
     public class ToastNotification
     {
-        private string message;
-        private int timeout;
+        private readonly string message;
+        private readonly int timeout;
 
         public ToastNotification(string message, int timeout)
         {

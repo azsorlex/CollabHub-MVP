@@ -11053,10 +11053,19 @@ namespace CollabHub.Droid
 			public const int user = 2131165314;
 			
 			// aapt resource value: 0x7F070083
-			public const int video_camera = 2131165315;
+			public const int video_back = 2131165315;
 			
 			// aapt resource value: 0x7F070084
-			public const int xamarin_logo = 2131165316;
+			public const int video_camera = 2131165316;
+			
+			// aapt resource value: 0x7F070085
+			public const int video_camera_flip = 2131165317;
+			
+			// aapt resource value: 0x7F070086
+			public const int video_chat = 2131165318;
+			
+			// aapt resource value: 0x7F070087
+			public const int xamarin_logo = 2131165319;
 			
 			static Drawable()
 			{

@@ -9,8 +9,7 @@ namespace CollabHub.Services
 {
     public static class MeetingDataStore
     {
-        private static bool initialised;
-        private static ObservableCollection<Meeting> _meetings = new ObservableCollection<Meeting>() // Data would be retrieved from a database of some sort
+        public static ObservableCollection<Meeting> Meetings { get; set; } = new ObservableCollection<Meeting>() // Data would be retrieved from a database of some sort
         {
             new Meeting() // Alex's sessions
             {
@@ -86,34 +85,5 @@ namespace CollabHub.Services
                 Duration = new KeyValuePair<byte, byte>(2, 0)
             }
         };
-        public static ObservableCollection<Meeting> Meetings
-        {
-            get
-            {
-                if (!initialised)
-                    Init();
-                return _meetings;
-            }
-            set => _meetings = value;
-        }
-
-        private static void Init()
-        {
-            List<string> BGColours = new List<string>()
-            {
-                "#C1EDCC",
-                "#B0C0BC",
-                "#A7A7A9"
-            };
-
-            List<Meeting> temp = _meetings.OrderBy(m => m.Date).ToList();
-            _meetings.Clear();
-            for (int i = 0; i < temp.Count; i++)
-            {
-                temp[i].BGColour = BGColours[i % BGColours.Count];
-                _meetings.Add(temp[i]);
-            }
-            initialised = true;
-        }
     }
 }

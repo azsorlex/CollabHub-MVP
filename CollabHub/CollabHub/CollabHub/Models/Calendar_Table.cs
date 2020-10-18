@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace CollabHub.Models
 {
-    class Calendar_Table
+    public class Calendar_Table
     {
 
         public int Year { get; set; }
         public int Month { get; set; }
         public int Days { get; set; }
         public int StartDay { get; set; }
-        public int WeeksCovered { get; set; }
+        int WeeksCovered { get; set; }
         public List<Calendar_Alert> Alerts { get; set; }
+        public List<Day> DayList { get; set; }
 
         public Calendar_Table(int month, int year)
         {
@@ -22,6 +24,13 @@ namespace CollabHub.Models
             this.Month = month;
             this.StartDay = CalcStartDate(year, month);
             this.WeeksCovered = CalcWeeksCovered(year, month, StartDay);
+            this.DayList = new List<Day>();
+            for (int i = 0; i < DateTime.DaysInMonth(year, month); i++)
+            {
+
+                this.DayList.Add(new Day(i, this.StartDay));
+            }
+            
         }
 
         static int CalcWeeksCovered(int year, int month, int startday)
@@ -33,27 +42,40 @@ namespace CollabHub.Models
         }
         static int CalcStartDate(int year, int month)
         {
-            int endday;
-            int c = year % 100;
-            endday = (int)(1 + Math.Floor((2.6 * month) - 0.2) - (2 * c) + c + Math.Floor((double)c / 4)) % 7;
-
-            return (endday+1) % 7;
+            List<int> monthconv = new List<int> { 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            double k = 1;
+            double m = monthconv[month - 1];
+            if (m == 11 || m == 12)
+            {
+                year -= 1;
+            }
+            double D = year % 100;
+            double C = (year / 100);
+            double f = k + Math.Floor((13 * m - 1) / 5) + D + Math.Floor(D / 4) + Math.Floor(C / 4) - 2 * C;
+            f = f % 7;
+            if (f <= 0) { f = f + 7; }
+            return (int)f;
         }
 
-        class Day
+        public class Day
         {
-            public int week;
-            public int date;
-            public bool valid;
+
+            public string Date { get; set; }
+            public bool Valid { get; set; }
             
-            Day (int pos, int startday) 
+            public Day (int pos, int startday) 
             {
                 if (pos < startday)
                 {
-                    this.valid = false;
-                    return;
+                    this.Valid = false;
+                    this.Date = (0).ToString();
+                    
+                } else
+                {
+                    this.Valid = true;
+                    this.Date = (pos + startday + 1).ToString();
                 }
-
+                
 
             }
         }

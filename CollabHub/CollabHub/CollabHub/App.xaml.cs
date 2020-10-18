@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using CollabHub.Models.GlobalUtilities;
 using CollabHub.Services;
+using CollabHub.Models;
 
 namespace CollabHub
 {

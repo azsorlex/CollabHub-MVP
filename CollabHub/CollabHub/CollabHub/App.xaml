@@ -27,7 +27,7 @@
                     Margin="5, 10"
                 />
                 <Label Text="{Binding PageName}" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" 
-                       VerticalTextAlignment="Center" FontSize="40"
+                       VerticalTextAlignment="Center" FontSize="35"
                 />
                 <ImageButton Source="home.png" Grid.Row="0" Grid.Column="2" HorizontalOptions="End" VerticalOptions="Center"
                              Margin="5, 10" BackgroundColor="Transparent" Command="{Binding HomePage}"

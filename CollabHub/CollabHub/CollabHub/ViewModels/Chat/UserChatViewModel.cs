@@ -11,6 +11,7 @@ using Xamarin.Forms;
 namespace CollabHub.ViewModels
 {
     [QueryProperty("Name", "name")]
+    [QueryProperty("FirstName", "firstName")]
     [QueryProperty("Initials", "initials")]
     [QueryProperty("UserColour", "userColour")]
 
@@ -21,6 +22,7 @@ namespace CollabHub.ViewModels
 
         // Properties passed from ChatViewModel
         private string name;
+        private string firstName;
         private string initials;
         private string userColour;
 
@@ -41,6 +43,16 @@ namespace CollabHub.ViewModels
             {
                 SetProperty(ref name, Uri.UnescapeDataString(value));
                 OnPropertyChanged(nameof(Name));
+            }
+        }
+
+        public string FirstName
+        {
+            get => firstName;
+            set
+            {
+                SetProperty(ref firstName, Uri.UnescapeDataString(value));
+                OnPropertyChanged(nameof(FirstName));
             }
         }
 

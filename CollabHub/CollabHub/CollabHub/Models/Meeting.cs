@@ -9,6 +9,7 @@ namespace CollabHub.Models
         private DateTime _date;
         private TimeSpan _countdown;
 
+        public string ID { get; set; }
         public string UnitCode { get; set; }
         public DateTime Date
         {

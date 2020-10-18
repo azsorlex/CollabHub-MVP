@@ -17,20 +17,50 @@ namespace CollabHub.ViewModels
     class MeetingViewModel : BaseViewModel
     {
         private readonly ToastNotification NotLiveMessage;
+        private readonly MockMeetingDataStore DataStore;
         public ObservableCollection<Meeting> Meetings { get; set; }
         public MvvmHelpers.Commands.Command TapCommand { get; }
 
         public MeetingViewModel()
         {
             NotLiveMessage = new ToastNotification("This video meeting hasn't gone live yet.", 3000);
-            Meetings = MeetingDataStore.Meetings; // Load the remote source
+            DataStore = new MockMeetingDataStore();
+            Meetings = new ObservableCollection<Meeting>();
             TapCommand = new MvvmHelpers.Commands.Command(async (m) => await TapAction((Meeting)m));
+
+            MvvmHelpers.Commands.Command LoadItemsCommand = new MvvmHelpers.Commands.Command(async () => await ExecuteLoadItemsCommand());
+            LoadItemsCommand.Execute(null); // Load the remote source
+
+            ReorderCollection(true);
 
             // Start a timer that activates every second and updates the items in Meetings
             StoppableTimer.Start(new TimeSpan(0, 0, 1), UpdateCountdowns);
         }
 
-        private async Task TapAction(Meeting m)
+        async Task ExecuteLoadItemsCommand()
+        {
+            IsBusy = true;
+
+            try
+            {
+                Meetings.Clear();
+                var meetings = await DataStore.GetItemsAsync(true);
+                foreach (var m in meetings)
+                {
+                    Meetings.Add(m);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        async Task TapAction(Meeting m)
         {
             if (m.Countdown.Days == 0 && m.Countdown.Hours <= 0 && m.Countdown.Minutes < 5)
             {
@@ -76,14 +106,28 @@ namespace CollabHub.ViewModels
             }
             if (reorder)
             {
-                List<Meeting> temp = Meetings.OrderBy(m => m.Date).ToList();
-                Meetings.Clear();
-                foreach (Meeting m in temp)
-                {
-                    Meetings.Add(m);
-                }
-                MeetingDataStore.Meetings = Meetings; // Update the remote source
+                ReorderCollection(false);
             }
+        }
+
+        private void ReorderCollection(bool colourise)
+        {
+            List<string> BGColours = new List<string>()
+            {
+                "#C1EDCC",
+                "#B0C0BC",
+                "#A7A7A9"
+            };
+
+            List<Meeting> temp = Meetings.OrderBy(m => m.Date).ToList();
+            Meetings.Clear();
+            for (int i = 0; i < temp.Count; i++)
+            {
+                if (colourise)
+                    temp[i].BGColour = BGColours[i % BGColours.Count];
+                Meetings.Add(temp[i]);
+            }
+            MeetingDataStore.Meetings = Meetings; // Update the remote source
         }
     }
 }

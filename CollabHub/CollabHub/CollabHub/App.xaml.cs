@@ -27,7 +27,6 @@ namespace CollabHub
             InitializeComponent();
 
             DependencyService.Register<MockMeetingDataStore>();
-            DependencyService.Register<MockUserDataStore>();
             DependencyService.Register<MessageDataStore>();
 
             MainPage = new AppShell();

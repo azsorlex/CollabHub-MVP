@@ -1,11 +1,10 @@
-﻿using CollabHub.Models;
-using CollabHub.Models.Chat;
+﻿using CollabHub.Models.Chat;
 using CollabHub.Services;
-using CollabHub.Views.Chat;
 using MvvmHelpers;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace CollabHub.ViewModels
@@ -20,6 +19,8 @@ namespace CollabHub.ViewModels
     {
         IDataStore<Message> MessageDataStore => DependencyService.Get<IDataStore<Message>>(); 
 
+        public ObservableCollection<Message> Messages { get; }
+
         // Properties passed from ChatViewModel
         private string name;
         private string firstName;
@@ -31,9 +32,13 @@ namespace CollabHub.ViewModels
 
         public Command SaveChat { get; }
 
+        public Command LoadItemsCommand { get; }
+
         public UserChatViewModel()
         {
             SaveChat = new Command(OnSave);
+            Messages = new ObservableCollection<Message>();
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
 
         public string Name
@@ -82,12 +87,38 @@ namespace CollabHub.ViewModels
             set => SetProperty(ref messageText, value);
         }
 
+        async Task ExecuteLoadItemsCommand()
+        {
+            IsBusy = true;
+
+            try
+            {
+                Messages.Clear();
+                var messages = await MessageDataStore.GetItemsAsync(true);
+                foreach(var message in messages)
+                {
+                    Messages.Add(message);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
         private async void OnSave()
         {
             Message newMessage = new Message()
             {
+                Id = Guid.NewGuid().ToString(),
                 Text = messageText
             };
+
+            await App.Current.MainPage.DisplayAlert("Alert", newMessage.Text, "OK");
 
             await MessageDataStore.AddItemAsync(newMessage);
         }

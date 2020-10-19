@@ -1,5 +1,6 @@
 ﻿using CollabHub.Extensions;
 using CollabHub.Models;
+using CollabHub.Models.Chat;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -32,10 +33,15 @@ namespace CollabHub.Services
                 {
                     await Database.CreateTablesAsync(CreateFlags.None, typeof(User)).ConfigureAwait(false); // Initialise the user table if it doesn't exist
                 }
+                if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(Message).Name))
+                {
+                    await Database.CreateTablesAsync(CreateFlags.None, typeof(Message)).ConfigureAwait(false); // Initialise the message table if it doesn't exist
+                }
                 if (!Database.TableMappings.Any(m => m.MappedType.Name == typeof(Meeting).Name))
                 {
-                    await Database.CreateTablesAsync(CreateFlags.None, typeof(Meeting)).ConfigureAwait(false); // Initialise the meeting table if it doesn't exist
-                    await PopulateMeetingTableAsync();
+                    // This code breaks the application.
+                    //await Database.CreateTablesAsync(CreateFlags.None, typeof(Meeting)).ConfigureAwait(false); // Initialise the meeting table if it doesn't exist
+                    //await PopulateMeetingTableAsync();
                 }
                 initialized = true;
             }

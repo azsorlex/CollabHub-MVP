@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:viewmodel="clr-namespace:CollabHub.ViewModels"
+             xmlns:model="clr-namespace:CollabHub.Models.Chat"
              xmlns:controltemplate="clr-namespace:CollabHub.ViewModels.ControlTemplates"
              x:Class="CollabHub.Views.Chat.UserChat">
     <ContentPage.BindingContext>
@@ -34,7 +35,7 @@
                         <RowDefinition Height="50" />
                         <RowDefinition Height="2.5" />
                         <RowDefinition Height="80" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <!-- Chat user info (Initial badge and Name) -->
@@ -52,6 +53,7 @@
                     Grid.Row="0"
                     Grid.Column="0"
                     Text="{Binding Initials}"
+                    Command="{Binding SaveChat}"
                     BackgroundColor="{Binding UserColour}"
                 />
                     <Label 
@@ -68,7 +70,23 @@
                     Grid.ColumnSpan="2"
                     BackgroundColor="Gray"
                     />
+
+                    <RefreshView x:DataType="viewmodel:UserChatViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+                                 Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+                        <CollectionView x:Name="MessagesListView"
+                                ItemsSource="{Binding Messages}"
+                                SelectionMode="None">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout Padding="5" x:DataType="model:Message">
+                                        <Label Text="{Binding Text}" />
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </RefreshView>
                 </Grid>
+
             </StackLayout>
 
             <!-- User Input -->
@@ -76,7 +94,8 @@
                           RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
                           RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.90}"
                           RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.1}">
-                <Entry Placeholder="{Binding FirstName, StringFormat='Enter new message to {0}'}" />
+                <Entry Placeholder="{Binding FirstName, StringFormat='Enter new message to {0}'}" ClearButtonVisibility="WhileEditing" ReturnType="Send"
+                       Text="{Binding MessageText, Mode=TwoWay}" ReturnCommand="{Binding SaveChat}"/>
             </StackLayout>
         </RelativeLayout>
     </ContentPage.Content>

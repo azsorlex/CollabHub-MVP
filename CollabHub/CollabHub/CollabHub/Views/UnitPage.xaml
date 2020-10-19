@@ -48,15 +48,12 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 
-                                
-                                
                                 <Switch 
-                                 IsToggled="True"
-                                 IsVisible="True"
+                                 IsToggled="{Binding IsExpand}"
                                  Grid.Row="0"
                                  Grid.Column="2"
-                                 OnColor="#C1EDCC"
-                                 ThumbColor="Black" InputTransparent="False" />
+                                 OnColor="#C1EDCC"   
+                                 ThumbColor="#211e1c" InputTransparent="False" />
 
                                 <Label x:Name="SemesterName"  
                                 Grid.Row="0"
@@ -68,7 +65,11 @@
                                 TextColor="white"
                                 Text="{Binding SemesterTrack}" />
 
-                                <StackLayout Grid.Row="1" Grid.ColumnSpan="3" Spacing="0">
+                                <StackLayout Grid.Row="1" 
+                                             Grid.ColumnSpan="3" 
+                                             Spacing="0" 
+                                             IsVisible="{Binding IsExpand}">
+                                    
                                     <Label x:Name="UnitCode1"
                                     BackgroundColor="White"
                                     Grid.Column="0"
@@ -86,13 +87,25 @@
                                             TextColor="White"
                                             Text="{Binding UnitContentHeading[0]}"
                                         />
-                                    
-                                        <Image Source="Resources/drawable/expand_arrow_down.png"
-                                            Grid.Row="0"
-                                            Grid.Column="2"
+
+                                        <Button ImageSource ="Resources/drawable/expand_arrow_down.png"
                                             IsVisible="true"
-                                        />
-                                        <Image Source="Resources/drawable/expand_arrow_side.png"
+                                            Command="{Binding IsExpand}"
+                                            BackgroundColor="#211e1c"
+                                            Grid.Row="0"
+                                            Grid.Column="2">
+                                            <!--<Button.Triggers>
+                                                <DataTrigger TargetType="Button" Binding="{Binding UnitContentHeading[0]}" >
+                                                    <Setter Property="IsVisible" Value="False"/>
+                                                </DataTrigger>
+                                                <DataTrigger TargetType="Button">
+                                                    <Setter Property="IsVisible" Value="True"/>
+                                                </DataTrigger>  
+                                            </Button.Triggers>-->
+                                        </Button>
+                                        
+                                        <ImageButton Source="Resources/drawable/expand_arrow_side.png"
+                                            BackgroundColor="#211e1c"
                                             Grid.Row="0"
                                             Grid.Column="2"
                                             IsVisible="false"
@@ -107,7 +120,7 @@
                                                 BackgroundColor="#b0c0bc"
                                                 Grid.RowSpan="3"
                                                 Grid.Row="0"
-                                                Grid.Column="0"     
+                                                Grid.Column="0"
                                                 FontSize="18"
                                                 TextColor="Black"
                                                 Text="{Binding Unit1UnitInfo[0]}"

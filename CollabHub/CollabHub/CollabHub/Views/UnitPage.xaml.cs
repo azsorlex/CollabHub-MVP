@@ -13,14 +13,10 @@ namespace CollabHub.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UnitPage : ContentPage
     {
-
-        //private UnitViewModel ViewModel { get; set; }
-        
+       
         public UnitPage()
         {
-            //ViewModel = new UnitViewModel();
             InitializeComponent();
-            //this.BindingContext = ViewModel;
         }
     }
 }

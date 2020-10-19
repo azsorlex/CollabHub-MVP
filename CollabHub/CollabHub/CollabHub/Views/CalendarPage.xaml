@@ -30,14 +30,13 @@
 
 
             <ScrollView Grid.Row="2" VerticalOptions="FillAndExpand">
-                <Grid >
+                <Grid>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="300" />
+                        <RowDefinition Height="300" />
+                        <RowDefinition Height="500" />
+
                     </Grid.RowDefinitions>
 
                     <Grid.ColumnDefinitions>
@@ -46,16 +45,35 @@
 
                     <ImageButton Source="Capture.PNG" Command="{Binding AddAlert}" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
                     <ImageButton Source="Capture.PNG" Command="{Binding ViewAlerts}" Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
-                    <Image Source="Capture.PNG" Grid.Row="2" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
-                    <Image Source="Capture.PNG" Grid.Row="3" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
-                    <Image Source="Capture.PNG" Grid.Row="4" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
+
+                    <CollectionView x:Name="daylist" ItemsSource="{Binding CalendarDays, Mode=OneWay}"  Grid.Row="2" Grid.Column="0" HorizontalOptions="FillAndExpand" BackgroundColor="AliceBlue">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical"
+                                         VerticalItemSpacing="20" Span="7"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+
+                            <DataTemplate>
+                                
+                                    <Frame>
+                                    <Label Text="{Binding Date, Mode=OneWay}" IsVisible="{Binding Valid}"/>
+                                    </Frame>
+                                
+                                
+
+                                
+
+
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                     
                     
                 </Grid>
 
             </ScrollView>
-
-         
+ 
         </Grid>
 
     </ContentPage.Content>

@@ -8,8 +8,8 @@ using System.Text;
 using CollabHub.Views;
 using System.Threading.Tasks;
 using CollabHub.Models;
-using CollabHub.Models.GlobalUtilities;
 using System.Diagnostics;
+using CollabHub.Models.GlobalUtilities;
 
 namespace CollabHub.ViewModels
 {

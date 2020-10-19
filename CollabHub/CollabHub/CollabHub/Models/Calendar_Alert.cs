@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CollabHub.Models
 {
-    class Calendar_Alert
+    public class Calendar_Alert
     {
 
         public string Name { get; set; }

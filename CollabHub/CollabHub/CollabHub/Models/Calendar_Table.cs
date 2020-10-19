@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.CompilerServices;
@@ -15,6 +16,7 @@ namespace CollabHub.Models
         public int Month { get; set; }
         public int Days { get; set; }
         public int StartDay { get; set; }
+        public string MonthName { get; set; }
         int WeeksCovered { get; set; }
         public List<Calendar_Alert> Alerts { get; set; }
         public Collection<Calendar_Table.Day> DayList { get; set; }
@@ -26,6 +28,7 @@ namespace CollabHub.Models
             this.StartDay = CalcStartDate(year, month);
             this.WeeksCovered = CalcWeeksCovered(year, month, StartDay);
             this.DayList = new Collection<Day>();
+            this.MonthName = new DateTime(year, month, 1).ToString("MMMM yyyy");
 
             double count = DateTime.DaysInMonth(year, month) + StartDay;
             count = Math.Ceiling(count / 7) * 7;

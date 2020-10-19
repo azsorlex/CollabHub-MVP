@@ -16,6 +16,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
                 <RowDefinition Height="10" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -27,52 +28,64 @@
                 PageName="Calendar"
                 ControlTemplate="{StaticResource NavigationBarControlTemplate}"
             />
+            
+            <Grid Grid.Row="1" BackgroundColor="#C1EDCC">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Text="{Binding Date}" FontSize="Title"/>
+                <ImageButton Source="Capture.PNG" Command="{Binding ViewAlerts}" Grid.Column="1" HorizontalOptions="FillAndExpand"/>
+                <ImageButton Source="Capture.PNG" Command="{Binding AddAlert}"  Grid.Column="2" HorizontalOptions="FillAndExpand"/>
+
+            </Grid>
 
 
-            <ScrollView Grid.Row="2" VerticalOptions="FillAndExpand">
-                <Grid>
+            <ScrollView Grid.Row="3" VerticalOptions="FillAndExpand">
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="300" />
-                        <RowDefinition Height="300" />
-                        <RowDefinition Height="500" />
 
-                    </Grid.RowDefinitions>
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <ImageButton Source="Capture.PNG" Command="{Binding AddAlert}" Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
-                    <ImageButton Source="Capture.PNG" Command="{Binding ViewAlerts}" Grid.Row="1" Grid.Column="0" HorizontalOptions="FillAndExpand"/>
-
-                    <CollectionView x:Name="daylist" ItemsSource="{Binding CalendarDays, Mode=OneWay}"  Grid.Row="2" Grid.Column="0" HorizontalOptions="FillAndExpand" BackgroundColor="AliceBlue">
-                        <CollectionView.ItemsLayout>
-                            <GridItemsLayout Orientation="Vertical"
-                                         VerticalItemSpacing="20" Span="7"/>
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-
-                            <DataTemplate>
-                                
-                                    <Frame>
-                                    <Label Text="{Binding Date, Mode=OneWay}" IsVisible="{Binding Valid}"/>
+                <ListView ItemsSource="{Binding CalendarMonths}" RowHeight="420" Margin="10">
+       
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Frame BackgroundColor="LightGray">
+                                        <Label Text="{Binding MonthName}" HorizontalOptions="Center" FontSize="20"/>
                                     </Frame>
-                                
-                                
 
-                                
+                                    <CollectionView x:Name="daylist" ItemsSource="{Binding DayList, Mode=OneWay}"  HorizontalOptions="FillAndExpand" BackgroundColor="AliceBlue">
+                                        <CollectionView.ItemsLayout>
+                                            <GridItemsLayout Orientation="Vertical" 
+                                         VerticalItemSpacing="4" HorizontalItemSpacing="4" Span="7" />
+                                        </CollectionView.ItemsLayout>
+                                        <CollectionView.ItemTemplate >
+
+                                            <DataTemplate >
+                                                <Button Text="{Binding Date, Mode=OneWay}" IsEnabled="{Binding Valid}" IsVisible="{Binding Valid}"/>
 
 
+                                                
 
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                    
-                    
-                </Grid>
 
-            </ScrollView>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+
+                                </StackLayout>
+                            </ViewCell>
+                            
+                            
+                            
+                            
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+        </ScrollView>
  
         </Grid>
 

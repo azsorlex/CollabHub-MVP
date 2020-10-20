@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -9,6 +10,7 @@ namespace CollabHub.Models
         private DateTime _date;
         private TimeSpan _countdown;
 
+        [PrimaryKey]
         public string ID { get; set; }
         public string UnitCode { get; set; }
         public DateTime Date
@@ -21,7 +23,8 @@ namespace CollabHub.Models
             }
         }
         public DateTime EndDate { get; set; }
-        public KeyValuePair<byte, byte> Duration { get; set; } // Duration in hours and minutes
+        public byte DurationHours { get; set; }
+        public byte DurationMinutes { get; set; }
         public TimeSpan Countdown
         {
             get => _countdown;

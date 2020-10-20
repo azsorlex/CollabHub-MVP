@@ -31,8 +31,6 @@ namespace CollabHub.ViewModels
             MvvmHelpers.Commands.Command LoadItemsCommand = new MvvmHelpers.Commands.Command(async () => await ExecuteLoadItemsCommand());
             LoadItemsCommand.Execute(null); // Load the remote source
 
-            ReorderCollection(true);
-
             // Start a timer that activates every second and updates the items in Meetings
             StoppableTimer.Start(new TimeSpan(0, 0, 1), UpdateCountdowns);
         }
@@ -56,6 +54,7 @@ namespace CollabHub.ViewModels
             }
             finally
             {
+                ReorderCollection(true);
                 IsBusy = false;
             }
         }
@@ -81,7 +80,7 @@ namespace CollabHub.ViewModels
             {
                 m.Countdown = m.Date - currentTime;
                 // Add 7 days to the date if the meeting is over and reorder the list. Using while to allow the initial date to catch up to the present
-                while (m.Countdown.Days < 0 || (m.IsLive && m.Countdown.Hours <= -m.Duration.Key && m.Countdown.Minutes <= m.Duration.Value))
+                while (m.Countdown.Days < 0 || (m.IsLive && m.Countdown.Hours <= -m.DurationHours && m.Countdown.Minutes <= m.DurationMinutes))
                 {
                     if (m.Date < m.EndDate)
                     {
@@ -102,7 +101,6 @@ namespace CollabHub.ViewModels
                 {
                     Meetings.Remove(m);
                 }
-                MeetingDataStore.Meetings = Meetings; // Update the remote source
             }
             if (reorder)
             {
@@ -127,7 +125,7 @@ namespace CollabHub.ViewModels
                     temp[i].BGColour = BGColours[i % BGColours.Count];
                 Meetings.Add(temp[i]);
             }
-            MeetingDataStore.Meetings = Meetings; // Update the remote source
+            DataStore.UpdateAllAsync(Meetings);
         }
     }
 }

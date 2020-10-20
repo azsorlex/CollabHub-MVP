@@ -2,6 +2,7 @@
 using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,6 +36,11 @@ namespace CollabHub.Services
         public async Task<bool> UpdateItemAsync(Meeting item)
         {
             return await database.UpdateAsync(item) > 0;
+        }
+
+        public async Task<bool> UpdateAllAsync(ObservableCollection<Meeting> meetings)
+        {
+            return await database.UpdateAllAsync(meetings) > 0;
         }
     }
 }

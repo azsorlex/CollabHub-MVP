@@ -13,14 +13,24 @@ using CollabHub.Models.GlobalUtilities;
 
 namespace CollabHub.ViewModels
 {
+    [QueryProperty("input", "date")]
     class AddAlertViewModel : BaseViewModel
     {
-        public String entryname { get; set; }
-        public String subject { get; set; }
-        public Boolean onetime { get; set; }
-        public Boolean weekly { get; set; }
-        public Boolean monthly { get; set; }
-        public Boolean daily { get; set; }
+        public string input { set
+            {
+                InDate = Uri.UnescapeDataString(value);
+                Debug.WriteLine("yolo");
+                Debug.WriteLine(value);
+                OnPropertyChanged(nameof(InDate));
+            } }
+
+        public string InDate { get; set; }
+        public string entryname { get; set; }
+        public string subject { get; set; }
+        public bool onetime { get; set; }
+        public bool weekly { get; set; }
+        public bool monthly { get; set; }
+        public bool daily { get; set; }
         public TimeSpan SelectedTime { get; set; }
         public Xamarin.Forms.Command SubmitAlert { get; set; }
 
@@ -29,6 +39,7 @@ namespace CollabHub.ViewModels
         {
             
             SubmitAlert = new Xamarin.Forms.Command(Submit);
+            //InDate = "testing";
 
         }
         void Submit()

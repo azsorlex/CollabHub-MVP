@@ -4,10 +4,13 @@
              x:Class="CollabHub.Views.CalendarPage"
              xmlns:viewmodel="clr-namespace:CollabHub.ViewModels"
             xmlns:controltemplate="clr-namespace:CollabHub.ViewModels.ControlTemplates">
+    
 
     <ContentPage.BindingContext>
         <viewmodel:CalendarViewModel />
     </ContentPage.BindingContext>
+    
+
 
 
 
@@ -39,7 +42,7 @@
 
                 <Label Grid.Column="0" Text="{Binding Date}" FontSize="Title"/>
                 <ImageButton Source="Capture.PNG" Command="{Binding ViewAlerts}" Grid.Column="1" HorizontalOptions="FillAndExpand"/>
-                <ImageButton Source="Capture.PNG" Command="{Binding AddAlert}"  Grid.Column="2" HorizontalOptions="FillAndExpand"/>
+                <ImageButton Source="Capture.PNG" Command="{Binding AddAlert}" CommandParameter="{Binding Date}"  Grid.Column="2" HorizontalOptions="FillAndExpand"/>
 
             </Grid>
 
@@ -62,10 +65,10 @@
                                             <GridItemsLayout Orientation="Vertical" 
                                          VerticalItemSpacing="4" HorizontalItemSpacing="4" Span="7" />
                                         </CollectionView.ItemsLayout>
-                                        <CollectionView.ItemTemplate >
+                                        <CollectionView.ItemTemplate>
 
                                             <DataTemplate >
-                                                <Button Text="{Binding Date, Mode=OneWay}" IsEnabled="{Binding Valid}" IsVisible="{Binding Valid}"/>
+                                                <Button Text="{Binding Date, Mode=OneWay}" Command="{Binding AddAlert, Source={RelativeSource AncestorType={x:Type viewmodel:CalendarViewModel}}}" CommandParameter="{Binding Date}" IsEnabled="{Binding Valid}" IsVisible="{Binding Valid}"/>
 
 
                                                 

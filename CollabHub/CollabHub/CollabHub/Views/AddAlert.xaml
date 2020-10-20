@@ -21,7 +21,9 @@
                 <RowDefinition Height="60" />
                 <RowDefinition Height="60" />
                 <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
                 <RowDefinition Height="200" />
+                <RowDefinition Height="60" />
                 <RowDefinition Height="60" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -33,9 +35,11 @@
                 ControlTemplate="{StaticResource NavigationBarControlTemplate}"
             Grid.Row ="0" />
 
-            <Entry Text="{Binding entryname, TargetNullValue=''}" Placeholder="Event Name" Grid.Row ="1" BackgroundColor="White"/>
+            <Label Text="{Binding InDate, FallbackValue=Hello}" Grid.Row ="1"  FontSize="Large"/>
 
-            <Picker SelectedItem="{Binding subject, TargetNullValue=''}" x:Name="picker" Title="Select a Subject" Grid.Row ="2" BackgroundColor="White">
+            <Entry Text="{Binding entryname, TargetNullValue=''}" Placeholder="Event Name" Grid.Row ="2" BackgroundColor="White"/>
+
+            <Picker SelectedItem="{Binding subject, TargetNullValue=''}" x:Name="picker" Title="Select a Subject" Grid.Row ="3" BackgroundColor="White">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>CAB123</x:String>
@@ -46,7 +50,7 @@
                 </Picker.ItemsSource>
             </Picker>
 
-            <Grid Grid.Row ="3" BackgroundColor="White">
+            <Grid Grid.Row ="4" BackgroundColor="White">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20" />
@@ -79,8 +83,8 @@
                 <Label Grid.Row="4" Grid.Column="2"  >Daily</Label>
             </Grid>
 
-            <TimePicker  Time="{Binding SelectedTime}" Grid.Row="4" BackgroundColor="White"/>
-            <Button Command="{Binding SubmitAlert}" Text ="Add Alert" Grid.Row ="5" BackgroundColor="White"/>
+            <TimePicker  Time="{Binding SelectedTime}" Grid.Row="5" BackgroundColor="White"/>
+            <Button Command="{Binding SubmitAlert}" Text ="Add Alert" Grid.Row ="6" BackgroundColor="White"/>
 
         </Grid>
     </ContentPage.Content>

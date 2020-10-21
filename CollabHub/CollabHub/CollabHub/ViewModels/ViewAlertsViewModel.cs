@@ -29,9 +29,9 @@ namespace CollabHub.ViewModels
         {
             Alerts = new ObservableCollection<Calendar_Alert>();
 
-            AlertStore store = new AlertStore();
+            //AlertStore store = new AlertStore();
 
-            foreach(var al in store.Alerts)
+            foreach(var al in AlertStore.Alerts)
             {
                 Alerts.Add(al);
             }

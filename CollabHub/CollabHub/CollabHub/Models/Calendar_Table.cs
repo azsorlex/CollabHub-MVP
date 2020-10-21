@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CollabHub.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -70,6 +71,8 @@ namespace CollabHub.Models
             public string Date { get; set; }
             public DateTime FullDate { get; set; }
             public bool Valid { get; set; }
+
+            public string color { get; set; }
             
             public Day (int pos, int startday,int daysinmonth, int month, int year) 
             {
@@ -88,7 +91,13 @@ namespace CollabHub.Models
                     this.FullDate = new DateTime(year, month, dateint);
                     this.Date = dateint.ToString();
                 }
-
+                if (AlertStore.IsAlert(FullDate))
+                {
+                    color = "Blue";
+                } else
+                {
+                    color = "LightGray";
+                }
                 
                 
 

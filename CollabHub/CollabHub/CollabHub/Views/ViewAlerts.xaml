@@ -51,7 +51,7 @@
 
                                 <Image Source="{Binding Icon}"  Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" HorizontalOptions="FillAndExpand" />
                                 <Label Text="{Binding Name}" Grid.Row="1" Grid.Column="1"/>
-                                <Label Text="{Binding Date}" Grid.Row="1"  Grid.Column="2"/>
+                                <Label Text="{Binding Datestring}" Grid.Row="1"  Grid.Column="2"/>
                                 <Label Text="{Binding Time}" Grid.Row="2"  Grid.Column="2"/>
                             </Grid>
 

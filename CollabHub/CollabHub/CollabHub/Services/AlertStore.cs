@@ -12,11 +12,11 @@ namespace CollabHub.Services
         {
             //Alerts2 = Alerts;
         }
-        public List<Calendar_Alert> Alerts = new List<Calendar_Alert>()
+        static public List<Calendar_Alert> Alerts = new List<Calendar_Alert>()
         {
-            new Calendar_Alert("Urgent","1/2/2020","12:00","Weekly","EGBnan"),
-            new Calendar_Alert("Not so Urget","5/6/2021","03:00","Daily","IFB333"),
-            new Calendar_Alert("Meh","6/9/2030","11:59","Monthly","IFB963")
+            new Calendar_Alert("Urgent",new DateTime(2020,1,6),"12:00","Weekly","EGBnan"),
+            new Calendar_Alert("Not so Urget",new DateTime(2021,5,6),"03:00","Daily","IFB333"),
+            new Calendar_Alert("Meh",new DateTime(2030,6,9),"11:59","Monthly","IFB963")
 
         };
         private string path = "coolfile.txt";
@@ -38,6 +38,20 @@ namespace CollabHub.Services
                 serialiser.Serialize(file, value);
                 file.Close();
             }
+        }
+
+        static public bool IsAlert(DateTime date)
+        {
+            bool yes = false;
+
+            foreach(Calendar_Alert alert in Alerts)
+            {
+                if (alert.Date == date)
+                {
+                    yes = true;
+                }
+            }
+            return yes;
         }
 
         

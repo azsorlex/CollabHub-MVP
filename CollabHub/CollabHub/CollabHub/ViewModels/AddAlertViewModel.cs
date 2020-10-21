@@ -14,6 +14,7 @@ using CollabHub.Models.GlobalUtilities;
 namespace CollabHub.ViewModels
 {
     [QueryProperty("input", "date")]
+    [QueryProperty("hasalert", "alert")]
     class AddAlertViewModel : BaseViewModel
     {
         public string input { set
@@ -90,7 +91,7 @@ namespace CollabHub.ViewModels
                 Debug.WriteLine(interval.ToString());
                 Debug.WriteLine(SelectedTime.ToString());
                 Debug.WriteLine(selectedDate.ToString("d"));
-                Calendar_Alert toSubmit = new Calendar_Alert(entryname, selectedDate.ToString("d"), SelectedTime.ToString(), interval, subject.ToString());
+                Calendar_Alert toSubmit = new Calendar_Alert(entryname, selectedDate, SelectedTime.ToString(), interval, subject.ToString());
                 new ToastNotification("Alert added to calendar!", 3000).Show();
                 Back();
             }

@@ -66,7 +66,7 @@
                                         <CollectionView.ItemTemplate>
 
                                             <DataTemplate >
-                                                <Button Text="{Binding Date, Mode=OneWay}" Command="{Binding AddAlert, Source={RelativeSource AncestorType={x:Type viewmodel:CalendarViewModel}}}" CommandParameter="{Binding FullDate}" IsEnabled="{Binding Valid}" IsVisible="{Binding Valid}"/>
+                                                <Button Text="{Binding Date, Mode=OneWay}" BackgroundColor="{Binding color}" Command="{Binding AddAlert, Source={RelativeSource AncestorType={x:Type viewmodel:CalendarViewModel}}}" CommandParameter="{Binding FullDate}" IsEnabled="{Binding Valid}" IsVisible="{Binding Valid}"/>
 
 
                                                 

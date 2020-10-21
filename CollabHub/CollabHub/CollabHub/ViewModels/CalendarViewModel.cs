@@ -9,6 +9,7 @@ using CollabHub.Models;
 using System.Linq;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
+using CollabHub.Services;
 
 namespace CollabHub.ViewModels
 {
@@ -39,13 +40,14 @@ namespace CollabHub.ViewModels
 
             CalendarDays = CalendarMonths.First().DayList;
 
-            Date = DateTime.Today.ToString();
+            Date = DateTime.Today.ToString("D");
 
 
         }
         async void GoToAddAlert(DateTime i)
         {
-            await Shell.Current.GoToAsync($"addalert?date={i}");
+            bool j = AlertStore.IsAlert(i);
+            await Shell.Current.GoToAsync($"addalert?date={i}&alert={j}");
         }
 
         async void GoToViewAlerts()

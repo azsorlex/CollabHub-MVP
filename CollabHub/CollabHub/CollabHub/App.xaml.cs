@@ -2,7 +2,6 @@
 using Xamarin.Forms;
 using CollabHub.Models.GlobalUtilities;
 using CollabHub.Services;
-using CollabHub.Models;
 
 namespace CollabHub
 {
@@ -26,7 +25,7 @@ namespace CollabHub
         {
             InitializeComponent();
 
-            DependencyService.Register<MockMeetingDataStore>();
+            DependencyService.Register<MeetingDataStore>();
             DependencyService.Register<MessageDataStore>();
 
             MainPage = new AppShell();

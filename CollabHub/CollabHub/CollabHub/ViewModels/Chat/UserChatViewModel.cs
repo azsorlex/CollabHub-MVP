@@ -1,9 +1,11 @@
 ﻿using CollabHub.Models.Chat;
+using CollabHub.Models;
 using CollabHub.Services;
 using MvvmHelpers;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -13,6 +15,7 @@ namespace CollabHub.ViewModels
     [QueryProperty("FirstName", "firstName")]
     [QueryProperty("Initials", "initials")]
     [QueryProperty("UserColour", "userColour")]
+    [QueryProperty("UserId", "userId")]
 
 
     public class UserChatViewModel : BaseViewModel
@@ -21,11 +24,14 @@ namespace CollabHub.ViewModels
 
         public ObservableCollection<Message> Messages { get; }
 
+        User CurrentUser = UserDataStore.CurrentUser[0];
+
         // Properties passed from ChatViewModel
         private string name;
         private string firstName;
         private string initials;
         private string userColour;
+        private string userId;
 
         // Text entered by user, saved to database
         private string messageText;
@@ -39,6 +45,8 @@ namespace CollabHub.ViewModels
             SaveChat = new Command(OnSave);
             Messages = new ObservableCollection<Message>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+
+            ExecuteLoadItemsCommand();
         }
 
         public string Name
@@ -48,6 +56,16 @@ namespace CollabHub.ViewModels
             {
                 SetProperty(ref name, Uri.UnescapeDataString(value));
                 OnPropertyChanged(nameof(Name));
+            }
+        }
+
+        public string UserId
+        {
+            get => userId;
+            set
+            {
+                SetProperty(ref userId, Uri.UnescapeDataString(value));
+                OnPropertyChanged(nameof(userId));
             }
         }
 
@@ -93,11 +111,21 @@ namespace CollabHub.ViewModels
 
             try
             {
-                Messages.Clear();
                 var messages = await MessageDataStore.GetItemsAsync(true);
-                foreach(var message in messages)
+
+                if (messages.Count() == Messages.Count())
                 {
-                    Messages.Add(message);
+                    return;
+                } else
+                {
+                    Messages.Clear();
+                    foreach (var message in messages)
+                    {
+                        if (message.To == userId && message.From == CurrentUser.Id || message.To == CurrentUser.Id && message.From == userId)
+                        {
+                            Messages.Add(message);
+                        }
+                    }
                 }
             }
             catch (Exception e)
@@ -115,12 +143,15 @@ namespace CollabHub.ViewModels
             Message newMessage = new Message()
             {
                 Id = Guid.NewGuid().ToString(),
-                Text = messageText
+                Text = messageText,
+                Timestamp = DateTime.Now.ToString("dd/MM/yyyy HH:mmtt"),
+                To = userId,
+                From = UserDataStore.CurrentUser[0].Id
             };
 
-            await App.Current.MainPage.DisplayAlert("Alert", newMessage.Text, "OK");
-
             await MessageDataStore.AddItemAsync(newMessage);
+
+            await ExecuteLoadItemsCommand();
         }
 
     }

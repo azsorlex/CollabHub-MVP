@@ -12,7 +12,10 @@ namespace CollabHub.Models.Chat
 
         public string Text { get; set; }
 
-        // May implement this at a later stage for sorting messages between users.
-        //public string Timestamp { get; set; }
+        public string Timestamp { get; set; }
+
+        public string From { get; set; }
+
+        public string To { get; set; }
     }
 }

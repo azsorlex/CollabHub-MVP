@@ -29,6 +29,109 @@ namespace CollabHub.Models
             }
         }
 
+        public bool IsExpandUnitDown1 { get; set; }
+        public bool IsExpandUnitSide1 { get; set; } = true;
+
+        public ICommand CheckExpandUnit1
+        {
+            get
+            {
+                return new Command(() =>
+               {
+                   IsExpandUnitDown1 = !IsExpandUnitDown1;
+                   IsExpandUnitSide1 = !IsExpandUnitDown1;
+
+                   IsExpandDown1_1 = false;
+                   IsExpandSide1_1 = true;
+
+                   IsExpandDown1_2 = false;
+                   IsExpandSide1_2 = true;
+
+                   IsExpandDown1_3 = false;
+                   IsExpandSide1_3 = true;
+
+                   OnPropertyChanged("IsExpandDown1_1");
+                   OnPropertyChanged("IsExpandSide1_1");
+                   OnPropertyChanged("IsExpandDown1_2");
+                   OnPropertyChanged("IsExpandSide1_2");
+                   OnPropertyChanged("IsExpandDown1_3");
+                   OnPropertyChanged("IsExpandSide1_3");
+
+                   OnPropertyChanged("IsExpandUnitDown1");
+                   OnPropertyChanged("IsExpandUnitSide1");
+               });
+            }
+        }
+
+        public bool IsExpandUnitDown2 { get; set; }
+        public bool IsExpandUnitSide2 { get; set; } = true;
+
+        public ICommand CheckExpandUnit2
+        {
+            get
+            {
+                return new Command(() =>
+                {
+                    IsExpandUnitDown2 = !IsExpandUnitDown2;
+                    IsExpandUnitSide2 = !IsExpandUnitDown2;
+
+                    IsExpandDown2_1 = false;
+                    IsExpandSide2_1 = true;
+
+                    IsExpandDown2_2 = false;
+                    IsExpandSide2_2 = true;
+
+                    IsExpandDown2_3 = false;
+                    IsExpandSide2_3 = true;
+
+                    OnPropertyChanged("IsExpandDown2_1");
+                    OnPropertyChanged("IsExpandSide2_1");
+                    OnPropertyChanged("IsExpandDown2_2");
+                    OnPropertyChanged("IsExpandSide2_2");
+                    OnPropertyChanged("IsExpandDown2_3");
+                    OnPropertyChanged("IsExpandSide2_3");
+
+                    OnPropertyChanged("IsExpandUnitDown2");
+                    OnPropertyChanged("IsExpandUnitSide2");
+                });
+            }
+        }
+
+        public bool IsExpandUnitDown3 { get; set; }
+        public bool IsExpandUnitSide3 { get; set; } = true;
+
+        public ICommand CheckExpandUnit3
+        {
+            get
+            {
+                return new Command(() =>
+                {
+                    IsExpandUnitDown3 = !IsExpandUnitDown3;
+                    IsExpandUnitSide3 = !IsExpandUnitDown3;
+
+                    IsExpandDown3_1 = false;
+                    IsExpandSide3_1 = true;
+
+                    IsExpandDown3_2 = false;
+                    IsExpandSide3_2 = true;
+
+                    IsExpandDown3_3 = false;
+                    IsExpandSide3_3 = true;
+
+                    OnPropertyChanged("IsExpandDown3_1");
+                    OnPropertyChanged("IsExpandSide3_1");
+                    OnPropertyChanged("IsExpandDown3_2");
+                    OnPropertyChanged("IsExpandSide3_2");
+                    OnPropertyChanged("IsExpandDown3_3");
+                    OnPropertyChanged("IsExpandSide3_3");
+
+                    OnPropertyChanged("IsExpandUnitDown3");
+                    OnPropertyChanged("IsExpandUnitSide3");
+                });
+            }
+        }
+
+
         public bool IsExpandDown1_1 { get; set; }
         public bool IsExpandSide1_1 { get; set; } = true;
 
@@ -37,12 +140,12 @@ namespace CollabHub.Models
             get
             {
                 return new Command(() =>
-               {
-                   IsExpandDown1_1 = !IsExpandDown1_1;
-                   IsExpandSide1_1 = !IsExpandDown1_1;
-                   OnPropertyChanged("IsExpandDown1_1");
-                   OnPropertyChanged("IsExpandSide1_1");
-               });
+                {
+                    IsExpandDown1_1 = !IsExpandDown1_1;
+                    IsExpandSide1_1 = !IsExpandDown1_1;
+                    OnPropertyChanged("IsExpandDown1_1");
+                    OnPropertyChanged("IsExpandSide1_1");
+                });
             }
         }
 

@@ -50,23 +50,5 @@ namespace CollabHub.ViewModels
             }
         }
 
-        //public void TestHey()
-        //{
-        //    IsExpand = !IsExpand;
-        //    System.Console.WriteLine("heyyyyyyyyyyyyyyyyyyyyyyyyyy");
-        //}
-
-        //public bool isExpanded;
-        //public xamarin.forms.command isexpand
-        //{
-        //    get
-        //    {
-        //        return new xamarin.forms.command(() =>
-        //       {
-        //           isExpanded = !isExpanded;
-        //       });
-        //    }
-        //}
-
     }
 }

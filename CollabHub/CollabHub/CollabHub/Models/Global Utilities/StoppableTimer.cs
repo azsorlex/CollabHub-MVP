@@ -18,7 +18,6 @@ namespace CollabHub.Models.GlobalUtilities
             timerInfo[0] = timespan;
             timerInfo[1] = callback;
             repeat = true;
-            callback.Invoke(); // Run the command once on startup
             Device.StartTimer(timespan, () =>
             {
                 if (repeat)

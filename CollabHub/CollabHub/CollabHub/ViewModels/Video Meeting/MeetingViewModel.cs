@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Text;
 using CollabHub.Models;
 using CollabHub.Models.GlobalUtilities;
-using System.Linq;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using CollabHub.Services;
@@ -17,35 +16,48 @@ namespace CollabHub.ViewModels
     class MeetingViewModel : BaseViewModel
     {
         private readonly ToastNotification NotLiveMessage;
-        private readonly MockMeetingDataStore DataStore;
+        private readonly MeetingDataStore DataStore;
         public ObservableCollection<Meeting> Meetings { get; set; }
         public MvvmHelpers.Commands.Command TapCommand { get; }
 
         public MeetingViewModel()
         {
             NotLiveMessage = new ToastNotification("This video meeting hasn't gone live yet.", 3000);
-            DataStore = new MockMeetingDataStore();
+            DataStore = new MeetingDataStore();
             Meetings = new ObservableCollection<Meeting>();
             TapCommand = new MvvmHelpers.Commands.Command(async (m) => await TapAction((Meeting)m));
 
-            MvvmHelpers.Commands.Command LoadItemsCommand = new MvvmHelpers.Commands.Command(async () => await ExecuteLoadItemsCommand());
+            MvvmHelpers.Commands.Command LoadItemsCommand = new MvvmHelpers.Commands.Command(async () => await ExecuteLoadItemsCommand(true));
             LoadItemsCommand.Execute(null); // Load the remote source
 
             // Start a timer that activates every second and updates the items in Meetings
             StoppableTimer.Start(new TimeSpan(0, 0, 1), UpdateCountdowns);
         }
 
-        async Task ExecuteLoadItemsCommand()
+        async Task ExecuteLoadItemsCommand(bool initialise)
         {
             IsBusy = true;
 
+            List<string> BGColours = new List<string>()
+            {
+                "#C1EDCC",
+                "#B0C0BC",
+                "#A7A7A9"
+            };
+
             try
             {
+                byte i = 0;
                 Meetings.Clear();
                 var meetings = await DataStore.GetItemsAsync(true);
-                foreach (var m in meetings)
+                foreach (Meeting m in meetings)
                 {
+                    m.BGColour = BGColours[i++ % BGColours.Count];
                     Meetings.Add(m);
+                }
+                if (initialise)
+                {
+                    UpdateCountdowns();
                 }
             }
             catch (Exception e)
@@ -54,7 +66,6 @@ namespace CollabHub.ViewModels
             }
             finally
             {
-                ReorderCollection(true);
                 IsBusy = false;
             }
         }
@@ -71,11 +82,12 @@ namespace CollabHub.ViewModels
             }
         }
 
-        private void UpdateCountdowns() // Update the countdown for each meeting, which will in turn update all of the other meetings' parameters
+        private async void UpdateCountdowns() // Update the countdown for each meeting, which will in turn update all of the other meetings' parameters
         {
             bool reorder = false;
-            List<Meeting> ItemsToDelete = new List<Meeting>();
             DateTime currentTime = DateTime.Now;
+            List<Meeting> ItemsToUpdate = new List<Meeting>();
+            List<Meeting> ItemsToDelete = new List<Meeting>();
             foreach (Meeting m in Meetings)
             {
                 m.Countdown = m.Date - currentTime;
@@ -84,48 +96,31 @@ namespace CollabHub.ViewModels
                 {
                     if (m.Date < m.EndDate)
                     {
+                        if (!ItemsToUpdate.Contains(m))
+                            ItemsToUpdate.Add(m);
                         m.Date += new TimeSpan(7, 0, 0, 0);
                         reorder = true;
                     }
                     else
                     {
-                        ItemsToDelete.Add(m); // Mark the meeting for deletion if there are no more occurences
+                        ItemsToDelete.Add(m);
                         break;
                     }
                 }
             }
-
-            if (ItemsToDelete.Count > 0)
+            
+            foreach (Meeting m in ItemsToUpdate)
             {
-                foreach (Meeting m in ItemsToDelete)
-                {
-                    Meetings.Remove(m);
-                }
+                await DataStore.UpdateItemAsync(m);
+            }
+            foreach (Meeting m in ItemsToDelete)
+            {
+                await DataStore.DeleteItemAsync(m.ID);
             }
             if (reorder)
             {
-                ReorderCollection(false);
+                await ExecuteLoadItemsCommand(false);
             }
-        }
-
-        private void ReorderCollection(bool colourise)
-        {
-            List<string> BGColours = new List<string>()
-            {
-                "#C1EDCC",
-                "#B0C0BC",
-                "#A7A7A9"
-            };
-
-            List<Meeting> temp = Meetings.OrderBy(m => m.Date).ToList();
-            Meetings.Clear();
-            for (int i = 0; i < temp.Count; i++)
-            {
-                if (colourise)
-                    temp[i].BGColour = BGColours[i % BGColours.Count];
-                Meetings.Add(temp[i]);
-            }
-            DataStore.UpdateAllAsync(Meetings);
         }
     }
 }

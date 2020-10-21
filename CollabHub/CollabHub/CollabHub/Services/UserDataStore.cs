@@ -7,7 +7,7 @@ namespace CollabHub.Services
 {
     class UserDataStore
     {
-        public List<User> Users = new List<User>()
+        public static List<User> Users = new List<User>()
         {
             new User()
             {
@@ -36,7 +36,20 @@ namespace CollabHub.Services
                 LastName = "Hartigan",
                 Id = "4",
                 UserColour = "#C1EDCC"
+            },
+            new User()
+            {
+                FirstName = "Sri",
+                LastName = "Nair",
+                Id = "5",
+                UserColour = "#B0C0BC"
             }
+        };
+
+        //  Gets populated with single user, which is Sri by default. Changes made in HomeViewModel
+        public static List<User> CurrentUser = new List<User>()
+        {
+
         };
     }
 }

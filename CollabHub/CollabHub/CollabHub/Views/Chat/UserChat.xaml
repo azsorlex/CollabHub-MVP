@@ -77,10 +77,17 @@
                                 SelectionMode="None">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <StackLayout Padding="5" x:DataType="model:Message">
-                                        <Label Text="{Binding Text}" />
-                                        <Label Text="{Binding Timestamp}" />
-                                    </StackLayout>
+                                    <Frame CornerRadius="10"
+                                           BorderColor="#C1EDCC"
+                                           BackgroundColor="#B0C0BC"
+                                           Padding="0">
+                                        <StackLayout Padding="4" Margin="3" x:DataType="model:Message">
+                                            <Label Text="{Binding Text}" />
+                                            <Label Text="{Binding Timestamp}" />
+                                            <Label Text="{Binding To, StringFormat='To: {0}'}" />
+                                            <Label Text="{Binding From, StringFormat='From: {0}'}" />
+                                        </StackLayout>
+                                    </Frame>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>

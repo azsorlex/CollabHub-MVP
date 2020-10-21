@@ -9,12 +9,29 @@ using System.Text;
 using CollabHub.Views;
 using CollabHub.Models;
 using CollabHub.Services;
+using System.Diagnostics;
 
 namespace CollabHub.ViewModels
 {
+    [QueryProperty("selected", "select")]
     class ViewAlertsViewModel : BaseViewModel
     {
         private ObservableCollection<Calendar_Alert> alerts;
+
+        public string selected {  set
+            {
+                DateTime selecteddate = DateTime.Parse(Uri.UnescapeDataString(value));
+                SingletonAlertStore store = SingletonAlertStore.Instance;
+                Calendar_Alert selectedalert = store.alerts.Find(x => x.Date == selecteddate);
+                Debug.WriteLine(selectedalert.Datestring);
+
+                Selection = selectedalert;
+                OnPropertyChanged(nameof(Selection));
+                Debug.WriteLine("yas");
+            }
+        }
+
+        public Calendar_Alert Selection { get; set; }
 
         public ObservableCollection<Calendar_Alert> Alerts
         {
@@ -30,12 +47,16 @@ namespace CollabHub.ViewModels
             Alerts = new ObservableCollection<Calendar_Alert>();
 
             //AlertStore store = new AlertStore();
+            SingletonAlertStore store = SingletonAlertStore.Instance;
 
-            foreach(var al in AlertStore.Alerts)
+            foreach (var al in store.alerts)
             {
                 Alerts.Add(al);
             }
+
         }
+
+
 
     }
 }

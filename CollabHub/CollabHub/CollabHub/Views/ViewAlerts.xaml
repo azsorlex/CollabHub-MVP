@@ -31,7 +31,7 @@
 
 
 
-            <ListView ItemsSource="{Binding Alerts}" Grid.Row="2"  HasUnevenRows="True" BackgroundColor="AliceBlue">
+            <ListView SelectedItem="{Binding Selection, Mode=TwoWay}" ItemsSource="{Binding Alerts}" Grid.Row="2"  HasUnevenRows="True" BackgroundColor="AliceBlue" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

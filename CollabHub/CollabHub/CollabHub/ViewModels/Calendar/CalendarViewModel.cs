@@ -46,8 +46,17 @@ namespace CollabHub.ViewModels
         }
         async void GoToAddAlert(DateTime i)
         {
-            bool j = AlertStore.IsAlert(i);
-            await Shell.Current.GoToAsync($"addalert?date={i}&alert={j}");
+            SingletonAlertStore store = SingletonAlertStore.Instance;
+            bool j = store.IsAlert(i);
+            if (j)
+            {
+                await Shell.Current.GoToAsync($"viewalerts?select={i}");
+            }
+            else
+            {
+                await Shell.Current.GoToAsync($"addalert?date={i}");
+            }
+            
         }
 
         async void GoToViewAlerts()

@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 using CollabHub.Models;
 using System.Diagnostics;
 using CollabHub.Models.GlobalUtilities;
+using CollabHub.Services;
 
 namespace CollabHub.ViewModels
 {
     [QueryProperty("input", "date")]
-    [QueryProperty("hasalert", "alert")]
+
     class AddAlertViewModel : BaseViewModel
     {
         public string input { set
             {
-                //InDate = Uri.UnescapeDataString(DateTime.Parse(value).ToString("D"));
                 string stringdate = Uri.UnescapeDataString(value);
                 DateTime properdate = DateTime.Parse(stringdate);
                 selectedDate = properdate;
@@ -92,6 +92,9 @@ namespace CollabHub.ViewModels
                 Debug.WriteLine(SelectedTime.ToString());
                 Debug.WriteLine(selectedDate.ToString("d"));
                 Calendar_Alert toSubmit = new Calendar_Alert(entryname, selectedDate, SelectedTime.ToString(), interval, subject.ToString());
+
+                SingletonAlertStore store = SingletonAlertStore.Instance;
+                store.alerts.Add(toSubmit);
                 new ToastNotification("Alert added to calendar!", 3000).Show();
                 Back();
             }

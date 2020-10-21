@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +7,7 @@ namespace CollabHub.Models
 {
     public class Calendar_Alert
     {
-
+        
         public string Name { get; set; }
         public DateTime Date { get; set; }
         public string Datestring { get; set; }

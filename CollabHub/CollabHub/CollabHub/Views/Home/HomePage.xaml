@@ -48,7 +48,9 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <!-- Welcome Message -->
-                <Label Text="Welcome back, Student!" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="20" />
+                <Label BindingContext="{Binding CurrentUser}" Text="{Binding FirstName, StringFormat='Welcome back, {0}!'}"
+                    Grid.Row="0" Grid.Column="0" 
+                    Grid.ColumnSpan="2" FontSize="20" />
                 <Label Text="{Binding Date}" Grid.Row="1" FontSize="16" Grid.ColumnSpan="2" />
                 
                 <!-- Links -->

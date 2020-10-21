@@ -29,9 +29,7 @@ namespace CollabHub.ViewModels
         {
             Users = new ObservableCollection<User>();
 
-            UserDataStore userStore = new UserDataStore();
-
-            foreach (var user in userStore.Users)
+            foreach (var user in UserDataStore.Users)
             {
                 Users.Add(user);
             }

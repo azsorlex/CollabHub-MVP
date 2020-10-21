@@ -1,4 +1,5 @@
 ﻿using CollabHub.Models.Chat;
+using CollabHub.Models;
 using CollabHub.Services;
 using MvvmHelpers;
 using System;
@@ -22,6 +23,8 @@ namespace CollabHub.ViewModels
         IDataStore<Message> MessageDataStore => DependencyService.Get<IDataStore<Message>>(); 
 
         public ObservableCollection<Message> Messages { get; }
+
+        User CurrentUser = UserDataStore.CurrentUser[0];
 
         // Properties passed from ChatViewModel
         private string name;
@@ -118,7 +121,7 @@ namespace CollabHub.ViewModels
                     Messages.Clear();
                     foreach (var message in messages)
                     {
-                        if (message.To == userId)
+                        if (message.To == userId && message.From == CurrentUser.Id || message.To == CurrentUser.Id && message.From == userId)
                         {
                             Messages.Add(message);
                         }
@@ -142,7 +145,8 @@ namespace CollabHub.ViewModels
                 Id = Guid.NewGuid().ToString(),
                 Text = messageText,
                 Timestamp = DateTime.Now.ToString("dd/MM/yyyy HH:mmtt"),
-                To = userId
+                To = userId,
+                From = UserDataStore.CurrentUser[0].Id
             };
 
             await MessageDataStore.AddItemAsync(newMessage);

@@ -9,6 +9,7 @@ using CollabHub.Models;
 using System.Linq;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
+using CollabHub.Services;
 
 namespace CollabHub.ViewModels
 {
@@ -25,7 +26,7 @@ namespace CollabHub.ViewModels
 
         public CalendarViewModel()
         {
-            AddAlert = new Xamarin.Forms.Command<string>(GoToAddAlert);
+            AddAlert = new Xamarin.Forms.Command<DateTime>(GoToAddAlert);
             ViewAlerts = new Xamarin.Forms.Command(GoToViewAlerts);
 
             CalendarMonths = new List<Calendar_Table>();
@@ -39,13 +40,23 @@ namespace CollabHub.ViewModels
 
             CalendarDays = CalendarMonths.First().DayList;
 
-            Date = DateTime.Today.ToString();
+            Date = DateTime.Today.ToString("D");
 
 
         }
-        async void GoToAddAlert(string i)
+        async void GoToAddAlert(DateTime i)
         {
-            await Shell.Current.GoToAsync($"addalert?date={i}");
+            SingletonAlertStore store = SingletonAlertStore.Instance;
+            bool j = store.IsAlert(i);
+            if (j)
+            {
+                await Shell.Current.GoToAsync($"viewalerts?select={i}");
+            }
+            else
+            {
+                await Shell.Current.GoToAsync($"addalert?date={i}");
+            }
+            
         }
 
         async void GoToViewAlerts()

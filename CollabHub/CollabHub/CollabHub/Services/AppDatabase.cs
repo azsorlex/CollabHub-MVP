@@ -22,6 +22,7 @@ namespace CollabHub.Services
 
         public AppDatabase()
         {
+            Database.DropTableAsync<Message>();
             InitializeAsync().SafeFireAndForget(false);
         }
 

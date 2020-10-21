@@ -24,7 +24,7 @@
                 </Grid.ColumnDefinitions>
                 <ImageButton 
                     Source="user.png" Grid.Row="0" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="Center" 
-                    Margin="5, 10"
+                    Margin="5, 10" Command="{Binding ChangeUser}"
                 />
                 <Label Text="{Binding PageName}" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" 
                        VerticalTextAlignment="Center" FontSize="35"

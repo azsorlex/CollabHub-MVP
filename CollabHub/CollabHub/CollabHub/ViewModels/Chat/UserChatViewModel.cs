@@ -4,6 +4,7 @@ using MvvmHelpers;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -39,6 +40,8 @@ namespace CollabHub.ViewModels
             SaveChat = new Command(OnSave);
             Messages = new ObservableCollection<Message>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+
+            ExecuteLoadItemsCommand();
         }
 
         public string Name
@@ -93,11 +96,18 @@ namespace CollabHub.ViewModels
 
             try
             {
-                Messages.Clear();
                 var messages = await MessageDataStore.GetItemsAsync(true);
-                foreach(var message in messages)
+
+                if (messages.Count() == Messages.Count())
                 {
-                    Messages.Add(message);
+                    return;
+                } else
+                {
+                    Messages.Clear();
+                    foreach (var message in messages)
+                    {
+                        Messages.Add(message);
+                    }
                 }
             }
             catch (Exception e)
@@ -118,9 +128,9 @@ namespace CollabHub.ViewModels
                 Text = messageText
             };
 
-            await App.Current.MainPage.DisplayAlert("Alert", newMessage.Text, "OK");
-
             await MessageDataStore.AddItemAsync(newMessage);
+
+            ExecuteLoadItemsCommand();
         }
 
     }

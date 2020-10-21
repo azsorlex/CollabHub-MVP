@@ -12,6 +12,7 @@ namespace CollabHub.Models
         public string SemesterTrack { get; set; }
         public List<String> UnitContentHeading { get; set; }
         public List<String> UnitCode { get; set; }
+        public List<String> UnitGrade { get; set; }
         public List<String> Unit1UnitInfo { get; set; }
         public List<String> Unit1LearningMat { get; set; }
         public List<String> Unit1AssessmentT { get; set; }

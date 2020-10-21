@@ -74,6 +74,12 @@
                                              IsVisible="{Binding IsExpandSwitch}">
 
                                     <Grid RowSpacing='0' ColumnSpacing='0'>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
                                         <Label x:Name="UnitCode1"
                                             BackgroundColor="White"
                                             Grid.Column="0"
@@ -82,6 +88,15 @@
                                             FontSize="25"
                                             TextColor="Black"
                                             Text="{Binding UnitCode[0]}" 
+                                        />
+
+                                        <Label x:Name="UnitGrade1"
+                                            BackgroundColor="White"
+                                            Grid.Column="1"
+                                            HorizontalOptions="FillAndExpand"
+                                            FontSize="25"
+                                            TextColor="Black"
+                                            Text="{Binding UnitGrade[0]}" 
                                         />
 
                                         <ImageButton Source ="Resources/drawable/expand_unit_arrow_down.png"
@@ -361,6 +376,12 @@
                                     </StackLayout>
 
                                     <Grid RowSpacing='0' ColumnSpacing='0'>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        
                                         <Label x:Name="UnitCode2"
                                             BackgroundColor="White"
                                             Grid.Column="0"
@@ -369,6 +390,15 @@
                                             FontSize="25"
                                             TextColor="Black"
                                             Text="{Binding UnitCode[1]}" 
+                                        />
+
+                                        <Label x:Name="UnitGrade2"
+                                            BackgroundColor="White"
+                                            Grid.Column="1"
+                                            HorizontalOptions="FillAndExpand"
+                                            FontSize="25"
+                                            TextColor="Black"
+                                            Text="{Binding UnitGrade[1]}" 
                                         />
 
                                         <ImageButton Source ="Resources/drawable/expand_unit_arrow_down.png"
@@ -648,6 +678,12 @@
                                     </StackLayout>
 
                                     <Grid RowSpacing='0' ColumnSpacing='0'>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
                                         <Label x:Name="UnitCode3"
                                             BackgroundColor="White"
                                             Grid.Column="0"
@@ -656,6 +692,15 @@
                                             FontSize="25"
                                             TextColor="Black"
                                             Text="{Binding UnitCode[2]}" 
+                                        />
+
+                                        <Label x:Name="UnitGrade3"
+                                            BackgroundColor="White"
+                                            Grid.Column="1"
+                                            HorizontalOptions="FillAndExpand"
+                                            FontSize="25"
+                                            TextColor="Black"
+                                            Text="{Binding UnitGrade[2]}" 
                                         />
 
                                         <ImageButton Source ="Resources/drawable/expand_unit_arrow_down.png"
@@ -752,7 +797,7 @@
                                                  />
                                             </Grid>
                                         </StackLayout>
-                                        
+
                                         <Grid RowSpacing='0' ColumnSpacing='0'>
                                             <Label x:Name="Contentheading3.2"
                                                 BackgroundColor="#211e1c"

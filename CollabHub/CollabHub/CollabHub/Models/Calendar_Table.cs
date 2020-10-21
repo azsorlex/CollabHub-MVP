@@ -35,7 +35,7 @@ namespace CollabHub.Models
             for (int i = 0; i < (int)count; i++)
             {
 
-                this.DayList.Add(new Day(i, this.StartDay, DateTime.DaysInMonth(year, month)));
+                this.DayList.Add(new Day(i, this.StartDay, DateTime.DaysInMonth(year, month), month, year));
             }
             
         }
@@ -68,9 +68,10 @@ namespace CollabHub.Models
         {
 
             public string Date { get; set; }
+            public DateTime FullDate { get; set; }
             public bool Valid { get; set; }
             
-            public Day (int pos, int startday,int daysinmonth) 
+            public Day (int pos, int startday,int daysinmonth, int month, int year) 
             {
                 if (pos < startday)
                 {
@@ -83,8 +84,12 @@ namespace CollabHub.Models
                 }else
                 {
                     this.Valid = true;
-                    this.Date = (pos + 1 - startday).ToString();
+                    int dateint = (pos + 1 - startday);
+                    this.FullDate = new DateTime(year, month, dateint);
+                    this.Date = dateint.ToString();
                 }
+
+                
                 
 
             }

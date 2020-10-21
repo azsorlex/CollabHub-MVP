@@ -25,7 +25,7 @@ namespace CollabHub.ViewModels
 
         public CalendarViewModel()
         {
-            AddAlert = new Xamarin.Forms.Command<string>(GoToAddAlert);
+            AddAlert = new Xamarin.Forms.Command<DateTime>(GoToAddAlert);
             ViewAlerts = new Xamarin.Forms.Command(GoToViewAlerts);
 
             CalendarMonths = new List<Calendar_Table>();
@@ -43,7 +43,7 @@ namespace CollabHub.ViewModels
 
 
         }
-        async void GoToAddAlert(string i)
+        async void GoToAddAlert(DateTime i)
         {
             await Shell.Current.GoToAsync($"addalert?date={i}");
         }

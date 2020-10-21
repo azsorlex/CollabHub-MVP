@@ -41,9 +41,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Grid.Column="0" Text="{Binding Date}" FontSize="Title"/>
-                <ImageButton Source="Capture.PNG" Command="{Binding ViewAlerts}" Grid.Column="1" HorizontalOptions="FillAndExpand"/>
-                <ImageButton Source="Capture.PNG" Command="{Binding AddAlert}" CommandParameter="{Binding Date}"  Grid.Column="2" HorizontalOptions="FillAndExpand"/>
-
+                <ImageButton Source="list_icon.png" Command="{Binding ViewAlerts}" Grid.Column="2" HorizontalOptions="FillAndExpand"/>
             </Grid>
 
 
@@ -68,7 +66,7 @@
                                         <CollectionView.ItemTemplate>
 
                                             <DataTemplate >
-                                                <Button Text="{Binding Date, Mode=OneWay}" Command="{Binding AddAlert, Source={RelativeSource AncestorType={x:Type viewmodel:CalendarViewModel}}}" CommandParameter="{Binding Date}" IsEnabled="{Binding Valid}" IsVisible="{Binding Valid}"/>
+                                                <Button Text="{Binding Date, Mode=OneWay}" Command="{Binding AddAlert, Source={RelativeSource AncestorType={x:Type viewmodel:CalendarViewModel}}}" CommandParameter="{Binding FullDate}" IsEnabled="{Binding Valid}" IsVisible="{Binding Valid}"/>
 
 
                                                 

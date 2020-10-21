@@ -53,7 +53,6 @@
                     Grid.Row="0"
                     Grid.Column="0"
                     Text="{Binding Initials}"
-                    Command="{Binding SaveChat}"
                     BackgroundColor="{Binding UserColour}"
                 />
                     <Label 
@@ -80,6 +79,7 @@
                                 <DataTemplate>
                                     <StackLayout Padding="5" x:DataType="model:Message">
                                         <Label Text="{Binding Text}" />
+                                        <Label Text="{Binding Timestamp}" />
                                     </StackLayout>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>

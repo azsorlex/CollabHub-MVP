@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CollabHub.Services
 {
-    class MessageDataStore : IDataStore<Message>
+    public class MessageDataStore : IDataStore<Message>
     {
         readonly SQLiteAsyncConnection database = App.Database.Database;
 

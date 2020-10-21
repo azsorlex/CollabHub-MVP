@@ -14,6 +14,7 @@ namespace CollabHub.ViewModels
     [QueryProperty("FirstName", "firstName")]
     [QueryProperty("Initials", "initials")]
     [QueryProperty("UserColour", "userColour")]
+    [QueryProperty("UserId", "userId")]
 
 
     public class UserChatViewModel : BaseViewModel
@@ -27,6 +28,7 @@ namespace CollabHub.ViewModels
         private string firstName;
         private string initials;
         private string userColour;
+        private string userId;
 
         // Text entered by user, saved to database
         private string messageText;
@@ -51,6 +53,16 @@ namespace CollabHub.ViewModels
             {
                 SetProperty(ref name, Uri.UnescapeDataString(value));
                 OnPropertyChanged(nameof(Name));
+            }
+        }
+
+        public string UserId
+        {
+            get => userId;
+            set
+            {
+                SetProperty(ref userId, Uri.UnescapeDataString(value));
+                OnPropertyChanged(nameof(userId));
             }
         }
 
@@ -106,7 +118,10 @@ namespace CollabHub.ViewModels
                     Messages.Clear();
                     foreach (var message in messages)
                     {
-                        Messages.Add(message);
+                        if (message.To == userId)
+                        {
+                            Messages.Add(message);
+                        }
                     }
                 }
             }
@@ -125,12 +140,14 @@ namespace CollabHub.ViewModels
             Message newMessage = new Message()
             {
                 Id = Guid.NewGuid().ToString(),
-                Text = messageText
+                Text = messageText,
+                Timestamp = DateTime.Now.ToString("dd/MM/yyyy HH:mmtt"),
+                To = userId
             };
 
             await MessageDataStore.AddItemAsync(newMessage);
 
-            ExecuteLoadItemsCommand();
+            await ExecuteLoadItemsCommand();
         }
 
     }

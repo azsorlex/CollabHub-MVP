@@ -13,28 +13,28 @@ namespace CollabHub.Services
             {
                 FirstName = "Ryan",
                 LastName = "Howard",
-                Id = Guid.NewGuid().ToString(),
+                Id = "1",
                 UserColour = "#C1EDCC"
             },
             new User()
             {
                 FirstName = "Alex",
                 LastName = "Rozsa",
-                Id = Guid.NewGuid().ToString(),
+                Id = "2",
                 UserColour = "#B0C0BC"
             },
             new User()
             {
                 FirstName = "Peter",
                 LastName = "Nguyen",
-                Id = Guid.NewGuid().ToString(),
+                Id = "3",
                 UserColour = "#A7A7A9"
             },
             new User()
             {
                 FirstName = "Noah",
                 LastName = "Hartigan",
-                Id = Guid.NewGuid().ToString(),
+                Id = "4",
                 UserColour = "#C1EDCC"
             }
         };

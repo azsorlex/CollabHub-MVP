@@ -56,19 +56,6 @@ namespace CollabHub.ViewModels
         //    System.Console.WriteLine("heyyyyyyyyyyyyyyyyyyyyyyyyyy");
         //}
 
-
-        public bool _isExpand;
-        public bool IsExpand
-        {
-            get => _isExpand;
-
-            set
-            {
-                _isExpand = value;
-                OnPropertyChanged("IsExpand");
-            }
-        }
-
         //public bool isExpanded;
         //public xamarin.forms.command isexpand
         //{

@@ -19,6 +19,17 @@ namespace CollabHub.ViewModels
         private readonly MeetingDataStore DataStore;
         public ObservableCollection<Meeting> Meetings { get; set; }
         public MvvmHelpers.Commands.Command TapCommand { get; }
+        public MvvmHelpers.Commands.Command DemoCommand { get; }
+        private bool _demmobuttonenabled = true;
+        public bool DemoButtonEnabled
+        {
+            get => _demmobuttonenabled;
+            set
+            {
+                SetProperty(ref _demmobuttonenabled, value);
+                OnPropertyChanged(nameof(DemoButtonEnabled));
+            }
+        }
 
         public MeetingViewModel()
         {
@@ -26,8 +37,10 @@ namespace CollabHub.ViewModels
             DataStore = new MeetingDataStore();
             Meetings = new ObservableCollection<Meeting>();
             TapCommand = new MvvmHelpers.Commands.Command(async (m) => await TapAction((Meeting)m));
+            DemoCommand = new MvvmHelpers.Commands.Command(async () => await DemoAction());
 
             MvvmHelpers.Commands.Command LoadItemsCommand = new MvvmHelpers.Commands.Command(async () => await ExecuteLoadItemsCommand(true));
+            System.Threading.Thread.Sleep(500);
             LoadItemsCommand.Execute(null); // Load the remote source
 
             // Start a timer that activates every second and updates the items in Meetings
@@ -80,6 +93,16 @@ namespace CollabHub.ViewModels
             {
                 NotLiveMessage.Show();
             }
+        }
+
+        async Task DemoAction()
+        {
+            foreach (Meeting m in Meetings)
+            {
+                m.Date += new TimeSpan(7, 0, 0, 0);
+                await DataStore.UpdateItemAsync(m);
+            }
+            DemoButtonEnabled = false;
         }
 
         private async void UpdateCountdowns() // Update the countdown for each meeting, which will in turn update all of the other meetings' parameters

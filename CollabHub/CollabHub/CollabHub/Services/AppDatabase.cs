@@ -39,7 +39,7 @@ namespace CollabHub.Services
                 catch // If an exception is caught, the table doesn't exist
                 {
                     await Database.CreateTablesAsync(CreateFlags.None, typeof(Meeting)).ConfigureAwait(false);
-                    await PopulateMeetingTableAsync();
+                    await PopulateMeetingTableAsync(); // Add some default data to the table
                 }
                 //await Database.DropTableAsync<Meeting>();
                 initialized = true;

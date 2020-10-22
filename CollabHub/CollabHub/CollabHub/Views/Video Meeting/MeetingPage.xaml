@@ -25,14 +25,16 @@
 
             <!-- Navbar -->
             <controltemplate:NavigationBar 
-                PageName="Collaborate" 
+                PageName="CollabVideo" 
                 ControlTemplate="{StaticResource NavigationBarControlTemplate}" />
 
             <StackLayout Grid.Row="2">
-                <Label Text="Your Meetings"
-                       FontSize="40"
-                       HorizontalTextAlignment="Center" 
-                       Margin="0,-7.5,0,15"/>
+                <Button Text="DEMO FEATURE: +7 Days"
+                        FontSize="25"
+                        HorizontalOptions="CenterAndExpand"
+                        Margin="0, -5, 0, 10"
+                        Command="{Binding DemoCommand}"
+                        IsEnabled="{Binding DemoButtonEnabled}" />
 
                 <CollectionView x:Name="meetingList"
                                 ItemsSource="{Binding Meetings, Mode=OneWay}"

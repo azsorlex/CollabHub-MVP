@@ -17,18 +17,9 @@ namespace CollabHub.ViewModels
 {
     class UnitViewModel : BaseViewModel, INotifyPropertyChanged
     {
-
-        private ObservableCollection<SemesterInfo> semesterInfos;
         public Xamarin.Forms.Command IsChanged1 { get; }
 
-        public ObservableCollection<SemesterInfo> SemesterInfos
-        {
-            get { return semesterInfos; }
-            set
-            {
-                semesterInfos = value;
-            }
-        }
+        public ObservableCollection<SemesterInfo> SemesterInfos { get; set; }
 
         public UnitViewModel()
         {

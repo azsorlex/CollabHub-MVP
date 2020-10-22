@@ -40,6 +40,7 @@ namespace CollabHub.ViewModels
             DemoCommand = new MvvmHelpers.Commands.Command(async () => await DemoAction());
 
             MvvmHelpers.Commands.Command LoadItemsCommand = new MvvmHelpers.Commands.Command(async () => await ExecuteLoadItemsCommand(true));
+            System.Threading.Thread.Sleep(500);
             LoadItemsCommand.Execute(null); // Load the remote source
 
             // Start a timer that activates every second and updates the items in Meetings

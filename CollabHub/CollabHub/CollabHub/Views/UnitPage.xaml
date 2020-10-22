@@ -47,22 +47,26 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                
+
+
+
                                 <Switch 
-                                     IsToggled="{Binding IsExpandSwitch}"
-                                     Grid.Row="0"
-                                     Grid.Column="2"
-                                     OnColor="#C1EDCC"   
-                                     ThumbColor="#211e1c" InputTransparent="False" 
+                                    IsToggled="{Binding IsExpandSwitch}"
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    HorizontalOptions="End"
+                                    OnColor="#C1EDCC"   
+                                    ThumbColor="#211e1c" InputTransparent="False" 
                                 />
 
                                 <Label x:Name="SemesterName"  
+                                    Padding="8"
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     Grid.ColumnSpan="3"
-                                    FontSize="28"
+                                    FontSize="24"
                                     VerticalTextAlignment="Center"
-                                    HorizontalTextAlignment="Start"
+                                    HorizontalTextAlignment="Center"
                                     TextColor="white"
                                     Text="{Binding SemesterTrack}" 
                                 />
@@ -85,7 +89,7 @@
                                             Grid.Column="0"
                                             Grid.ColumnSpan="3"
                                             HorizontalOptions="FillAndExpand"
-                                            FontSize="25"
+                                            FontSize="22"
                                             TextColor="Black"
                                             Text="{Binding UnitCode[0]}" 
                                         />
@@ -94,7 +98,7 @@
                                             BackgroundColor="White"
                                             Grid.Column="1"
                                             HorizontalOptions="FillAndExpand"
-                                            FontSize="25"
+                                            FontSize="22"
                                             TextColor="Black"
                                             Text="{Binding UnitGrade[0]}" 
                                         />
@@ -387,7 +391,7 @@
                                             Grid.Column="0"
                                             Grid.ColumnSpan="3"
                                             HorizontalOptions="FillAndExpand"
-                                            FontSize="25"
+                                            FontSize="22"
                                             TextColor="Black"
                                             Text="{Binding UnitCode[1]}" 
                                         />
@@ -396,7 +400,7 @@
                                             BackgroundColor="White"
                                             Grid.Column="1"
                                             HorizontalOptions="FillAndExpand"
-                                            FontSize="25"
+                                            FontSize="22"
                                             TextColor="Black"
                                             Text="{Binding UnitGrade[1]}" 
                                         />
@@ -689,7 +693,7 @@
                                             Grid.Column="0"
                                             Grid.ColumnSpan="3"
                                             HorizontalOptions="FillAndExpand"
-                                            FontSize="25"
+                                            FontSize="22"
                                             TextColor="Black"
                                             Text="{Binding UnitCode[2]}" 
                                         />
@@ -698,7 +702,7 @@
                                             BackgroundColor="White"
                                             Grid.Column="1"
                                             HorizontalOptions="FillAndExpand"
-                                            FontSize="25"
+                                            FontSize="22"
                                             TextColor="Black"
                                             Text="{Binding UnitGrade[2]}" 
                                         />

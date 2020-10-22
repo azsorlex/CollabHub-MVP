@@ -22,8 +22,8 @@ namespace CollabHub.Models
             this.Name = Name;
             this.Date = Date;
             this.Time = Time;
-            this.Time = Frequency;
-            this.Time = Subject;
+            this.Frequency = Frequency;
+            this.Subject = Subject;
             this.Icon = "calendar.png";
             this.Datestring = Date.ToString("d");
 

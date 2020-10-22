@@ -53,9 +53,11 @@
 
                                 <Image Source="{Binding Icon}"  Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" HorizontalOptions="FillAndExpand" />
                                 <Label Text="{Binding Name}" Grid.Row="1" Grid.Column="1"/>
+                                <Label Text="{Binding Subject}" Grid.Row="2" Grid.Column="1"/>
                                 <Label Text="{Binding Datestring}" Grid.Row="1"  Grid.Column="2"/>
                                 <Label Text="{Binding Time}" Grid.Row="2"  Grid.Column="2"/>
                                 <Button Command="{Binding ItemPress, Source={RelativeSource AncestorType={x:Type viewmodel:ViewAlertsViewModel}}}" CommandParameter="{Binding Datestring}" BackgroundColor="IndianRed" Text="X" FontSize="Large" Grid.Row="1" Grid.RowSpan="2" Grid.Column="3" />
+                                
                             </Grid>
 
                         </ViewCell>

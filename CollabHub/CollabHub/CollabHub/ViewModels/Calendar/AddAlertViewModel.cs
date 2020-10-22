@@ -91,7 +91,9 @@ namespace CollabHub.ViewModels
                 Debug.WriteLine(interval.ToString());
                 Debug.WriteLine(SelectedTime.ToString());
                 Debug.WriteLine(selectedDate.ToString("d"));
-                Calendar_Alert toSubmit = new Calendar_Alert(entryname, selectedDate, SelectedTime.ToString(), interval, subject.ToString());
+                DateTime temp = DateTime.Today.Add(SelectedTime);
+
+                Calendar_Alert toSubmit = new Calendar_Alert(entryname, selectedDate, temp.ToString("hh:mm tt"), interval, subject.ToString());
 
                 SingletonAlertStore store = SingletonAlertStore.Instance;
                 store.alerts.Add(toSubmit);

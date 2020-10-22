@@ -68,7 +68,7 @@
                                     VerticalTextAlignment="Center"
                                     HorizontalTextAlignment="Center"
                                     TextColor="white"
-                                    Text="{Binding SemesterTrack}" 
+                                    Text="{Binding SemesterTrack}" Margin="-40,0,0,0" 
                                 />
 
                                 <StackLayout Grid.Row="1" 

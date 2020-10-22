@@ -50,7 +50,7 @@
                 </Picker.ItemsSource>
             </Picker>
 
-            <Grid Grid.Row ="4" BackgroundColor="White">
+            <Grid Padding="20" Grid.Row ="4" BackgroundColor="White">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20" />

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\CalendarPage.xaml.cs">
+    <Compile Update="Views\Calendar\CalendarPage.xaml.cs">
       <DependentUpon>CalendarPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Video Meeting\MeetingPage.xaml.cs">
@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\AddAlert.xaml">
+    <EmbeddedResource Update="Views\Calendar\AddAlert.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Chat\ChatPage.xaml">
@@ -35,7 +35,7 @@
     <EmbeddedResource Update="Views\Home\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CalendarPage.xaml">
+    <EmbeddedResource Update="Views\Calendar\CalendarPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\UnitPage.xaml">
@@ -47,7 +47,7 @@
     <EmbeddedResource Update="Views\Video Meeting\VideoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ViewAlerts.xaml">
+    <EmbeddedResource Update="Views\Calendar\ViewAlerts.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

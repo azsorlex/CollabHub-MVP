@@ -26,12 +26,15 @@ namespace CollabHub.ViewModels
 
         public CalendarViewModel()
         {
+            
             AddAlert = new Xamarin.Forms.Command<DateTime>(GoToAddAlert);
             ViewAlerts = new Xamarin.Forms.Command(GoToViewAlerts);
 
-            CalendarMonths = new List<Calendar_Table>();
-            CalendarMonths.Add(new Calendar_Table(1, 2020));
-            CalendarMonths.Add(new Calendar_Table(2, 2020));
+            CalendarMonths = new List<Calendar_Table>
+            {
+                new Calendar_Table(1, 2020),
+                new Calendar_Table(2, 2020)
+            };
 
             //foreach (Calendar_Table.Day day in CalendarMonths.First().DayList)
             //{

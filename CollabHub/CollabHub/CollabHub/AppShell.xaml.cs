@@ -2,6 +2,8 @@
 using CollabHub.Views.Chat;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace CollabHub
@@ -16,8 +18,29 @@ namespace CollabHub
             BindingContext = this;
         }
 
+        
+        protected override bool OnBackButtonPressed()
+        {
+            //Shell.Current.GetType() == typeof(ViewAlerts)
+            IReadOnlyList<Page> temp = Shell.Current.Navigation.NavigationStack;
+            if(temp.Count != 0 && temp.Count > 2)
+            {
+                if (temp[temp.Count - 2].Title == "calendar")
+                {
+
+                    Shell.Current.Navigation.RemovePage(temp[temp.Count - 2]);
+                    Shell.Current.Navigation.InsertPageBefore(new CalendarPage(), temp.Last());
+                    Debug.WriteLine("yo we here");
+                    
+                    // new CalendarPage();
+                }
+            }
+            
+            return base.OnBackButtonPressed();
+        }
         void RegisterRoutes()
         {
+            
             Routes.Add("units", typeof(UnitPage));
             Routes.Add("calendar", typeof(CalendarPage));
             Routes.Add("chat", typeof(ChatPage));

@@ -18,7 +18,7 @@ namespace CollabHub.Models
         public int Days { get; set; }
         public int StartDay { get; set; }
         public string MonthName { get; set; }
-        int WeeksCovered { get; set; }
+        //int WeeksCovered { get; set; }
         public List<Calendar_Alert> Alerts { get; set; }
         public Collection<Calendar_Table.Day> DayList { get; set; }
 
@@ -27,7 +27,7 @@ namespace CollabHub.Models
             this.Year = year;
             this.Month = month;
             this.StartDay = CalcStartDate(year, month);
-            this.WeeksCovered = CalcWeeksCovered(year, month, StartDay);
+            //this.WeeksCovered = CalcWeeksCovered(year, month, StartDay);
             this.DayList = new Collection<Day>();
             this.MonthName = new DateTime(year, month, 1).ToString("MMMM yyyy");
 
@@ -41,13 +41,13 @@ namespace CollabHub.Models
             
         }
 
-        static int CalcWeeksCovered(int year, int month, int startday)
-        {
-            int weeks;
-            int days = DateTime.DaysInMonth(year, month);
-            weeks = (days + startday) / 7;
-            return weeks;
-        }
+        //static int CalcWeeksCovered(int year, int month, int startday)
+        //{
+        //    int weeks;
+        //    int days = DateTime.DaysInMonth(year, month);
+        //    weeks = (days + startday) / 7;
+        //    return weeks;
+        //}
         static int CalcStartDate(int year, int month)
         {
             List<int> monthconv = new List<int> { 11, 12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
@@ -60,8 +60,8 @@ namespace CollabHub.Models
             double D = year % 100;
             double C = (year / 100);
             double f = k + Math.Floor((13 * m - 1) / 5) + D + Math.Floor(D / 4) + Math.Floor(C / 4) - 2 * C;
-            f = f % 7;
-            if (f <= 0) { f = f + 7; }
+            f %= 7;
+            if (f <= 0) { f += 7; }
             return (int)f;
         }
 
@@ -72,7 +72,7 @@ namespace CollabHub.Models
             public DateTime FullDate { get; set; }
             public bool Valid { get; set; }
 
-            public string color { get; set; }
+            public string Color { get; set; }
             
             public Day (int pos, int startday,int daysinmonth, int month, int year) 
             {
@@ -94,10 +94,10 @@ namespace CollabHub.Models
                 SingletonAlertStore store = SingletonAlertStore.Instance;
                 if (store.IsAlert(FullDate))
                 {
-                    color = "LimeGreen";
+                    Color = "LimeGreen";
                 } else
                 {
-                    color = "LightGray";
+                    Color = "LightGray";
                 }
                 
                 

@@ -9,6 +9,7 @@ namespace CollabHub.Models
 {
     public class SemesterInfo : INotifyPropertyChanged
     {
+        //Get and Set variables that are used within service SemesterDataStore
         public string SemesterTrack { get; set; }
         public List<String> UnitContentHeading { get; set; }
         public List<String> UnitCode { get; set; }
@@ -17,8 +18,9 @@ namespace CollabHub.Models
         public List<String> Unit1LearningMat { get; set; }
         public List<String> Unit1AssessmentT { get; set; }
 
-        public bool _isExpandSwitch;
+        //Boolean variables which are used by the switch on UnitPage
 
+        public bool _isExpandSwitch;
         public bool IsExpandSwitch
         {
             get { return _isExpandSwitch; }
@@ -30,6 +32,7 @@ namespace CollabHub.Models
             }
         }
 
+        //Boolean variables which are used by the arrow ImageButton on UnitPage for the Unit Name
         public bool IsExpandUnitDown1 { get; set; }
         public bool IsExpandUnitSide1 { get; set; } = true;
 
@@ -64,6 +67,7 @@ namespace CollabHub.Models
             }
         }
 
+        //Boolean variables which are used by the arrow ImageButton on UnitPage for the Unit Name
         public bool IsExpandUnitDown2 { get; set; }
         public bool IsExpandUnitSide2 { get; set; } = true;
 
@@ -98,6 +102,7 @@ namespace CollabHub.Models
             }
         }
 
+        //Boolean variables which are used by the arrow ImageButton on UnitPage for the Unit Name
         public bool IsExpandUnitDown3 { get; set; }
         public bool IsExpandUnitSide3 { get; set; } = true;
 
@@ -132,7 +137,7 @@ namespace CollabHub.Models
             }
         }
 
-
+        //Boolean variables which are used by the arrow ImageButton on UnitPage for the Unit Contents
         public bool IsExpandDown1_1 { get; set; }
         public bool IsExpandSide1_1 { get; set; } = true;
 
@@ -150,6 +155,7 @@ namespace CollabHub.Models
             }
         }
 
+        //Boolean variables which are used by the arrow ImageButton on UnitPage for the Unit Contents
         public bool IsExpandDown1_2 { get; set; }
         public bool IsExpandSide1_2 { get; set; } = true;
 
@@ -167,6 +173,7 @@ namespace CollabHub.Models
             }
         }
 
+        //Boolean variables which are used by the arrow ImageButton on UnitPage for the Unit Contents
         public bool IsExpandDown1_3 { get; set; }
         public bool IsExpandSide1_3 { get; set; } = true;
         public ICommand CheckExpand1_3
@@ -183,6 +190,7 @@ namespace CollabHub.Models
             }
         }
 
+        //Boolean variables which are used by the arrow ImageButton on UnitPage for the Unit Contents
         public bool IsExpandDown2_1 { get; set; }
         public bool IsExpandSide2_1 { get; set; } = true;
 
@@ -200,6 +208,7 @@ namespace CollabHub.Models
             }
         }
 
+        //Boolean variables which are used by the arrow ImageButton on UnitPage for the Unit Contents
         public bool IsExpandDown2_2 { get; set; }
         public bool IsExpandSide2_2 { get; set; } = true;
 
@@ -217,6 +226,7 @@ namespace CollabHub.Models
             }
         }
 
+        //Boolean variables which are used by the arrow ImageButton on UnitPage for the Unit Contents
         public bool IsExpandDown2_3 { get; set; }
         public bool IsExpandSide2_3 { get; set; } = true;
         public ICommand CheckExpand2_3
@@ -233,7 +243,7 @@ namespace CollabHub.Models
             }
         }
 
-
+        //Boolean variables which are used by the arrow ImageButton on UnitPage for the Unit Contents
         public bool IsExpandDown3_1 { get; set; }
         public bool IsExpandSide3_1 { get; set; } = true;
 
@@ -251,6 +261,7 @@ namespace CollabHub.Models
             }
         }
 
+        //Boolean variables which are used by the arrow ImageButton on UnitPage for the Unit Contents
         public bool IsExpandDown3_2 { get; set; }
         public bool IsExpandSide3_2 { get; set; } = true;
 
@@ -268,6 +279,7 @@ namespace CollabHub.Models
             }
         }
 
+        //Boolean variables which are used by the arrow ImageButton on UnitPage for the Unit Contents
         public bool IsExpandDown3_3 { get; set; }
         public bool IsExpandSide3_3 { get; set; } = true;
         public ICommand CheckExpand3_3

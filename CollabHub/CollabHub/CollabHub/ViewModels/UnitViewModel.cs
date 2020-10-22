@@ -33,9 +33,6 @@ namespace CollabHub.ViewModels
         public UnitViewModel()
         {
             SetUpInfo();
-
-            //IsChanged1 = new Xamarin.Forms.Command(TestHey);
-
         }
 
         void SetUpInfo()

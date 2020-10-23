@@ -121,7 +121,7 @@ namespace CollabHub.ViewModels
                     Messages.Clear();
                     foreach (var message in messages)
                     {
-                        if (message.To == userId && message.From == CurrentUser.Id || message.To == CurrentUser.Id && message.From == userId)
+                        if (message.To == firstName && message.From == CurrentUser.FirstName || message.To == CurrentUser.FirstName && message.From == firstName)
                         {
                             Messages.Add(message);
                         }
@@ -145,8 +145,8 @@ namespace CollabHub.ViewModels
                 Id = Guid.NewGuid().ToString(),
                 Text = messageText,
                 Timestamp = DateTime.Now.ToString("dd/MM/yyyy HH:mmtt"),
-                To = userId,
-                From = UserDataStore.CurrentUser.Id
+                To = firstName,
+                From = UserDataStore.CurrentUser.FirstName
             };
 
             await MessageDataStore.AddItemAsync(newMessage);

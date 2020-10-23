@@ -36,15 +36,14 @@
                         Command="{Binding SevenDaysCommand}"
                         IsEnabled="{Binding SevenDaysEnabled}" />
 
-                <Button Text="Make first meeting live"
+                <Button Text="Make all meetings live"
                         FontSize="25"
                         HorizontalOptions="CenterAndExpand"
                         Margin="0, -5, 0, 5"
                         Command="{Binding MakeLiveCommand}"
                         IsEnabled="{Binding MakeLiveEnabled}" />
 
-                <CollectionView x:Name="meetingList"
-                                ItemsSource="{Binding Meetings, Mode=OneWay}"
+                <CollectionView ItemsSource="{Binding Meetings, Mode=OneWay}"
                                 VerticalScrollBarVisibility="Always">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical"

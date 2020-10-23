@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CollabHub.Views.AddAlert"
              xmlns:viewmodel="clr-namespace:CollabHub.ViewModels"
+             Title="addalert"
     xmlns:controltemplate="clr-namespace:CollabHub.ViewModels.ControlTemplates">
 
 

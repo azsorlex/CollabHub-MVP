@@ -21,20 +21,20 @@ namespace CollabHub
         
         protected override bool OnBackButtonPressed()
         {
-            //Shell.Current.GetType() == typeof(ViewAlerts)
-            IReadOnlyList<Page> temp = Shell.Current.Navigation.NavigationStack;
-            if(temp.Count != 0 && temp.Count > 2)
-            {
-                if (temp[temp.Count - 2].Title == "calendar")
-                {
+            ////Shell.Current.GetType() == typeof(ViewAlerts)
+            //IReadOnlyList<Page> temp = Shell.Current.Navigation.NavigationStack;
+            //if(temp.Count != 0 && temp.Count > 2)
+            //{
+            //    if (temp.Last().Title == "viewalerts" && temp.Last().)
+            //    {
 
-                    Shell.Current.Navigation.RemovePage(temp[temp.Count - 2]);
-                    Shell.Current.Navigation.InsertPageBefore(new CalendarPage(), temp.Last());
-                    Debug.WriteLine("yo we here");
+            //        Shell.Current.Navigation.RemovePage(temp[temp.Count - 2]);
+            //        Shell.Current.Navigation.InsertPageBefore(new CalendarPage(), temp.Last());
+            //        Debug.WriteLine("yo we here");
                     
-                    // new CalendarPage();
-                }
-            }
+            //        // new CalendarPage();
+            //    }
+            //}
             
             return base.OnBackButtonPressed();
         }

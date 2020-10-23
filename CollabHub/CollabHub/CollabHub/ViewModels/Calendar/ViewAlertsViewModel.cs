@@ -12,6 +12,7 @@ using CollabHub.Services;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Linq;
 
 namespace CollabHub.ViewModels
 {
@@ -71,6 +72,9 @@ namespace CollabHub.ViewModels
             {
                 SingletonAlertStore.Instance.alerts.Remove(selected);
                 Alerts.Remove(selected);
+
+                Shell.Current.Navigation.RemovePage(Shell.Current.Navigation.NavigationStack[Shell.Current.Navigation.NavigationStack.Count - 2]);
+                Shell.Current.Navigation.InsertPageBefore(new CalendarPage(), Shell.Current.Navigation.NavigationStack.Last());
 
             }
 

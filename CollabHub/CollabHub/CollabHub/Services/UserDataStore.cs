@@ -36,20 +36,16 @@ namespace CollabHub.Services
                 LastName = "Hartigan",
                 Id = "4",
                 UserColour = "#C1EDCC"
-            },
-            new User()
-            {
-                FirstName = "Sri",
-                LastName = "Nair",
-                Id = "5",
-                UserColour = "#B0C0BC"
             }
         };
 
         //  Gets populated with single user, which is Sri by default. Changes made in HomeViewModel
-        public static List<User> CurrentUser = new List<User>()
+        public static User CurrentUser = new User
         {
-
+            FirstName = "Sri",
+            LastName = "Nair",
+            Id = "5",
+            UserColour = "#B0C0BC"
         };
     }
 }

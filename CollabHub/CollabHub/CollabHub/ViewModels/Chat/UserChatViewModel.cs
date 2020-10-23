@@ -24,7 +24,7 @@ namespace CollabHub.ViewModels
 
         public ObservableCollection<Message> Messages { get; }
 
-        readonly User CurrentUser = UserDataStore.CurrentUser[0];
+        User CurrentUser = UserDataStore.CurrentUser;
 
         // Properties passed from ChatViewModel
         private string name;
@@ -146,7 +146,7 @@ namespace CollabHub.ViewModels
                 Text = messageText,
                 Timestamp = DateTime.Now.ToString("dd/MM/yyyy HH:mmtt"),
                 To = userId,
-                From = UserDataStore.CurrentUser[0].Id
+                From = UserDataStore.CurrentUser.Id
             };
 
             await MessageDataStore.AddItemAsync(newMessage);

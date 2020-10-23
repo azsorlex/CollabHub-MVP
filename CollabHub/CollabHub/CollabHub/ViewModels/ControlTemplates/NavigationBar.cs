@@ -8,6 +8,7 @@ using CollabHub.Services;
 using CollabHub.Views;
 using Acr.UserDialogs;
 using System.Linq;
+using CollabHub.Views.Chat;
 
 namespace CollabHub.ViewModels.ControlTemplates
 {
@@ -28,28 +29,25 @@ namespace CollabHub.ViewModels.ControlTemplates
         public NavigationBar()
         {
             HomePage = new Command(GoToHomePage);
-            ChangeUser = new Command(SwitchUserTest);
-        }
+            ChangeUser = new Command(GoToChangeUser);
+            //ChangeUser = new Command(SwitchUserTest);
 
-        //  Currently not working as intended - Work in progress.
-        private void SwitchUserTest()
-        {
-            int found = UserDataStore.Users.FindIndex(u => u.Id == UserDataStore.CurrentUser[0].Id);
-
-            if (found != 0)
-            {
-                UserDataStore.Users.Add(UserDataStore.CurrentUser[0]);
-                UserDataStore.CurrentUser[0] = UserDataStore.Users[0];
-            }
         }
 
         private async void GoToHomePage()
         {
             await Shell.Current.GoToAsync("home");
+            /*
             foreach (Page page in Shell.Current.Navigation.NavigationStack)
             {
                 Shell.Current.Navigation.RemovePage(page);
             }
+            */
+        }
+
+        private async void GoToChangeUser()
+        {
+            await Shell.Current.GoToAsync("changeUser");
         }
     }
 }

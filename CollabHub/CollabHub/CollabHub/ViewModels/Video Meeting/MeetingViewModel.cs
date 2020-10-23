@@ -121,8 +121,11 @@ namespace CollabHub.ViewModels
         async Task MakeLiveAction()
         {
             MakeLiveEnabled = false;
-            Meetings[0].Date -= Meetings[0].Countdown;
-            await DataStore.UpdateItemAsync(Meetings[0]);
+            foreach (Meeting m in Meetings)
+            {
+                m.Date -= m.Countdown;
+                await DataStore.UpdateItemAsync(m);
+            }
         }
 
         private async void UpdateCountdowns() // Update the countdown for each meeting, which will in turn update all of the other meetings' parameters

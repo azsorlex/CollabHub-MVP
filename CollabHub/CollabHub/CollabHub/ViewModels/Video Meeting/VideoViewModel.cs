@@ -27,12 +27,17 @@ namespace CollabHub.ViewModels
                 OnPropertyChanged(nameof(UnitCode));
             }
         }
-
         private string _messagetext;
         public string MessageText
         {
             get => _messagetext;
             set => SetProperty(ref _messagetext, value);
+        }
+        private bool _chatVisible;
+        public bool ChatVisible
+        {
+            get => _chatVisible;
+            set => SetProperty(ref _chatVisible, value);
         }
 
         public MvvmHelpers.Commands.Command FlipCommand { get; }
@@ -47,6 +52,7 @@ namespace CollabHub.ViewModels
         public VideoViewModel()
         {
             Messages = new ObservableCollection<Message>();
+            ChatVisible = false;
 
             FlipCommand = new MvvmHelpers.Commands.Command(async () => await FlipAction());
             ChatCommand = new MvvmHelpers.Commands.Command(async () => await ChatAction());
@@ -61,7 +67,7 @@ namespace CollabHub.ViewModels
 
         async Task ChatAction()
         {
-            notImplemented.Show();
+            ChatVisible = !ChatVisible;
         }
 
         async Task SaveChatAction()

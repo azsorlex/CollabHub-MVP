@@ -25,8 +25,38 @@
             <controltemplate:NavigationBar 
                 PageName="{Binding UnitCode, Mode=OneWay}" 
                 ControlTemplate="{StaticResource NavigationBarControlTemplate}" />
-            
-            
+
+            <Grid Grid.Row="2"
+                  IsVisible="{Binding ChatVisible}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="90*" />
+                    <RowDefinition Height="10*" />
+                </Grid.RowDefinitions>
+
+                <CollectionView Grid.Row="0"
+                            ItemsSource="{Binding Messages}"
+                            SelectionMode="None"
+                            EmptyView="No messages here. Start chatting away!">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame CornerRadius="10"
+                               BorderColor="#C1EDCC"
+                               BackgroundColor="#B0C0BC"
+                               Padding="0">
+                                <StackLayout Padding="4" Margin="3">
+                                    <Label Text="{Binding Text}" />
+                                    <Label Text="{Binding Timestamp}" />
+                                    <Label Text="{Binding From, StringFormat='From: {0}'}" />
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Entry Grid.Row="1" Placeholder="Send a message" ClearButtonVisibility="WhileEditing" ReturnType="Send"
+                       Text="{Binding MessageText, Mode=TwoWay}" ReturnCommand="{Binding SaveChatCommand}"/>
+            </Grid>
 
             <StackLayout Grid.Row="3"
                          Orientation="Horizontal"

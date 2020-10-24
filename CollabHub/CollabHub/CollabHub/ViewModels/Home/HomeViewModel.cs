@@ -30,16 +30,8 @@ namespace CollabHub.ViewModels
             UnitsPage = new Xamarin.Forms.Command(GoToUnitsPage);
             MeetingPage = new Xamarin.Forms.Command(GoToMeetingPage);
 
-            if (UserDataStore.Users.Count == 5)
-            {
-                CurrentUser = UserDataStore.Users.Find(u => u.Id == "5");
-                UserDataStore.CurrentUser.Add(CurrentUser);
-                int index = UserDataStore.Users.FindIndex(u => u.Id == "5");
-                UserDataStore.Users.RemoveAt(index);
-            } else
-            {
-                CurrentUser = UserDataStore.CurrentUser[0];
-            }
+            CurrentUser = UserDataStore.CurrentUser;
+
         }
 
         async void GoToUnitsPage()

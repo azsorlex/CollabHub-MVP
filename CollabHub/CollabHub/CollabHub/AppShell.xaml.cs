@@ -48,6 +48,7 @@ namespace CollabHub
             Routes.Add("meeting", typeof(MeetingPage));
             Routes.Add("video", typeof(VideoPage));
             Routes.Add("home", typeof(HomePage));
+            Routes.Add("changeUser", typeof(ChangeUserModalPage));
             Routes.Add("addalert", typeof(AddAlert));
             Routes.Add("viewalerts", typeof(ViewAlerts));
 

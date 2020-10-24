@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:viewmodel="clr-namespace:CollabHub.ViewModels"
+             xmlns:services="clr-namespace:CollabHub.Services"
+             xmlns:controltemplate="clr-namespace:CollabHub.ViewModels.ControlTemplates"
+             x:Class="CollabHub.Views.ChangeUserModalPage">
+
+    <ContentPage.BindingContext>
+        <viewmodel:ChangeUserViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <FlexLayout Direction="Column"
+                    AlignItems="Center"
+                    JustifyContent="SpaceEvenly" >
+
+            <Label  Text="{Binding CurrentUser, StringFormat='You are currently signed in as {0}.'}"
+                    FontSize="Medium"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Fill" />
+
+            <Label  Text="Tap a user below and press 'Change User' to sign in to a different profile"
+                    FontSize="Medium"
+                    HorizontalTextAlignment="Center"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Fill" />
+
+
+            <ListView   x:Name="UserList"
+                        ItemsSource="{Binding Users}"
+                        RowHeight="75"
+                        SelectedItem="{Binding SelectedUser, Mode=TwoWay}"
+                      >
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Margin="10">
+                                <Label Text="{Binding Name}" 
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+            <Button Text="Change User" Command="{Binding ChangeUserCommand}" />
+
+        </FlexLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -32,12 +32,18 @@
                 <Button Text="DEMO FEATURE: +7 Days"
                         FontSize="25"
                         HorizontalOptions="CenterAndExpand"
-                        Margin="0, -5, 0, 10"
-                        Command="{Binding DemoCommand}"
-                        IsEnabled="{Binding DemoButtonEnabled}" />
+                        Margin="0, -10, 0, 0"
+                        Command="{Binding SevenDaysCommand}"
+                        IsEnabled="{Binding SevenDaysEnabled}" />
 
-                <CollectionView x:Name="meetingList"
-                                ItemsSource="{Binding Meetings, Mode=OneWay}"
+                <Button Text="Make all meetings live"
+                        FontSize="25"
+                        HorizontalOptions="CenterAndExpand"
+                        Margin="0, -5, 0, 5"
+                        Command="{Binding MakeLiveCommand}"
+                        IsEnabled="{Binding MakeLiveEnabled}" />
+
+                <CollectionView ItemsSource="{Binding Meetings, Mode=OneWay}"
                                 VerticalScrollBarVisibility="Always">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical"

@@ -19,15 +19,27 @@ namespace CollabHub.ViewModels
         private readonly MeetingDataStore DataStore;
         public ObservableCollection<Meeting> Meetings { get; set; }
         public MvvmHelpers.Commands.Command TapCommand { get; }
-        public MvvmHelpers.Commands.Command DemoCommand { get; }
-        private bool _demmobuttonenabled = true;
-        public bool DemoButtonEnabled
+
+        public MvvmHelpers.Commands.Command SevenDaysCommand { get; }
+        public MvvmHelpers.Commands.Command MakeLiveCommand { get; }
+        private bool _sevendaysenabled = true;
+        public bool SevenDaysEnabled
         {
-            get => _demmobuttonenabled;
+            get => _sevendaysenabled;
             set
             {
-                SetProperty(ref _demmobuttonenabled, value);
-                OnPropertyChanged(nameof(DemoButtonEnabled));
+                SetProperty(ref _sevendaysenabled, value);
+                OnPropertyChanged(nameof(SevenDaysEnabled));
+            }
+        }
+        private bool _makeliveenabled = true;
+        public bool MakeLiveEnabled
+        {
+            get => _makeliveenabled;
+            set
+            {
+                SetProperty(ref _makeliveenabled, value);
+                OnPropertyChanged(nameof(MakeLiveEnabled));
             }
         }
 
@@ -37,7 +49,8 @@ namespace CollabHub.ViewModels
             DataStore = new MeetingDataStore();
             Meetings = new ObservableCollection<Meeting>();
             TapCommand = new MvvmHelpers.Commands.Command(async (m) => await TapAction((Meeting)m));
-            DemoCommand = new MvvmHelpers.Commands.Command(async () => await DemoAction());
+            SevenDaysCommand = new MvvmHelpers.Commands.Command(async () => await SevenDaysAction());
+            MakeLiveCommand = new MvvmHelpers.Commands.Command(async () => await MakeLiveAction());
 
             MvvmHelpers.Commands.Command LoadItemsCommand = new MvvmHelpers.Commands.Command(async () => await ExecuteLoadItemsCommand(true));
             System.Threading.Thread.Sleep(500);
@@ -95,14 +108,24 @@ namespace CollabHub.ViewModels
             }
         }
 
-        async Task DemoAction()
+        async Task SevenDaysAction()
         {
+            SevenDaysEnabled = false;
             foreach (Meeting m in Meetings)
             {
                 m.Date += new TimeSpan(7, 0, 0, 0);
                 await DataStore.UpdateItemAsync(m);
             }
-            DemoButtonEnabled = false;
+        }
+
+        async Task MakeLiveAction()
+        {
+            MakeLiveEnabled = false;
+            foreach (Meeting m in Meetings)
+            {
+                m.Date -= m.Countdown;
+                await DataStore.UpdateItemAsync(m);
+            }
         }
 
         private async void UpdateCountdowns() // Update the countdown for each meeting, which will in turn update all of the other meetings' parameters
@@ -131,7 +154,7 @@ namespace CollabHub.ViewModels
                     }
                 }
             }
-            
+
             foreach (Meeting m in ItemsToUpdate)
             {
                 await DataStore.UpdateItemAsync(m);

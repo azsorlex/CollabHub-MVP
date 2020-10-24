@@ -107,8 +107,10 @@ namespace CollabHub.ViewModels
         private async void Back()
         {
             await Shell.Current.GoToAsync("calendar");
-            Shell.Current.Navigation.RemovePage(Shell.Current.Navigation.NavigationStack[Shell.Current.Navigation.NavigationStack.Count - 2]);
-            Shell.Current.Navigation.RemovePage(Shell.Current.Navigation.NavigationStack[Shell.Current.Navigation.NavigationStack.Count - 3]);
+            Page a = Shell.Current.Navigation.NavigationStack[Shell.Current.Navigation.NavigationStack.Count - 2];
+            Page b = Shell.Current.Navigation.NavigationStack[Shell.Current.Navigation.NavigationStack.Count - 3];
+            Shell.Current.Navigation.RemovePage(a);
+            Shell.Current.Navigation.RemovePage(b);
 
         }
 

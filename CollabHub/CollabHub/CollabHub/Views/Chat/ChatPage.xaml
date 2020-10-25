@@ -40,8 +40,7 @@
                             <Grid Margin="2"
                                      BackgroundColor="White">
                                 <Grid.RowDefinitions >
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="75" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="50" />
@@ -62,16 +61,11 @@
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="1"
+                                    VerticalOptions="Center"
                                     Text="{Binding Name}" 
                                     Margin="8"
                                     FontAttributes="Bold"
                                     FontSize="Medium" />
-                                <Label 
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    Text="{Binding Greeting}" 
-                                    Margin="8,2,8,4"
-                                    FontSize="Small" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

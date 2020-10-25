@@ -36,13 +36,8 @@ namespace CollabHub.ViewModels.ControlTemplates
 
         private async void GoToHomePage()
         {
-            await Shell.Current.GoToAsync("home");
-            /*
-            foreach (Page page in Shell.Current.Navigation.NavigationStack)
-            {
-                Shell.Current.Navigation.RemovePage(page);
-            }
-            */
+            await Shell.Current.Navigation.PopToRootAsync();
+            //await Shell.Current.GoToAsync("home",false);
         }
 
         private async void GoToChangeUser()

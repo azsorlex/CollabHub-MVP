@@ -33,13 +33,31 @@ namespace CollabHub.Services
 
         }
 
+        static public bool CheckTime(DateTime date, Calendar_Alert alert)
+        {
+            bool yes = false;
+            if (alert.Frequency == "Weekly" && date.DayOfWeek == alert.Date.DayOfWeek)
+            {
+                yes = true;
+            }
+            else if (alert.Frequency == "Monthly" && date.Day == alert.Date.Day)
+            {
+                yes = true;
+            }
+            else if (alert.Date == date)
+            {
+                yes = true;
+            }
+            return yes;
+        }
+
         public bool IsAlert(DateTime date)
         {
             bool yes = false;
 
-            foreach (Calendar_Alert alert in alerts)
+            foreach(Calendar_Alert alert in alerts)
             {
-                if (alert.Date == date)
+                if (CheckTime(date,alert))
                 {
                     yes = true;
                 }

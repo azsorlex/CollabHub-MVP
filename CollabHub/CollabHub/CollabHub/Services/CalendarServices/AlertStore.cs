@@ -10,7 +10,6 @@ namespace CollabHub.Services
 {
     class AlertStore
     {
-        static IDataStore<Alert> AlertDataStore => DependencyService.Get<IDataStore<Alert>>();
         public AlertStore()
         {
             //Alerts2 = Alerts;
@@ -23,46 +22,26 @@ namespace CollabHub.Services
 
         };
 
-        static public List<Calendar_Alert> Alertsold { get
-            {
-                try
-                {
-                    var alerts = AlertDataStore.GetItemsAsync(true);
-                    List<Calendar_Alert> calendar_alerts = new List<Calendar_Alert>();
-                    foreach (Alert i in alerts.Result)
-                    {
-                        calendar_alerts.Add(new Calendar_Alert(i.Name, i.Date, i.Time, i.Frequency, i.Subject));
-                    }
 
-                    return calendar_alerts;
-                } catch (Exception e)
-                {
-                    Debug.WriteLine(e.Message);
-                }
-                return null;
 
-                
-            } }
-        private string path = "coolfile.txt";
-        public List<Calendar_Alert> Alerts2
+        static public bool CheckTime(DateTime date, Calendar_Alert alert)
         {
-            get
+            bool yes = false;
+            if (alert.Frequency == "Weekly" && date.DayOfWeek == alert.Date.DayOfWeek)
             {
-                System.IO.FileStream file = new System.IO.FileStream(path, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite);
-                BinaryFormatter serialiser = new BinaryFormatter();
-                List<Calendar_Alert> alerts = (List<Calendar_Alert>)serialiser.Deserialize(file);
-                file.Close();
-                return alerts;
-                
+                yes = true;
             }
-            set
+            else if (alert.Frequency == "Monthly" && date.Day == alert.Date.Day)
             {
-                System.IO.FileStream file = new System.IO.FileStream(path, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite);
-                BinaryFormatter serialiser = new BinaryFormatter();
-                serialiser.Serialize(file, value);
-                file.Close();
+                yes = true;
             }
+            else if (alert.Date == date)
+            {
+                yes = true;
+            }
+            return yes;
         }
+
 
         static public bool IsAlert(DateTime date)
         {
@@ -70,7 +49,7 @@ namespace CollabHub.Services
 
             foreach(Calendar_Alert alert in Alerts)
             {
-                if (alert.Date == date)
+                if (CheckTime(date,alert))
                 {
                     yes = true;
                 }

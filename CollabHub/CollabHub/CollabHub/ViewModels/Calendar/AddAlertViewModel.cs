@@ -18,6 +18,7 @@ namespace CollabHub.ViewModels
 
     class AddAlertViewModel : BaseViewModel
     {
+        IDataStore<Alert> AlertDataStore => DependencyService.Get<IDataStore<Alert>>();
         public string input { set
             {
                 string stringdate = Uri.UnescapeDataString(value);
@@ -37,7 +38,6 @@ namespace CollabHub.ViewModels
         public bool onetime { get; set; }
         public bool weekly { get; set; }
         public bool monthly { get; set; }
-        public bool daily { get; set; }
         public TimeSpan SelectedTime { get; set; }
         public Xamarin.Forms.Command SubmitAlert { get; set; }
 
@@ -66,10 +66,7 @@ namespace CollabHub.ViewModels
             {
                 interval = "Monthly";
             }
-            else if (daily)
-            {
-                interval = "Daily";
-            }
+
             else
             {
                 interval = "error";
@@ -87,19 +84,49 @@ namespace CollabHub.ViewModels
                 new ToastNotification("Please select an alert interval.", 3000).Show();
             } else
             {
-                Debug.WriteLine(entryname.ToString());
-                Debug.WriteLine(subject.ToString());
-                Debug.WriteLine(interval.ToString());
-                Debug.WriteLine(SelectedTime.ToString());
-                Debug.WriteLine(selectedDate.ToString("d"));
-                DateTime temp = DateTime.Today.Add(SelectedTime);
+                bool unique = true;
+                foreach(Calendar_Alert alert in SingletonAlertStore.Instance.alerts)
+                {
+                    if(alert.Name == entryname.ToString())
+                    {
+                        unique = false;
+                    }
+                }
+                if (unique)
+                {
+                    Debug.WriteLine(entryname.ToString());
+                    Debug.WriteLine(subject.ToString());
+                    Debug.WriteLine(interval.ToString());
+                    Debug.WriteLine(SelectedTime.ToString());
+                    Debug.WriteLine(selectedDate.ToString("d"));
+                    DateTime temp = DateTime.Today.Add(SelectedTime);
 
-                Calendar_Alert toSubmit = new Calendar_Alert(entryname, selectedDate, temp.ToString("hh:mm tt"), interval, subject.ToString(), false);
+                    Calendar_Alert toSubmit = new Calendar_Alert(entryname, selectedDate, temp.ToString("hh:mm tt"), interval, subject.ToString(), false);
 
-                SingletonAlertStore store = SingletonAlertStore.Instance;
-                store.alerts.Add(toSubmit);
-                new ToastNotification("Alert added to calendar!", 3000).Show();
-                Back();
+                    //Alert newalert = new Alert()
+                    //{
+                    //    Name = entryname,
+                    //    Date = selectedDate,
+                    //    Frequency = interval,
+                    //    Subject = subject,
+                    //    Time = temp.ToString("hh:mm tt"),
+                    //    Automatic = false
+
+                    //};
+
+                    //SingletonAlertStore.Instance.AlertDataStore.AddItemAsync(newalert);
+
+
+
+                    SingletonAlertStore store = SingletonAlertStore.Instance;
+                    store.alerts.Add(toSubmit);
+                    new ToastNotification("Alert added to calendar!", 3000).Show();
+                    Back();
+                } else
+                {
+                    new ToastNotification("That name has already been used. Please select another", 3000).Show();
+                }
+                
             }
 
             

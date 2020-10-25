@@ -34,8 +34,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50" />
                         <RowDefinition Height="2.5" />
-                        <RowDefinition Height="80" />
-                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="480" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <!-- Chat user info (Initial badge and Name) -->
@@ -70,28 +70,28 @@
                     BackgroundColor="Gray"
                     />
 
-                    <RefreshView x:DataType="viewmodel:UserChatViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
-                                 Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
-                        <CollectionView x:Name="MessagesListView"
+                        <ScrollView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="FillAndExpand">
+                            <CollectionView x:Name="MessagesListView"
                                 ItemsSource="{Binding Messages}"
                                 SelectionMode="None">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <Frame CornerRadius="10"
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame CornerRadius="10"
                                            BorderColor="#C1EDCC"
                                            BackgroundColor="#B0C0BC"
                                            Padding="0">
-                                        <StackLayout Padding="4" Margin="3" x:DataType="model:Message">
-                                            <Label Text="{Binding Text}" />
-                                            <Label Text="{Binding Timestamp}" />
-                                            <Label Text="{Binding To, StringFormat='To: {0}'}" />
-                                            <Label Text="{Binding From, StringFormat='From: {0}'}" />
-                                        </StackLayout>
-                                    </Frame>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView>
-                    </RefreshView>
+                                            <StackLayout Padding="4" Margin="3" x:DataType="model:Message">
+                                                <Label Text="{Binding Text}" />
+                                                <Label Text="{Binding Timestamp}" />
+                                                <Label Text="{Binding To, StringFormat='To: {0}'}" />
+                                                <Label Text="{Binding From, StringFormat='From: {0}'}" />
+                                            </StackLayout>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </ScrollView>
+
                 </Grid>
 
             </StackLayout>

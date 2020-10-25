@@ -1,6 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using CollabHub.Models.Chat;
+using CollabHub.Models;
+using CollabHub.Services;
+using MvvmHelpers;
+using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace CollabHub.Models
@@ -12,10 +18,6 @@ namespace CollabHub.Models
         public string LastName { get; set; }
         public string UserColour { get; set; }
         public string Name { get { return $"{FirstName} {LastName}"; } }
-        public string Greeting
-        {
-            get { return $"Hi! May name is {Name}. What's yours?"; }
-        }
 
         public string Initials
         {
@@ -28,7 +30,6 @@ namespace CollabHub.Models
                 return initials.ToUpper();
             } 
         }
-
         public Xamarin.Forms.Command UserChatPage
         {
             get

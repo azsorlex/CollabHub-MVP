@@ -26,6 +26,12 @@
                 PageName="{Binding UnitCode, Mode=OneWay}" 
                 ControlTemplate="{StaticResource NavigationBarControlTemplate}" />
 
+            <Label Grid.Row="2"
+                   Text="{Binding CameraText}"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   IsVisible="{Binding ImageVisible}" />
+
             <Grid Grid.Row="2"
                   IsVisible="{Binding ChatVisible}">
                 <Grid.RowDefinitions>

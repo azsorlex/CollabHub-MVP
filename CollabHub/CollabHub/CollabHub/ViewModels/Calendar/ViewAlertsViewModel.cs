@@ -80,10 +80,10 @@ namespace CollabHub.ViewModels
             ShowPersonal = new Xamarin.Forms.Command(ShowPersonalAlerts);
             GoBack = new Xamarin.Forms.Command(BackButton);
         }
-
+        
         async void DeletePrompt(string i)
         {
-            Debug.WriteLine("yos queen");
+            
             Calendar_Alert selected = SingletonAlertStore.Instance.alerts.Find(x => x.Datestring == i);
             bool delete = await Shell.Current.DisplayAlert(selected.Name, "Do you want to delete this alert?", "Delete", "Cancel");
             if (delete)
@@ -92,6 +92,7 @@ namespace CollabHub.ViewModels
                 Alerts.Remove(selected);
                 AllAlerts.Remove(selected);
                 PersonalAlerts.Remove(selected);
+                //await SingletonAlertStore.Instance.AlertDataStore.DeleteItemAsync(selected.Name);
 
                 Shell.Current.Navigation.RemovePage(Shell.Current.Navigation.NavigationStack[Shell.Current.Navigation.NavigationStack.Count - 2]);
                 Shell.Current.Navigation.InsertPageBefore(new CalendarPage(), Shell.Current.Navigation.NavigationStack.Last());

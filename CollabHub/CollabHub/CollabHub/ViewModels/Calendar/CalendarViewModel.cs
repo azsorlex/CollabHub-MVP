@@ -30,10 +30,14 @@ namespace CollabHub.ViewModels
             AddAlert = new Xamarin.Forms.Command<DateTime>(GoToAddAlert);
             ViewAlerts = new Xamarin.Forms.Command(GoToViewAlerts);
 
+            
+            
+            //System.Threading.Thread.Sleep(500);
             CalendarMonths = new List<Calendar_Table>
             {
                 new Calendar_Table(1, 2020),
-                new Calendar_Table(2, 2020)
+                new Calendar_Table(2, 2020),
+                new Calendar_Table(3, 2020)
             };
 
             //foreach (Calendar_Table.Day day in CalendarMonths.First().DayList)

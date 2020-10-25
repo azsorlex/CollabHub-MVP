@@ -50,7 +50,7 @@ namespace CollabHub.ViewModels
             //InDate = "testing";
 
         }
-        void Submit()
+        async void Submit()
         {
             String interval;
 
@@ -103,18 +103,18 @@ namespace CollabHub.ViewModels
 
                     Calendar_Alert toSubmit = new Calendar_Alert(entryname, selectedDate, temp.ToString("hh:mm tt"), interval, subject.ToString(), false);
 
-                    //Alert newalert = new Alert()
-                    //{
-                    //    Name = entryname,
-                    //    Date = selectedDate,
-                    //    Frequency = interval,
-                    //    Subject = subject,
-                    //    Time = temp.ToString("hh:mm tt"),
-                    //    Automatic = false
+                    Alert newalert = new Alert()
+                    {
+                        Name = entryname,
+                        Date = selectedDate,
+                        Frequency = interval,
+                        Subject = subject,
+                        Time = temp.ToString("hh:mm tt"),
+                        Automatic = false
 
-                    //};
+                    };
 
-                    //SingletonAlertStore.Instance.AlertDataStore.AddItemAsync(newalert);
+                    await SingletonAlertStore.Instance.AlertDataStore.AddItemAsync(newalert);
 
 
 

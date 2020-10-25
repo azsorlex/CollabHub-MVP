@@ -11,20 +11,20 @@ namespace CollabHub.Services
     {
         readonly SQLiteAsyncConnection database = App.Database.Database;
 
-        public async Task<bool> AddItemAsync(Alert message)
+        public async Task<bool> AddItemAsync(Alert alert)
         {
-            return await database.InsertAsync(message) > 0;
+            return await database.InsertAsync(alert) > 0;
         }
 
-        public async Task<bool> DeleteItemAsync(string date)
+        public async Task<bool> DeleteItemAsync(string name)
         {
-            var user = database.Table<Alert>().FirstOrDefaultAsync(i => i.Date.ToString("d") == date);
-            return user != null && await database.DeleteAsync(user) > 0;
+            var alert = database.Table<Alert>().FirstOrDefaultAsync(i => i.Name == name);
+            return alert != null && await database.DeleteAsync(alert) > 0;
         }
 
-        public Task<Alert> GetItemAsync(string text)
+        public Task<Alert> GetItemAsync(string name)
         {
-            return database.GetAsync<Alert>(text);
+            return database.GetAsync<Alert>(name);
         }
 
         public async Task<IEnumerable<Alert>> GetItemsAsync(bool forceRefresh = false)
@@ -32,9 +32,9 @@ namespace CollabHub.Services
             return await database.Table<Alert>().ToListAsync();
         }
 
-        public async Task<bool> UpdateItemAsync(Alert message)
+        public async Task<bool> UpdateItemAsync(Alert alert)
         {
-            return await database.UpdateAsync(message) > 0;
+            return await database.UpdateAsync(alert) > 0;
         }
     }
 }

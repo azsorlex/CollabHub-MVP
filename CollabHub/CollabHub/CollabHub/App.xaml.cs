@@ -24,11 +24,12 @@ namespace CollabHub
         public App()
         {
             InitializeComponent();
-
+            DependencyService.Register<AlertDataStore>();
             DependencyService.Register<MeetingDataStore>();
             DependencyService.Register<MessageDataStore>();
 
             MainPage = new AppShell();
+            var lol = SingletonAlertStore.Instance.alerts;
         }
 
         protected override void OnStart()

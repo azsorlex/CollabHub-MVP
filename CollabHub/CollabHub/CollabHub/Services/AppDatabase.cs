@@ -30,7 +30,8 @@ namespace CollabHub.Services
             if (!initialized)
             {
                 await Database.CreateTablesAsync(CreateFlags.None, typeof(User)).ConfigureAwait(false); // Initialise the user table if it doesn't exist
-                await Database.CreateTablesAsync(CreateFlags.None, typeof(Message)).ConfigureAwait(false); // Initialise the message table if it doesn't exist
+                await Database.CreateTablesAsync(CreateFlags.None, typeof(Message)).ConfigureAwait(false);
+                await Database.CreateTablesAsync(CreateFlags.None, typeof(Alert)).ConfigureAwait(false); 
                 try
                 {
                     await Database.Table<Meeting>().CountAsync(); // Determine if the table exists
@@ -40,12 +41,37 @@ namespace CollabHub.Services
                     await Database.CreateTablesAsync(CreateFlags.None, typeof(Meeting)).ConfigureAwait(false);
                     await PopulateMeetingTableAsync(); // Add some default data to the table
                 }
+
+                try
+                {
+                    //await Database.Table<Alert>().CountAsync(); // Determine if the table exists
+                    if(await Database.Table<Alert>().CountAsync() == 0)
+                    {
+                        PopulateAlertTableAsync();
+                    }
+                }
+                catch // If an exception is caught, the table doesn't exist
+                {
+                    await Database.CreateTablesAsync(CreateFlags.None, typeof(Alert)).ConfigureAwait(false);
+                    await PopulateAlertTableAsync(); // Add some default data to the table
+                }
                 //await Database.DropTableAsync<Meeting>();
+                //await PopulateAlertTableAsync();
                 initialized = true;
             }
         }
 
+        async Task PopulateAlertTableAsync()
+        {
+            var Alerts = new List<Alert>()
+            {
+            SingletonAlertStore.ConvertAlert(new Calendar_Alert("Final Exam",new DateTime(2020,1,7),"12:00","One Time","CAB123",true)),
+            SingletonAlertStore.ConvertAlert(new Calendar_Alert("Assignment 2",new DateTime(2020,2,6),"03:00","One Time","IFB999",true)),
+            SingletonAlertStore.ConvertAlert(new Calendar_Alert("Monthly Meeting",new DateTime(2020,1,9),"11:59","Monthly","EGB101",true))
 
+        };
+            await Database.InsertAllAsync(Alerts);
+        }
 
         async Task PopulateMeetingTableAsync()
         {

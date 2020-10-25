@@ -46,6 +46,7 @@ namespace CollabHub.ViewModels
         {
             
             SubmitAlert = new Xamarin.Forms.Command(Submit);
+            CancelAlert = new Xamarin.Forms.Command(Cancel);
             //InDate = "testing";
 
         }
@@ -101,6 +102,16 @@ namespace CollabHub.ViewModels
                 Back();
             }
 
+            
+        }
+        public Xamarin.Forms.Command CancelAlert { get; set; }
+        public async void Cancel()
+        {
+            bool cancel = await Shell.Current.DisplayAlert("Cancel", "Are you sure you want to cancel creating this alert?", "Yes", "No");
+            if(cancel)
+            {
+                await Shell.Current.Navigation.PopAsync();
+            }
             
         }
 

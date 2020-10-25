@@ -65,5 +65,19 @@ namespace CollabHub.Services
             return yes;
         }
 
+        public bool IsExactAlert(DateTime date)
+        {
+            bool yes = false;
+
+            foreach (Calendar_Alert alert in alerts)
+            {
+                if (alert.Date == date)
+                {
+                    yes = true;
+                }
+            }
+            return yes;
+        }
+
     }
 }

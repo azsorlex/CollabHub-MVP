@@ -94,7 +94,14 @@ namespace CollabHub.Models
                 
                 if (SingletonAlertStore.Instance.IsAlert(FullDate))
                 {
-                    Color = "LimeGreen";
+                    if (SingletonAlertStore.Instance.IsExactAlert(FullDate))
+                    {
+                        Color = "LimeGreen";
+                    } else
+                    {
+                        Color = "#9dd194";
+                    }
+                        
                 } else
                 {
                     Color = "LightGray";

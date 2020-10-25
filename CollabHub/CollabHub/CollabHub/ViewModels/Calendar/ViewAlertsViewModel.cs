@@ -27,7 +27,12 @@ namespace CollabHub.ViewModels
             {
                 DateTime selecteddate = DateTime.Parse(Uri.UnescapeDataString(value));
                 SingletonAlertStore store = SingletonAlertStore.Instance;
-                Calendar_Alert selectedalert = store.alerts.Find(x => SingletonAlertStore.CheckTime(selecteddate,x));
+                Calendar_Alert selectedalert = store.alerts.Find(x => x.Date == selecteddate);
+                if(selectedalert == null)
+                {
+                    selectedalert = store.alerts.Find(x => SingletonAlertStore.CheckTime(selecteddate, x));
+                }
+                
                 Debug.WriteLine(selectedalert.Datestring);
 
                 Selection = selectedalert;

@@ -16,9 +16,9 @@ namespace CollabHub.Services
         }
         static public List<Calendar_Alert> Alerts = new List<Calendar_Alert>()
         {
-            new Calendar_Alert("Urgent",new DateTime(2020,1,6),"12:00","Weekly","EGBnan"),
-            new Calendar_Alert("Not so Urget",new DateTime(2021,5,6),"03:00","Daily","IFB333"),
-            new Calendar_Alert("Meh",new DateTime(2030,6,9),"11:59","Monthly","IFB963")
+            new Calendar_Alert("Urgent",new DateTime(2020,1,6),"12:00","Weekly","EGBnan",true),
+            new Calendar_Alert("Not so Urget",new DateTime(2021,5,6),"03:00","Daily","IFB333",true),
+            new Calendar_Alert("Meh",new DateTime(2030,6,9),"11:59","Monthly","IFB963",true)
 
         };
 

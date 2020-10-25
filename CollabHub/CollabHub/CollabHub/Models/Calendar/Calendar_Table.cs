@@ -91,15 +91,14 @@ namespace CollabHub.Models
                     this.FullDate = new DateTime(year, month, dateint);
                     this.Date = dateint.ToString();
                 }
-                SingletonAlertStore store = SingletonAlertStore.Instance;
-                if (store.IsAlert(FullDate))
+                
+                if (SingletonAlertStore.Instance.IsAlert(FullDate))
                 {
                     Color = "LimeGreen";
                 } else
                 {
                     Color = "LightGray";
                 }
-                
                 
 
             }

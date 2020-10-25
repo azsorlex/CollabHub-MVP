@@ -18,7 +18,8 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
-                <RowDefinition Height="10" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="40" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -30,9 +31,25 @@
                 ControlTemplate="{StaticResource NavigationBarControlTemplate}"
             Grid.Row ="0" />
 
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
+                <ImageButton Grid.Column="0" Command="{Binding GoBack}"/>
+                <ImageButton Grid.Column="1" Command="{Binding ShowAll}"/>
+                <ImageButton Grid.Column="2" Command="{Binding ShowPersonal}"/>
+            </Grid>
+            
+            <Label Text="{Binding ViewText}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="2" FontSize="30" TextColor="White" BackgroundColor="#594b4b"/>
 
-            <ListView SelectedItem="{Binding Selection, Mode=TwoWay}" ItemsSource="{Binding Alerts}" Grid.Row="2"  HasUnevenRows="True" BackgroundColor="AliceBlue" >
+            <ListView SelectedItem="{Binding Selection, Mode=TwoWay}" ItemsSource="{Binding Alerts}" Grid.Row="3"  HasUnevenRows="True" BackgroundColor="AliceBlue" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -54,7 +71,7 @@
                                 <Image Source="{Binding Icon}"  Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" HorizontalOptions="FillAndExpand" />
                                 <Label Text="{Binding Name}" Grid.Row="1" Grid.Column="1"/>
                                 <Label Text="{Binding Subject}" Grid.Row="2" Grid.Column="1"/>
-                                <Label Text="{Binding Datestring}" Grid.Row="1"  Grid.Column="2"/>
+                                <Label Text="{Binding DisplayDate}" Grid.Row="1"  Grid.Column="2"/>
                                 <Label Text="{Binding Time}" Grid.Row="2"  Grid.Column="2"/>
                                 <Button Command="{Binding ItemPress, Source={RelativeSource AncestorType={x:Type viewmodel:ViewAlertsViewModel}}}" CommandParameter="{Binding Datestring}" BackgroundColor="IndianRed" Text="X" FontSize="Large" Grid.Row="1" Grid.RowSpan="2" Grid.Column="3" />
                                 

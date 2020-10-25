@@ -13,9 +13,9 @@ namespace CollabHub.Services
         private SingletonAlertStore() {
             alerts = new List<Calendar_Alert>()
         {
-            new Calendar_Alert("Urgent",new DateTime(2020,1,6),"12:00","Weekly","EGBnan",true),
-            new Calendar_Alert("Not so Urgent",new DateTime(2021,5,6),"03:00","Daily","IFB333",true),
-            new Calendar_Alert("Meh",new DateTime(2030,6,9),"11:59","Monthly","IFB963",true)
+            new Calendar_Alert("Final Exam",new DateTime(2020,1,7),"12:00","One Time","CAB123",true),
+            new Calendar_Alert("Assignment 2 Due date",new DateTime(2020,2,6),"03:00","One Time","IFB999",true),
+            new Calendar_Alert("Monthly Meeting",new DateTime(2020,1,9),"11:59","Monthly","EGB101",true)
 
         };
         }

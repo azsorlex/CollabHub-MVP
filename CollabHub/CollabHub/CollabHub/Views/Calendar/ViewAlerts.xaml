@@ -48,40 +48,43 @@
             </Grid>
             
             <Label Text="{Binding ViewText}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="2" FontSize="30" TextColor="White" BackgroundColor="#594b4b"/>
+            
+            <ScrollView Grid.Row="3">
+                <ListView SelectedItem="{Binding Selection, Mode=TwoWay}" ItemsSource="{Binding Alerts}"   HasUnevenRows="True" BackgroundColor="AliceBlue" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Margin="2" BackgroundColor="White">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="20" />
+                                    </Grid.RowDefinitions>
 
-            <ListView SelectedItem="{Binding Selection, Mode=TwoWay}" ItemsSource="{Binding Alerts}" Grid.Row="3"  HasUnevenRows="True" BackgroundColor="AliceBlue" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid Margin="2" BackgroundColor="White">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="20" />
-                                    <RowDefinition Height="20" />
-                                    <RowDefinition Height="20" />
-                                </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="75"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="40"/>
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="75"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="40"/>
+                                    </Grid.ColumnDefinitions>
 
-                                </Grid.ColumnDefinitions>
+                                    <Image Source="{Binding Icon}"  Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" HorizontalOptions="FillAndExpand" />
+                                    <Label Text="{Binding Name}" Grid.Row="1" Grid.Column="1"/>
+                                    <Label Text="{Binding Subject}" Grid.Row="2" Grid.Column="1"/>
+                                    <Label Text="{Binding DisplayDate}" Grid.Row="1"  Grid.Column="2"/>
+                                    <Label Text="{Binding Time}" Grid.Row="2"  Grid.Column="2"/>
+                                    <Button Command="{Binding ItemPress, Source={RelativeSource AncestorType={x:Type viewmodel:ViewAlertsViewModel}}}" CommandParameter="{Binding Datestring}" BackgroundColor="IndianRed" Text="X" FontSize="Large" Grid.Row="1" Grid.RowSpan="2" Grid.Column="3" />
 
-                                <Image Source="{Binding Icon}"  Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" HorizontalOptions="FillAndExpand" />
-                                <Label Text="{Binding Name}" Grid.Row="1" Grid.Column="1"/>
-                                <Label Text="{Binding Subject}" Grid.Row="2" Grid.Column="1"/>
-                                <Label Text="{Binding DisplayDate}" Grid.Row="1"  Grid.Column="2"/>
-                                <Label Text="{Binding Time}" Grid.Row="2"  Grid.Column="2"/>
-                                <Button Command="{Binding ItemPress, Source={RelativeSource AncestorType={x:Type viewmodel:ViewAlertsViewModel}}}" CommandParameter="{Binding Datestring}" BackgroundColor="IndianRed" Text="X" FontSize="Large" Grid.Row="1" Grid.RowSpan="2" Grid.Column="3" />
-                                
-                            </Grid>
+                                </Grid>
 
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
 
-            </ListView>
+                </ListView>
+            </ScrollView>
+            
 
         </Grid>
     </ContentPage.Content>

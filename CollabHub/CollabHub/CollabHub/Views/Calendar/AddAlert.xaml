@@ -23,7 +23,7 @@
                 <RowDefinition Height="60" />
                 <RowDefinition Height="60" />
                 <RowDefinition Height="60" />
-                <RowDefinition Height="200" />
+                <RowDefinition Height="150" />
                 <RowDefinition Height="60" />
                 <RowDefinition Height="60" />
                 <RowDefinition Height="60" />
@@ -81,8 +81,6 @@
                 <RadioButton IsChecked="{Binding monthly}" Grid.Row="3" Grid.Column="0" />
                 <Label Grid.Row="3" Grid.Column="2"  >Monthly</Label>
 
-                <RadioButton IsChecked="{Binding daily}" Grid.Row="4" Grid.Column="0"/>
-                <Label Grid.Row="4" Grid.Column="2"  >Daily</Label>
             </Grid>
 
             <TimePicker  Time="{Binding SelectedTime}" Grid.Row="5" BackgroundColor="White"/>

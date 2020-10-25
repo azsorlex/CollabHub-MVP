@@ -26,7 +26,14 @@ namespace CollabHub.Models
             this.Time = Time;
             this.Frequency = Frequency;
             this.Subject = Subject;
-            this.Icon = "calendar.png";
+            if(auto)
+            {
+                this.Icon = "calendar.png";
+            } else
+            {
+                this.Icon = "notepad.png";
+            }
+            
             this.Datestring = Date.ToString("d");
             this.Auto = auto;
 

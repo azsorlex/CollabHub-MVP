@@ -36,12 +36,12 @@
             <Grid Grid.Row="1" BackgroundColor="#C1EDCC">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="20"/>
                     <ColumnDefinition Width="100"/>
 
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Text="{Binding Date}" FontSize="Title"/>
+                <Label Grid.Column="0" Text="{Binding Date}" FontSize="22"/>
                 <ImageButton Source="list_icon.png" Command="{Binding ViewAlerts}" Grid.Column="2" HorizontalOptions="FillAndExpand"/>
             </Grid>
 

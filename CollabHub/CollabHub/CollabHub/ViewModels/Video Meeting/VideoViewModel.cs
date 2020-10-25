@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 using MvvmHelpers;
 using CollabHub.Models.GlobalUtilities;
 using System.Threading.Tasks;
@@ -39,6 +40,18 @@ namespace CollabHub.ViewModels
             get => _chatVisible;
             set => SetProperty(ref _chatVisible, value);
         }
+        private bool _imagevisible;
+        public bool ImageVisible
+        {
+            get => _imagevisible;
+            set => SetProperty(ref _imagevisible, value);
+        }
+        private string _cameratext;
+        public string CameraText
+        {
+            get => _cameratext;
+            set => SetProperty(ref _cameratext, value);
+        }
 
         public MvvmHelpers.Commands.Command FlipCommand { get; }
         public MvvmHelpers.Commands.Command ChatCommand { get; }
@@ -46,13 +59,15 @@ namespace CollabHub.ViewModels
         public MvvmHelpers.Commands.Command BackCommand { get; }
 
 
-        private readonly ToastNotification notImplemented = new ToastNotification("Not implemented yet.", 1000);
+        private readonly ToastNotification notImplemented = new ToastNotification("Not implemented.", 1000);
 
 
         public VideoViewModel()
         {
             Messages = new ObservableCollection<Message>();
             ChatVisible = false;
+            ImageVisible = true;
+            CameraText = "You can now see your own face.";
 
             FlipCommand = new MvvmHelpers.Commands.Command(async () => await FlipAction());
             ChatCommand = new MvvmHelpers.Commands.Command(async () => await ChatAction());
@@ -62,12 +77,19 @@ namespace CollabHub.ViewModels
 
         async Task FlipAction()
         {
-            notImplemented.Show();
+            await Task.Run(() =>
+            {
+                CameraText = CameraText == "You can now see your own face." ? "You can now see whatever's behind your phone." : "You can now see your own face.";
+            });
         }
 
         async Task ChatAction()
         {
-            ChatVisible = !ChatVisible;
+            await Task.Run(() =>
+            {
+                ChatVisible = !ChatVisible;
+                ImageVisible = !ChatVisible;
+            });
         }
 
         async Task SaveChatAction()
